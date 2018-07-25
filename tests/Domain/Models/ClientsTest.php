@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Under The Roof project.
+ * This file is part of the bileMo project.
  *
  * (c) Laurent BERTON <lolosambo2@gmail.com>
  *

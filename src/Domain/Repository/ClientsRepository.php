@@ -13,58 +13,58 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository;
 
-use App\Domain\Models\Interfaces\UsersInterface;
-use App\Domain\Models\Users;
-use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
+use App\Domain\Models\Interfaces\ClientsInterface;
+use App\Domain\Models\Clients;
+use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class UsersRepository.
+ * Class ClientsRepository.
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class UsersRepository extends ServiceEntityRepository implements UsersRepositoryInterface
+class ClientsRepository extends ServiceEntityRepository implements ClientsRepositoryInterface
 {
     /**
-     * UsersRepository constructor.
+     * ClientsRepository constructor.
      *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Users::class);
+        parent::__construct($registry, Clients::class);
     }
 
     /**
-     * @param UuidInterface $userId
+     * @param UuidInterface $clientId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findUser(UuidInterface $userId)
+    public function findClient(UuidInterface $clientId)
     {
-        return $this->createQueryBuilder('u')
-            ->where('u.id = ?1')
-            ->setParameter(1, $userId)
+        return $this->createQueryBuilder('c')
+            ->where('c.id = ?1')
+            ->setParameter(1, $clientId)
             ->setCacheable(true)
             ->getQuery()
             ->getOneOrNullResult();
     }
 
     /**
-     * @param string $username
+     * @param string $clientName
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByUsername(string $username)
+    public function findOneByClientName(string $username)
     {
-        return $this->createQueryBuilder('u')
-            ->where('u.username = :username')
+        return $this->createQueryBuilder('c')
+            ->where('c.username = :username')
             ->setParameter('username', $username)
             ->setCacheable(true)
             ->getQuery()
@@ -78,8 +78,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
      */
     public function findOneByMail($mail)
     {
-        return $this->createQueryBuilder('u')
-            ->Where('u.mail = :mail')
+        return $this->createQueryBuilder('c')
+            ->Where('c.mail = :mail')
             ->setParameter('mail', $mail)
             ->getQuery()
             ->getResult();
@@ -88,48 +88,36 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
     /**
      * @return mixed
      */
-    public function findAllUsers()
+    public function findAllClients()
     {
-        return $this->createQueryBuilder('u')
+        return $this->createQueryBuilder('c')
             ->getQuery()
             ->getResult();
     }
 
     /**
+     * @param ClientsInterface $clientId
      * @return mixed
      */
-    public function findAllUsersByClient(UuidInterface $clientId)
+    public function deleteClient(ClientsInterface $clientId)
     {
-        return $this->createQueryBuilder('u')
-            ->leftJoin('u.client', 'uc', 'WITH', 'uc.id = ?1')
-            ->setParameter(1, $clientId)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param UsersInterface $userId
-     * @return mixed
-     */
-    public function deleteUser(UsersInterface $userId)
-    {
-        return $this->createQueryBuilder('u')
+        return $this->createQueryBuilder('c')
             ->delete()
-            ->where('u.id = ?1')
-            ->setParameter(1, $userId)
+            ->where('c.id = ?1')
+            ->setParameter(1, $clientId)
             ->getQuery()
             ->execute();
     }
 
     /**
-     * @param $user
+     * @param ClientsInterface $client
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save($user)
+    public function save(ClientsInterface $client)
     {
-        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->persist($client);
         $this->getEntityManager()->flush();
     }
 

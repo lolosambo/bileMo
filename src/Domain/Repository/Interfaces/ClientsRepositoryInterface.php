@@ -13,41 +13,41 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository\Interfaces;
 
-use App\Domain\Models\Interfaces\UsersInterface;
+use App\Domain\Models\Interfaces\ClientsInterface;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class UsersRepositoryInterface.
+ * Class ClientsRepositoryInterface.
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-Interface UsersRepositoryInterface
+Interface ClientsRepositoryInterface
 {
     /**
-     * UsersRepositoryInterface constructor.
+     * ClientsRepositoryInterface constructor.
      *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry);
 
     /**
-     * @param UuidInterface $userId
+     * @param UuidInterface $clientId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findUser(UuidInterface $userId);
+    public function findClient(UuidInterface $clientId);
 
     /**
-     * @param string $username
+     * @param string $clientname
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByUsername(string $username);
+    public function findOneByClientName(string $clientname);
 
     /**
      * @param $mail
@@ -59,26 +59,20 @@ Interface UsersRepositoryInterface
     /**
      * @return mixed
      */
-    public function findAllUsers();
+    public function findAllClients();
 
     /**
+     * @param ClientsInterface $clientId
      * @return mixed
      */
-    public function findAllUsersByClient(UuidInterface $clientId);
+    public function deleteClient(ClientsInterface $clientId);
 
     /**
-     * @param UsersInterface $userId
-     * @return mixed
-     */
-    public function deleteUser(UsersInterface $userId);
-
-    /**
-     * @param $user
+     * @param ClientsInterface $client
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @return mixed
      */
-    public function save($user);
+    public function save(ClientsInterface $client);
 
     /**
      * @throws \Doctrine\ORM\ORMException
