@@ -83,14 +83,14 @@ Interface UsersInterface
     public function setPhone(string $phone);
 
     /**
-     * @return AddresesInterface
+     * @return AddressesInterface
      */
     public function getAddress();
 
     /**
-     * @param AddresesInterface $address
+     * @param AddressesInterface $address
      */
-    public function setAddress(AddresesInterface $address);
+    public function setAddress(AddressesInterface $address);
 
     /**
      * @return string

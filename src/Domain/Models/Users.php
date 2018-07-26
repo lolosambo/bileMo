@@ -15,7 +15,7 @@ namespace App\Domain\Models;
 
 use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
-use App\Domain\Models\Interfaces\AddresesInterface;
+use App\Domain\Models\Interfaces\AddressesInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -52,7 +52,7 @@ class Users implements UsersInterface
     private $phone;
 
     /**
-     * @var AddresesInterface $address
+     * @var AddressesInterface $address
      */
     private $address;
 
@@ -174,7 +174,7 @@ class Users implements UsersInterface
     }
 
     /**
-     * @return AddresesInterface
+     * @return AddressesInterface
      */
     public function getAddress()
     {
@@ -182,9 +182,9 @@ class Users implements UsersInterface
     }
 
     /**
-     * @param AddresesInterface $address
+     * @param AddressesInterface $address
      */
-    public function setAddress(AddresesInterface $address)
+    public function setAddress(AddressesInterface $address)
     {
         $this->address = $address;
     }

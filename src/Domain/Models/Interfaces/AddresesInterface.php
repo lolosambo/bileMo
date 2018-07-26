@@ -16,14 +16,14 @@ namespace App\Domain\Models\Interfaces;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Interface AddresesInterface
+ * Interface AddressesInterface
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-Interface AddresesInterface
+Interface AddressesInterface
 {
     /**
-     * Addreses constructor.
+     * Addresses constructor.
      * @param int $number
      * @param string $way
      * @param int $zipCode

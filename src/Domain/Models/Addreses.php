@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace App\Domain\Models;
 
-use App\Domain\Models\Interfaces\AddresesInterface;
+use App\Domain\Models\Interfaces\AddressesInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Addreses
+ * Class Addresses
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Addreses implements AddresesInterface
+class Addresses implements AddressesInterface
 {
     /**
      * @var UuidInterface
@@ -66,7 +66,7 @@ class Addreses implements AddresesInterface
     private $user;
 
     /**
-     * Addreses constructor.
+     * Addresses constructor.
      * @param int $number
      * @param string $way
      * @param int $zipCode
