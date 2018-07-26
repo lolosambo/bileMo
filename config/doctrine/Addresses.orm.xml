@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Models\Addresses">
+        <id name="id" column="id" type="uuid">
+            <generator strategy="CUSTOM" />
+            <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
+        </id>
+        <field name="number" type="int"/>
+        <field name="way" type="string" length="255" />
+        <field name="zipCode" type="int"/>
+        <field name="city" type="string" length="100" />
+        <field name="region" type="string" length="100" />
+        <field name="country" type="string" length="100" />
+        <one-to-one field="user" target-entity="Users" >
+            <!--<join-column name="user_id" referenced-column-name="id" />-->
+        </one-to-one>
+    </entity>
+</doctrine-mapping>
