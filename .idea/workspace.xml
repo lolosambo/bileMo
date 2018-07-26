@@ -14,47 +14,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ProductsRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/ProductsRepository.php">
+      <file leaf-file-name="UsersRepositoryTest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../bileMo/tests/Domain/Repository/UsersRepositoryTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+            <state relative-caret-position="401">
+              <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
               <folding>
-                <element signature="e#297#348#0#PHP" expanded="true" />
+                <element signature="e#298#326#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductsRepositoryInterface.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/Interfaces/ProductsRepositoryInterface.php">
+      <file leaf-file-name="UsersFixtures.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/UsersFixtures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1118">
-              <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddresesRepository.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/AddresesRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+            <state relative-caret-position="266">
+              <caret line="17" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="1" />
               <folding>
-                <element signature="e#297#349#0#PHP" expanded="true" />
+                <element signature="e#300#328#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddressesRepositoryInterface.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/Interfaces/AddressesRepositoryInterface.php">
+      <file leaf-file-name="ClientsFixtures.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ClientsFixtures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="69">
+              <caret line="3" column="35" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="1" />
               <folding>
-                <element signature="e#308#360#0#PHP" expanded="true" />
+                <element signature="e#300#330#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductsFixtures.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ProductsFixtures.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1031">
+              <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+              <folding>
+                <element signature="e#300#331#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressesFixtures.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/AddressesFixtures.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+              <folding>
+                <element signature="e#300#332#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Addreses.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Addreses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1215">
+              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+              <folding>
+                <element signature="e#293#345#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,22 +93,25 @@
       <find>mileBo</find>
       <find>sfp</find>
       <find>clients</find>
-      <find>user</find>
       <find>User</find>
       <find>u</find>
       <find>p</find>
       <find>Addreses</find>
       <find>addreses</find>
+      <find>user</find>
+      <find>client</find>
+      <find>users</find>
     </findStrings>
     <replaceStrings>
       <replace>address</replace>
       <replace>bileMo</replace>
       <replace>products</replace>
-      <replace>client</replace>
       <replace>Client</replace>
       <replace>p</replace>
       <replace>a</replace>
       <replace>Addresses</replace>
+      <replace>client</replace>
+      <replace>product</replace>
       <replace>addresses</replace>
     </replaceStrings>
     <dirStrings>
@@ -95,12 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/docker/nginx/conf/production/project7.conf" />
-        <option value="$PROJECT_DIR$/docker/nginx/conf/development/project7.conf" />
-        <option value="$PROJECT_DIR$/tests/Domain/Models/ClientTest.php" />
-        <option value="$PROJECT_DIR$/docker-compose.yaml" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/docker/nginx/conf/development/mileBo.conf" />
         <option value="$PROJECT_DIR$/docker/nginx/conf/production/mileBo.conf" />
         <option value="$PROJECT_DIR$/docker/node/Dockerfile" />
@@ -145,6 +168,13 @@
         <option value="$PROJECT_DIR$/../bileMo/src/Domain/Repository/Interfaces/ProductsRepositoryInterface.php" />
         <option value="$PROJECT_DIR$/../bileMo/src/Domain/Repository/AddresesRepository.php" />
         <option value="$PROJECT_DIR$/../bileMo/src/Domain/Repository/Interfaces/AddressesRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/../bileMo/tests/Domain/Repository/UsersRepositoryTest.php" />
+        <option value="$PROJECT_DIR$/../bileMo/tests/Domain/DataFixtures/ORM/ClientsFixtures.php" />
+        <option value="$PROJECT_DIR$/../bileMo/tests/Domain/DataFixtures/ORM/UsersFixtures.php" />
+        <option value="$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/UsersFixtures.php" />
+        <option value="$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ClientsFixtures.php" />
+        <option value="$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ProductsFixtures.php" />
+        <option value="$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/AddressesFixtures.php" />
       </list>
     </option>
   </component>
@@ -428,7 +458,15 @@
               <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="DataFixtures" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="DataFixtures" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ORM" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
@@ -436,22 +474,6 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Interfaces" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Interfaces" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
@@ -463,6 +485,13 @@
               <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="tests" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bileMo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="tests" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Domain" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="mileBo" type="b2602c69:ProjectViewProjectNode" />
@@ -491,6 +520,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../bileMo/src/Domain" />
+      <recent name="$PROJECT_DIR$/../bileMo/tests/UI" />
       <recent name="$PROJECT_DIR$/src/Domain" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -525,12 +556,12 @@
       <workItem from="1530199286077" duration="6913000" />
       <workItem from="1530946183570" duration="117000" />
       <workItem from="1532501019318" duration="6865000" />
-      <workItem from="1532508816043" duration="15437000" />
+      <workItem from="1532508816043" duration="18398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29332000" />
+    <option name="totallyTimeSpent" value="32293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="76" y="24" width="2233" height="1355" extended-state="0" />
@@ -567,50 +598,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Addreses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4462">
-          <caret line="197" column="4" lean-forward="false" selection-start-line="197" selection-start-column="4" selection-end-line="211" selection-end-column="5" />
-          <folding>
-            <element signature="e#293#345#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Interfaces/AddresesInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2691">
-          <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/tests/Domain/Models/AddresesTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#295#326#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../bileMo/docker-compose.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1748">
@@ -804,44 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Addreses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Clients.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#293#343#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Products.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#293#344#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#293#343#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Interfaces/AddresesInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -898,32 +847,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/tests/Domain/Models/UsersTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#295#326#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/UsersRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#345#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/ClientsRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="34" />
           <folding>
-            <element signature="e#297#347#0#PHP" expanded="true" />
+            <element signature="e#297#347#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -933,7 +862,7 @@
         <state relative-caret-position="211">
           <caret line="71" column="6" lean-forward="false" selection-start-line="71" selection-start-column="6" selection-end-line="71" selection-end-column="6" />
           <folding>
-            <element signature="e#308#358#0#PHP" expanded="true" />
+            <element signature="e#308#358#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -943,7 +872,7 @@
         <state relative-caret-position="145">
           <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
-            <element signature="e#297#348#0#PHP" expanded="true" />
+            <element signature="e#297#348#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -956,22 +885,124 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/AddresesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2383">
+          <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+          <folding>
+            <element signature="e#297#349#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/tests/Domain/Models/UsersTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/Interfaces/AddressesRepositoryInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding>
-            <element signature="e#308#360#0#PHP" expanded="true" />
+            <element signature="e#308#360#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/AddresesRepository.php">
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Repository/UsersRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+        <state relative-caret-position="221">
+          <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="51" />
           <folding>
-            <element signature="e#297#349#0#PHP" expanded="true" />
+            <element signature="e#297#345#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/tests/Domain/Repository/UsersRepositoryTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <element signature="e#298#326#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-667">
+          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Clients.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1658">
+          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ClientsFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="35" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="e#300#330#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Products.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-191">
+          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/UsersFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="17" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="1" />
+          <folding>
+            <element signature="e#300#328#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/ProductsFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1031">
+          <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+          <folding>
+            <element signature="e#300#331#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/Models/Addreses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1215">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding>
+            <element signature="e#293#345#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bileMo/src/Domain/DataFixtures/ORM/AddressesFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="e#300#332#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
