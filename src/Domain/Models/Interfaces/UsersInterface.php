@@ -23,21 +23,6 @@ use Ramsey\Uuid\UuidInterface;
 Interface UsersInterface
 {
     /**
-     * Users constructor.
-     *
-     * @param string  $pseudo
-     * @param string  $password
-     * @param string  $mail
-     */
-    public function __construct(
-        string $username,
-        string $password,
-        string $firstName,
-        string $lastName,
-        string $mail
-    );
-
-    /**
      * @return UuidInterface
      */
     public function getId(): UuidInterface;
@@ -108,6 +93,11 @@ Interface UsersInterface
      * @return \DateTime
      */
     public function getInscriptionDate(): \DateTime;
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setInscriptionDate(\DateTime $date);
 
     /**
      * @return array

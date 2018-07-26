@@ -23,21 +23,6 @@ use Ramsey\Uuid\UuidInterface;
 Interface ProductsInterface
 {
     /**
-     * Products constructor.
-     * @param string $name
-     * @param string $brand
-     * @param string $description
-     * @param float $price
-     * @throws \Exception
-     */
-    public function __construct(
-        string $name,
-        string $brand,
-        string $description,
-        float $price
-    );
-
-    /**
      * @return UuidInterface
      */
     public function getId(): UuidInterface;

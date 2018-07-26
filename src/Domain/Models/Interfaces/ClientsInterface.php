@@ -24,17 +24,6 @@ use Ramsey\Uuid\UuidInterface;
  */
 interface ClientsInterface
 {
-    /**
-     * Clients constructor.
-     * @param string $username
-     * @param string $password
-     * @param string $mail
-     */
-    public function __construct(
-        string $username,
-        string $password,
-        string $mail
-    );
 
     /**
      * @return UuidInterface
@@ -72,6 +61,11 @@ interface ClientsInterface
      * @return \DateTime
      */
     public function getInscriptionDate(): \DateTime;
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setInscriptionDate(\DateTime $date);
 
     /**
      * @return ArrayCollection

@@ -8,14 +8,14 @@
             <generator strategy="CUSTOM" />
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
-        <field name="number" type="int"/>
+        <field name="number" type="integer"/>
         <field name="way" type="string" length="255" />
-        <field name="zipCode" type="int"/>
+        <field name="zipCode" type="integer"/>
         <field name="city" type="string" length="100" />
         <field name="region" type="string" length="100" />
         <field name="country" type="string" length="100" />
-        <one-to-one field="user" target-entity="Users" >
-            <!--<join-column name="user_id" referenced-column-name="id" />-->
+        <one-to-one field="user" target-entity="Users" inversed-by="address">
+            <join-column name="user_id" referenced-column-name="id"/>
         </one-to-one>
     </entity>
 </doctrine-mapping>

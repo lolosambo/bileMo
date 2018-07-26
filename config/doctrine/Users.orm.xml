@@ -14,13 +14,12 @@
         <field name="firstName" type="string" length="100" />
         <field name="lastName" type="string" length="100" />
         <field name="phone" type="string" length="50" />
-        <one-to-one field="address" target-entity="Addresses" >
-            <!--<join-column name="address_id" referenced-column-name="id" />-->
-        </one-to-one>
         <field name="inscriptionDate" type="datetime"/>
-        <many-to-one field="client" target-entity="Clients" >
+        <many-to-one field="client" target-entity="Clients" inversed-by="users" >
             <join-column name="client_id" referenced-column-name="id" />
         </many-to-one>
-
+        <one-to-one field="address" target-entity="Addresses" mapped-by="user">
+            <join-column name="address_id" referenced-column-name="id"/>
+        </one-to-one>
     </entity>
 </doctrine-mapping>

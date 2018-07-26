@@ -141,6 +141,14 @@ class Clients implements ClientsInterface
     }
 
     /**
+     * @param \DateTime $date
+     */
+    public function setInscriptionDate(\DateTime $date)
+    {
+        $this->inscriptionDate = $date;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getUsers(): ArrayCollection

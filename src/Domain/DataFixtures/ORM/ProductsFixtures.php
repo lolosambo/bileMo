@@ -29,7 +29,7 @@ class ProductsFixtures extends Fixture
     {
         for ($i = 1; $i <= 50; $i++) {
             $productName = 'Product'.$i;
-            $brand = array_rand(['Samsung', 'Sony', 'Apple', 'LG', 'Huawei'], 1);
+            $brand = 'Brand'.$i;
             $description = 'Tu autem, Fanni, quod mihi tantum tribui dicis quantum ego nec adgnosco nec postulo, 
             facis amice; sed, ut mihi videris, non recte iudicas de Catone; aut enim nemo, quod quidem magis credo, 
             aut si quisquam, ille sapiens fuit. Quo modo, ut alia omittam, mortem filii tulit! memineram Paulum, 
@@ -48,10 +48,8 @@ class ProductsFixtures extends Fixture
             $product->setWeight(mt_rand(200, 300));
             $product->setHeight(mt_rand(90, 150));
             $product->setWidth(mt_rand(50, 80));
-            $product->setScreen(array_rand(['5 pouces', '7 pouces', '9 pouces', '10.5 pouces'], 1));
-            $product->setOs(array_rand(['Androïd Lollipop', 'IOS 10', 'Windows Phone'], 1));
-
-            $this->addReference('product'.$i, $product );
+            $product->setScreen(mt_rand(7, 10).' pouces');
+            $product->setOs('Os'.$i);
             $manager->persist($product);
         }
         $manager->flush();

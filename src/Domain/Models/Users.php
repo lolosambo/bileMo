@@ -220,6 +220,14 @@ class Users implements UsersInterface
     }
 
     /**
+     * @param \DateTime $date
+     */
+    public function setInscriptionDate(\DateTime $date)
+    {
+        $this->inscriptionDate = $date;
+    }
+
+    /**
      * @return array
      */
     public function getRoles()

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Domain\Models\Interfaces;
 
 use Ramsey\Uuid\UuidInterface;
+use App\Domain\Models\Interfaces\UsersInterface;
 
 /**
  * Interface AddressesInterface
@@ -22,24 +23,6 @@ use Ramsey\Uuid\UuidInterface;
  */
 Interface AddressesInterface
 {
-    /**
-     * Addresses constructor.
-     * @param int $number
-     * @param string $way
-     * @param int $zipCode
-     * @param string $city
-     * @param string $region
-     * @param string $country
-     */
-    public function __construct(
-        int $number,
-        string $way,
-        int $zipCode,
-        string $city,
-        string $region,
-        string $country
-    );
-
     /**
      * @return UuidInterface
      */
@@ -114,6 +97,8 @@ Interface AddressesInterface
      * @param UsersInterface $user
      */
     public function setUser(UsersInterface $user);
+
 }
+
 
 

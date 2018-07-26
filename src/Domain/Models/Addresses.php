@@ -15,6 +15,7 @@ namespace App\Domain\Models;
 
 use App\Domain\Models\Interfaces\AddressesInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
+use App\Domain\Models\Users;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -67,12 +68,15 @@ class Addresses implements AddressesInterface
 
     /**
      * Addresses constructor.
+     *
      * @param int $number
      * @param string $way
      * @param int $zipCode
      * @param string $city
      * @param string $region
      * @param string $country
+     *
+     * @throws \Exception
      */
     public function __construct(
         int $number,

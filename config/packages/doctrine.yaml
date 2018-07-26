@@ -7,15 +7,14 @@ parameters:
 
 doctrine:
     dbal:
-        # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
+        driver: '%env(DB_DRIVER_DEV)%'
+        server_version: '%env(DB_VERSION_DEV)%'
+        charset: '%env(DB_CHARSET_DEV)%'
+        memory: false
+        url: '%env(resolve:DATABASE_URL_DEV)%'
+        types:
+            uuid: Ramsey\Uuid\Doctrine\UuidType
 
-        url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -23,7 +22,7 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Domain/Models'
-                prefix: 'App\Models'
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine'
+                prefix: 'App\Domain\Models'
                 alias: App

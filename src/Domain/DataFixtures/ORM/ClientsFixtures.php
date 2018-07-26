@@ -33,7 +33,7 @@ class ClientsFixtures extends Fixture
             $mail = 'emailforclient'.$i.'@provider.com';
             $client = new Clients($clientName, $password, $mail);
             $client->setInscriptionDate(new \DateTime('+'. mt_rand(2, 100) .' days'));
-            $this->addReference('client'.$i, $client );
+            $this->addReference('client'.$i, $client);
             $manager->persist($client);
         }
         $manager->flush();
