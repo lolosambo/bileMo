@@ -14,6 +14,15 @@
         <env name="APP_DEBUG" value="1" />
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="DB_DRIVER_TEST" value="pdo_sqlite" />
+        <env name="DB_DRIVER_PROD" value="pdo_pgsql" />
+        <env name="DB_DRIVER_DEV" value="pdo_pgsql" />
+        <env name="DB_CHARSET_DEV" value="utf8" />
+        <env name="DB_VERSION_DEV" value="9.6" />
+        <env name="DATABASE_URL_DEV" value="pgsql://lolo:test@172.22.0.1:5432/bileMo" />
+        <env name="REDIS_URL" value="redis://localhost" />
+        <env name="REDIS_PORT" value="6379" />
+        <env name="DATABASE_URL_TEST" value="sqlite:///%kernel.project_dir%/var/data.db" />
         <!-- define your env variables for the test env here -->
     </php>
 

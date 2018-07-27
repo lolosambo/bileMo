@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Models;
 
-use App\Domain\Models\Addreses;
+use App\Domain\Models\Addresses;
 use App\Domain\Models\Interfaces\UsersInterface;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\UuidInterface;
@@ -27,9 +27,12 @@ class AddresesTest extends TestCase
 {
     private $address;
 
+    /**
+     * @throws \Exception
+     */
     public function setUp()
     {
-        $address = new Addreses(
+        $address = new Addresses(
             5,
             'TestStreet',
             59000,
@@ -45,7 +48,7 @@ class AddresesTest extends TestCase
      */
     public function testAddresesConstruct()
     {
-        static::assertInstanceof(Addreses::class, $this->address);
+        static::assertInstanceof(Addresses::class, $this->address);
     }
 
     /**
@@ -60,7 +63,6 @@ class AddresesTest extends TestCase
         static::assertObjectHasAttribute('city', $this->address);
         static::assertObjectHasAttribute('region', $this->address);
         static::assertObjectHasAttribute('country', $this->address);
-        static::assertObjectHasAttribute('user', $this->address);
     }
 
     /**
@@ -68,7 +70,7 @@ class AddresesTest extends TestCase
      */
     public function testAddresesMustHaveValidAttributes()
     {
-        $address= $this->createMock(Addreses::class);
+        $address= $this->createMock(Addresses::class);
         static::assertInstanceOf(UuidInterface::class, $address->getId());
         static::assertInternalType('integer', $this->address->getNumber());
         static::assertInternalType('string', $this->address->getWay());
@@ -76,7 +78,6 @@ class AddresesTest extends TestCase
         static::assertInternalType('string', $this->address->getCity());
         static::assertInternalType('string', $this->address->getRegion());
         static::assertInternalType('string', $this->address->getCountry());
-        static::assertInstanceOf(UsersInterface::class, $address->getUser());
     }
 
     /**

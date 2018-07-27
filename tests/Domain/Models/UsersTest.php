@@ -13,11 +13,12 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Models;
 
-use App\Domain\Models\Addreses;
+use App\Domain\Models\Addresses;
 use App\Domain\Models\Clients;
-use App\Domain\Models\Interfaces\AddresesInterface;
+use App\Domain\Models\Interfaces\AddressesInterface;
 use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Users;
+use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\UuidInterface;
 
@@ -76,7 +77,7 @@ class UsersTest extends TestCase
     {
         $client= $this->createMock(Clients::class);
         $this->user->setClient($client);
-        $address= $this->createMock(Addreses::class);
+        $address= $this->createMock(Addresses::class);
         $this->user->setAddress($address);
         static::assertInstanceOf(UuidInterface::class, $this->user->getId());
         static::assertInternalType('string', $this->user->getUsername());
@@ -87,7 +88,7 @@ class UsersTest extends TestCase
         static::assertInternalType('string', $this->user->getMail());
         static::assertInstanceOf(\DateTime::class, $this->user->getInscriptionDate());
         static::assertInstanceOf(ClientsInterface::class, $this->user->getClient());
-        static::assertInstanceOf(AddresesInterface::class, $this->user->getAddress());
+        static::assertInternalType('array', $this->user->getAddress());
     }
 
     /**
