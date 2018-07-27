@@ -1,0 +1,4 @@
+doctrine:
+    dbal:
+        driver: '%env(DB_DRIVER_TEST)%'
+        url: '%env(resolve:DATABASE_URL_TEST)%'
