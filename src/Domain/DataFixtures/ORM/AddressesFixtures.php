@@ -12,14 +12,14 @@ namespace App\Domain\DataFixtures\ORM;
 
 use App\Domain\Models\Addresses;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+
 /**
  * Class AddressesFixtures
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class AddressesFixtures extends Fixture implements DependentFixtureInterface
+class AddressesFixtures extends Fixture
 {
 
     /**
@@ -37,19 +37,10 @@ class AddressesFixtures extends Fixture implements DependentFixtureInterface
             $region = 'Region'.$i;
             $country = 'FRANCE';
             $address = new Addresses($number, $way, $zipCode, $city, $region, $country);
-            $address->setUser($this->getReference('user'.rand(1, 50)));
+            $this->addReference('address'.$i, $address);
             $manager->persist($address);
         }
         $manager->flush();
     }
 
-    /**
-     * @return array
-     */
-    public function getDependencies()
-    {
-        return [
-            UsersFixtures::class
-        ];
-    }
 }

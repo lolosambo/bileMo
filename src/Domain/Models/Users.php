@@ -16,6 +16,7 @@ namespace App\Domain\Models;
 use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
 use App\Domain\Models\Interfaces\AddressesInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -52,7 +53,7 @@ class Users implements UsersInterface
     private $phone;
 
     /**
-     * @var AddressesInterface $address
+     * @var ArrayCollection $address
      */
     private $address;
 
@@ -174,7 +175,7 @@ class Users implements UsersInterface
     }
 
     /**
-     * @return AddressesInterface
+     * @return ArrayCollection
      */
     public function getAddress()
     {
@@ -186,7 +187,7 @@ class Users implements UsersInterface
      */
     public function setAddress(AddressesInterface $address)
     {
-        $this->address = $address;
+        $this->address[] = $address;
     }
 
     /**

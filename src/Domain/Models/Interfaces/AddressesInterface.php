@@ -88,17 +88,8 @@ Interface AddressesInterface
      */
     public function setCountry(string $country): void;
 
-    /**
-     * @return UsersInterface
-     */
-    public function getUser(): UsersInterface;
-
-    /**
-     * @param UsersInterface $user
-     */
-    public function setUser(UsersInterface $user);
-
 }
+
 
 
 

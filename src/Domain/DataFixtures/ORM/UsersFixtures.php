@@ -38,6 +38,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
             $user->setPhone('06 ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99));
             $user->setInscriptionDate(new \DateTime('+' . mt_rand(2, 100) . ' days'));
             $user->setClient($this->getReference('client' . mt_rand(1, 10)));
+            $user->setAddress($this->getReference('address' . mt_rand(1, 100)));
             $this->addReference('user'.$i, $user);
             $manager->persist($user);
 
@@ -51,7 +52,8 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            ClientsFixtures::class
+            ClientsFixtures::class,
+            AddressesFixtures::class
         ];
     }
 }

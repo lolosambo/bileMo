@@ -14,8 +14,5 @@
         <field name="city" type="string" length="100" />
         <field name="region" type="string" length="100" />
         <field name="country" type="string" length="100" />
-        <one-to-one field="user" target-entity="Users" inversed-by="address">
-            <join-column name="user_id" referenced-column-name="id"/>
-        </one-to-one>
     </entity>
 </doctrine-mapping>

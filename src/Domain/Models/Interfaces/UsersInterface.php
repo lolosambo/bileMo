@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\Interfaces;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\UuidInterface;
 
 /**
@@ -68,7 +69,7 @@ Interface UsersInterface
     public function setPhone(string $phone);
 
     /**
-     * @return AddressesInterface
+     * @return ArrayCollection
      */
     public function getAddress();
 

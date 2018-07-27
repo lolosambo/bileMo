@@ -62,11 +62,6 @@ class Addresses implements AddressesInterface
     private $country;
 
     /**
-     * @var UsersInterface  $user
-     */
-    private $user;
-
-    /**
      * Addresses constructor.
      *
      * @param int $number
@@ -198,22 +193,7 @@ class Addresses implements AddressesInterface
     {
         $this->country = strtoupper($country);
     }
-
-    /**
-     * @return UsersInterface
-     */
-    public function getUser(): UsersInterface
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param UsersInterface $user
-     */
-    public function setUser(UsersInterface $user)
-    {
-        $this->user = $user;
-    }
 }
+
 
 
