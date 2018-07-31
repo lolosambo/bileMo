@@ -116,4 +116,10 @@ Interface ProductsInterface
      * @param float $price
      */
     public function setPrice(float $price): void;
+
+    /** @see \Serializable::serialize() */
+    public function serialize();
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized);
 }

@@ -18,7 +18,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-
 /**
  * Class Clients
  *
@@ -52,9 +51,10 @@ class Clients implements ClientsInterface
     private $mail;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
     private $inscriptionDate;
+
     /**
      * @var ArrayCollection
      */
@@ -62,9 +62,11 @@ class Clients implements ClientsInterface
 
     /**
      * Clients constructor.
+     *
      * @param string $username
      * @param string $password
      * @param string $mail
+     *
      * @throws \Exception
      */
     public function __construct(
@@ -78,7 +80,7 @@ class Clients implements ClientsInterface
         $this->password = $password;
         $this->mail = $mail;
         $this->users = new ArrayCollection();
-        $this->inscriptionDate = new \DateTime('NOW');
+        $this->inscriptionDate = new \DateTimeImmutable();
     }
 
     /**
@@ -133,17 +135,17 @@ class Clients implements ClientsInterface
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getInscriptionDate(): \DateTime
+    public function getInscriptionDate(): \DateTimeImmutable
     {
         return $this->inscriptionDate;
     }
 
     /**
-     * @param \DateTime $date
+     * @param \DateTimeImmutable $date
      */
-    public function setInscriptionDate(\DateTime $date)
+    public function setInscriptionDate(\DateTimeImmutable $date)
     {
         $this->inscriptionDate = $date;
     }

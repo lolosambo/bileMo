@@ -70,7 +70,7 @@ class ClientsTest extends TestCase
         static::assertInternalType('array', $this->client->getRoles());
         static::assertInternalType('string', $this->client->getSalt());
         static::assertInternalType('string', $this->client->getMail());
-        static::assertInstanceOf(\DateTime::class, $this->client->getInscriptionDate());
+        static::assertInstanceOf(\DateTimeImmutable::class, $this->client->getInscriptionDate());
         static::assertInstanceOf(ArrayCollection::class, $this->client->getUsers());
     }
 

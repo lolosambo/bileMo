@@ -33,17 +33,17 @@ class Users implements UsersInterface
     private $id;
 
     /**
-     * @var string  $username
+     * @var string
      */
     private $username;
 
     /**
-     * @var string $firstName
+     * @var string
      */
     private $firstName;
 
     /**
-     * @var string $lastName
+     * @var string
      */
     private $lastName;
 
@@ -68,7 +68,7 @@ class Users implements UsersInterface
     private $mail;
 
     /**
-     * @var \DateTime $inscriptionDate
+     * @var \DateTimeImmutable $inscriptionDate
      */
     private $inscriptionDate;
 
@@ -79,11 +79,13 @@ class Users implements UsersInterface
 
     /**
      * Users constructor.
+     *
      * @param string $username
      * @param string $password
      * @param string $firstName
      * @param string $lastName
      * @param string $mail
+     *
      * @throws \Exception
      */
     public function __construct(
@@ -99,7 +101,7 @@ class Users implements UsersInterface
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
-        $this->inscriptionDate = new \DateTime('NOW');
+        $this->inscriptionDate = new \DateTimeImmutable();
     }
 
     /**
@@ -213,17 +215,17 @@ class Users implements UsersInterface
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getInscriptionDate(): \DateTime
+    public function getInscriptionDate(): \DateTimeImmutable
     {
         return $this->inscriptionDate;
     }
 
     /**
-     * @param \DateTime $date
+     * @param \DateTimeImmutable $date
      */
-    public function setInscriptionDate(\DateTime $date)
+    public function setInscriptionDate(\DateTimeImmutable $date)
     {
         $this->inscriptionDate = $date;
     }

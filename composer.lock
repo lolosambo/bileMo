@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6245a409838bfa23fb8bf57c1cf5a2ee",
+    "content-hash": "7c8b421c2d6dd3b3bce5680df97a5902",
     "packages": [
         {
             "name": "codacy/coverage",

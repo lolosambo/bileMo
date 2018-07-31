@@ -91,14 +91,14 @@ Interface UsersInterface
     public function setMail($mail);
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getInscriptionDate(): \DateTime;
+    public function getInscriptionDate(): \DateTimeImmutable;
 
     /**
-     * @param \DateTime $date
+     * @param \DateTimeImmutable $date
      */
-    public function setInscriptionDate(\DateTime $date);
+    public function setInscriptionDate(\DateTimeImmutable $date);
 
     /**
      * @return array

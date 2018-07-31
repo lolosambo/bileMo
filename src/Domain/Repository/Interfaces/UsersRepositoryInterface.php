@@ -25,20 +25,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 Interface UsersRepositoryInterface
 {
     /**
-     * UsersRepositoryInterface constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry);
-
-    /**
-     * @param UuidInterface $userId
+     * @param string $userId
      *
      * @return mixed
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findUser(UuidInterface $userId);
+    public function findUser(string $userId);
 
     /**
      * @param string $username

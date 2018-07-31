@@ -77,10 +77,12 @@ class Products implements ProductsInterface
 
     /**
      * Products constructor.
+     *
      * @param string $name
      * @param string $brand
      * @param string $description
      * @param float $price
+     *
      * @throws \Exception
      */
     public function __construct(
@@ -90,8 +92,8 @@ class Products implements ProductsInterface
         float $price
     ) {
         $this->id = Uuid::uuid4();
-        $this->name = ucfirst($name);
-        $this->brand = ucfirst($brand);
+        $this->name = $name;
+        $this->brand = $brand;
         $this->description = $description;
         $this->price = $price;
     }
@@ -246,6 +248,38 @@ class Products implements ProductsInterface
     public function setPrice(float $price): void
     {
         $this->price = $price;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->brand,
+            $this->height,
+            $this->width,
+            $this->weight,
+            $this->screen,
+            $this->os,
+            $this->price
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->brand,
+            $this->height,
+            $this->width,
+            $this->weight,
+            $this->screen,
+            $this->os,
+            $this->price
+            ) = unserialize($serialized);
     }
 }
 

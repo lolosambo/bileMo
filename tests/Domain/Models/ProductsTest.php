@@ -93,8 +93,8 @@ class ProductsTest extends TestCase
      */
     public function testProductEntityHydratation()
     {
-        static::assertContains('Galaxy S9+', $this->product->getName());
-        static::assertContains('Samsung', $this->product->getBrand());
+        static::assertContains('galaxy S9+', $this->product->getName());
+        static::assertContains('samsung', $this->product->getBrand());
         static::assertContains('Test of the phone\'s description', $this->product->getDescription());
         static::assertEquals(953, $this->product->getHeight());
         static::assertEquals(405, $this->product->getWidth());

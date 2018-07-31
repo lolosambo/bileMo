@@ -45,11 +45,17 @@ class UsersRepositoryTest extends KernelTestCase
                            ->get('doctrine')
                            ->getManager();
         $this->repository = $this->em->getRepository(Users::class);
+
     }
 
-    public function testFindUser(UuidInterface $userId)
+    /**
+     * @group functional
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function testFindUser()
     {
-        $product = $this->repository->findUser();
+        $product = $this->repository->findUser('bed7d221-e532-40ab-b658-cb9ada686dff');
         static::assertCount(1, $product);
     }
 

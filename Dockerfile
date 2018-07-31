@@ -60,3 +60,4 @@ CMD ["php-fpm"]
 FROM base
 
 COPY docker/php/conf/production/php.ini /usr/local/etc/php/php.ini
+

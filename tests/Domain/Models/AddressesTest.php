@@ -85,9 +85,9 @@ class AddresesTest extends TestCase
      */
     public function testCaseForElementsName()
     {
-        static::assertContains('Lille', $this->address->getCity());
-        static::assertContains('Nord', $this->address->getRegion());
-        static::assertContains('FRANCE', $this->address->getCountry());
+        static::assertContains('lille', $this->address->getCity());
+        static::assertContains('nord', $this->address->getRegion());
+        static::assertContains('france', $this->address->getCountry());
     }
 }
 

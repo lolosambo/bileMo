@@ -85,9 +85,9 @@ class Addresses implements AddressesInterface
         $this->number = $number;
         $this->way = $way;
         $this->zipCode = $zipCode;
-        $this->city = ucfirst($city);
-        $this->region = ucfirst($region);
-        $this->country = strtoupper($country);
+        $this->city = $city;
+        $this->region = $region;
+        $this->country = $country;
     }
 
     /**
@@ -192,6 +192,34 @@ class Addresses implements AddressesInterface
     public function setCountry(string $country): void
     {
         $this->country = strtoupper($country);
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->number,
+            $this->way,
+            $this->zipCode,
+            $this->city,
+            $this->region,
+            $this->country
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->number,
+            $this->way,
+            $this->zipCode,
+            $this->city,
+            $this->region,
+            $this->country
+            ) = unserialize($serialized);
     }
 }
 

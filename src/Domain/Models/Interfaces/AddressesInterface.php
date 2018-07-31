@@ -88,6 +88,12 @@ Interface AddressesInterface
      */
     public function setCountry(string $country): void;
 
+    /** @see \Serializable::serialize() */
+    public function serialize();
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized);
+
 }
 
 
