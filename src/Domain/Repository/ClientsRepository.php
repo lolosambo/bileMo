@@ -38,13 +38,13 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
     }
 
     /**
-     * @param UuidInterface $clientId
+     * @param string $clientId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findClient(UuidInterface $clientId)
+    public function findClient(string $clientId)
     {
         return $this->createQueryBuilder('c')
             ->where('c.id = ?1')

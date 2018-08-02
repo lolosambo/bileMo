@@ -32,13 +32,13 @@ Interface ClientsRepositoryInterface
     public function __construct(RegistryInterface $registry);
 
     /**
-     * @param UuidInterface $clientId
+     * @param string $clientId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findClient(UuidInterface $clientId);
+    public function findClient(string $clientId);
 
     /**
      * @param string $clientname

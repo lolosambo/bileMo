@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Tests\UI\Presenters;
 
-use App\UI\Presenters\GetAllProductsPresenter;
+use App\UI\Presenters\GetAllClientsPresenter;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class GetAllProductsPresenterTest
+ * Class GetAllClientsPresenterTest
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsPresenterTest extends KernelTestCase
+class GetAllClientsPresenterTest extends KernelTestCase
 {
 
     private $presenter;
@@ -30,7 +30,7 @@ class GetAllProductsPresenterTest extends KernelTestCase
     {
         self::bootKernel();
         $serializer= self::$kernel->getContainer()->get('serializer');
-        $this->presenter = new GetAllProductsPresenter($serializer);
+        $this->presenter = new GetAllClientsPresenter($serializer);
     }
 
     /**
@@ -38,7 +38,7 @@ class GetAllProductsPresenterTest extends KernelTestCase
      */
     public function testConstruct()
     {
-        static::assertInstanceOf(GetAllProductsPresenter::class, $this->presenter);
+        static::assertInstanceOf(GetAllClientsPresenter::class, $this->presenter);
     }
 
     /**

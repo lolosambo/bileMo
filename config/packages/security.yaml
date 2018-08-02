@@ -2,7 +2,17 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+#        provider.github_user:
+#            id: github_user_provider
+
     firewalls:
+#        secured_area:
+#            pattern: ^/
+#            stateless: true
+#            simple_preauth:
+#                authenticator: bileMo_authenticator
+#            provider: provider.bileMo_client
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false

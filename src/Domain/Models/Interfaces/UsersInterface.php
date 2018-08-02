@@ -96,9 +96,9 @@ Interface UsersInterface
     public function getInscriptionDate(): \DateTimeImmutable;
 
     /**
-     * @param \DateTimeImmutable $date
+     * @param \DateTime $date
      */
-    public function setInscriptionDate(\DateTimeImmutable $date);
+    public function setInscriptionDate(\DateTime $date);
 
     /**
      * @return array

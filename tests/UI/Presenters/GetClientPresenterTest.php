@@ -13,24 +13,38 @@ declare(strict_types=1);
 
 namespace Tests\UI\Presenters;
 
-use App\UI\Presenters\GetAllProductsPresenter;
+use App\Domain\Models\Interfaces\ClientsInterface;
+use App\Domain\Models\Clients;
+use App\UI\Presenters\GetClientPresenter;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class GetAllProductsPresenterTest
+ * Class GetClientPresenterTest
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsPresenterTest extends KernelTestCase
+class GetClientPresenterTest extends KernelTestCase
 {
 
     private $presenter;
 
+    private $client;
+
+
+    /**
+     * @throws \Exception
+     */
     public function setUp()
     {
         self::bootKernel();
         $serializer= self::$kernel->getContainer()->get('serializer');
-        $this->presenter = new GetAllProductsPresenter($serializer);
+        $this->presenter = new GetClientPresenter($serializer);
+
+        $this->client = new Clients(
+            'Client1',
+            'SomePassword',
+            'test@email.com'
+        );
     }
 
     /**
@@ -38,7 +52,7 @@ class GetAllProductsPresenterTest extends KernelTestCase
      */
     public function testConstruct()
     {
-        static::assertInstanceOf(GetAllProductsPresenter::class, $this->presenter);
+        static::assertInstanceOf(GetClientPresenter::class, $this->presenter);
     }
 
     /**
@@ -46,9 +60,9 @@ class GetAllProductsPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
-        $data = ['data1', 'data2', 'data3'];
         $presenter = $this->presenter;
-        $result = $presenter($data);
-        static::assertInternalType('array', $result);
+        $result = $presenter($this->client);
+        static::assertInstanceOf(ClientsInterface::class, $this->client);
+        static::assertInternalType('string', $result);
     }
 }

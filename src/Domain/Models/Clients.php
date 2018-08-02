@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace App\Domain\Models;
 
 use App\Domain\Models\Interfaces\ClientsInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTimeImmutable;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class Clients
@@ -27,11 +29,13 @@ class Clients implements ClientsInterface
 {
     /**
      * @var UuidInterface
+     * @Groups({"clients", "client"})
      */
     private $id;
 
     /**
      * @var string
+     * @Groups({"clients", "client"})
      */
     private $username;
 
@@ -42,21 +46,25 @@ class Clients implements ClientsInterface
 
     /**
      * @var string
+     * @Groups({"client"})
      */
     private $password;
 
     /**
      * @var string
+     * @Groups({"client"})
      */
     private $mail;
 
     /**
      * @var \DateTimeImmutable
+     * @Groups({"client"})
      */
     private $inscriptionDate;
 
     /**
-     * @var ArrayCollection
+     * @var array
+     * @Groups({"usersPerClients"})
      */
     private $users;
 
@@ -79,8 +87,8 @@ class Clients implements ClientsInterface
         $this->roles[] = 'ROLE_USER';
         $this->password = $password;
         $this->mail = $mail;
-        $this->users = new ArrayCollection();
-        $this->inscriptionDate = new \DateTimeImmutable();
+        $this->users = [];
+        $this->inscriptionDate = new \DateTime();
     }
 
     /**
@@ -139,21 +147,23 @@ class Clients implements ClientsInterface
      */
     public function getInscriptionDate(): \DateTimeImmutable
     {
-        return $this->inscriptionDate;
+        $date = DateTimeImmutable::createFromMutable($this->inscriptionDate );
+        return $date;
     }
 
     /**
-     * @param \DateTimeImmutable $date
+     * @param \DateTime $date
      */
-    public function setInscriptionDate(\DateTimeImmutable $date)
+    public function setInscriptionDate(\DateTime $date)
     {
-        $this->inscriptionDate = $date;
+        $inscriptionDate = DateTimeImmutable::createFromMutable($date );
+        $this->inscriptionDate = $inscriptionDate;
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function getUsers(): ArrayCollection
+    public function getUsers()
     {
         return $this->users;
     }
@@ -171,13 +181,24 @@ class Clients implements ClientsInterface
      */
     public function removeUser(Users $user)
     {
-        $this->users->removeElement($user);
+        $index = array_search($user, $this->getUsers());
+        if($index !== false){
+            unset($this->getUsers()[$index]);
+        }
     }
 
     /**
      * @return bool|string
      */
     public function getSalt()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getPassword()
     {
         return $this->password;
     }

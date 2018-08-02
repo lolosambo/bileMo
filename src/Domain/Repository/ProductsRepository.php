@@ -38,13 +38,13 @@ class ProductsRepository extends ServiceEntityRepository implements ProductsRepo
     }
 
     /**
-     * @param UuidInterface $productId
+     * @param string $productId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findProduct(UuidInterface $productId)
+    public function findProduct(string $productId)
     {
         return $this->createQueryBuilder('p')
             ->where('p.id = ?1')

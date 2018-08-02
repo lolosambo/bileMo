@@ -32,13 +32,13 @@ Interface ProductsRepositoryInterface
     public function __construct(RegistryInterface $registry);
 
     /**
-     * @param UuidInterface $productId
+     * @param string $productId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findProduct(UuidInterface $productId);
+    public function findProduct(string $productId);
 
     /**
      * @param string $productname

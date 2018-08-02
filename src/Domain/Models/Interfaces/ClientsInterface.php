@@ -15,6 +15,7 @@ namespace App\Domain\Models\Interfaces;
 
 use App\Domain\Models\Users;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 
 /**
@@ -65,12 +66,12 @@ interface ClientsInterface
     /**
      * @param \DateTimeImmutable $date
      */
-    public function setInscriptionDate(\DateTimeImmutable $date);
+    public function setInscriptionDate(\DateTime $date);
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function getUsers(): ArrayCollection;
+    public function getUsers();
 
     /**
      * @param Users $user
@@ -86,6 +87,11 @@ interface ClientsInterface
      * @return bool
      */
     public function getSalt();
+
+    /**
+     * @return bool|string
+     */
+    public function getPassword();
 
     /**
      * @return bool

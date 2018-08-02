@@ -13,32 +13,31 @@ declare(strict_types=1);
 
 namespace App\UI\Responders;
 
-use App\UI\Responders\Interfaces\GetAllProductsResponderInterface;
-use App\UI\Presenters\Interfaces\GetAllProductsPresenterInterface;
+use App\UI\Responders\Interfaces\GetClientResponderInterface;
+use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class GetAllProductsResponder
+ * Class GetClientResponder
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsResponder implements GetAllProductsResponderInterface
+class GetClientResponder implements GetClientResponderInterface
 {
     /**
-     * @var GetAllProductsPresenterInterface
+     * @var GetClientPresenterInterface
      */
-   private $presenter;
+    private $presenter;
 
     /**
-     * HomeResponder constructor.
+     * GetClientResponder constructor.
      *
-     * @param GetAllProductsPresenterInterface $presenter
+     * @param GetClientPresenterInterface $presenter
      */
-   public function __construct(GetAllProductsPresenterInterface $presenter)
-   {
-       $this->presenter = $presenter;
-   }
+    public function __construct(GetClientPresenterInterface $presenter)
+    {
+        $this->presenter = $presenter;
+    }
 
     /**
      * @param $data

@@ -68,7 +68,7 @@ class Users implements UsersInterface
     private $mail;
 
     /**
-     * @var \DateTimeImmutable $inscriptionDate
+     * @var \DateTime $inscriptionDate
      */
     private $inscriptionDate;
 
@@ -101,7 +101,7 @@ class Users implements UsersInterface
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
-        $this->inscriptionDate = new \DateTimeImmutable();
+        $this->inscriptionDate = new \DateTime();
     }
 
     /**
@@ -219,15 +219,17 @@ class Users implements UsersInterface
      */
     public function getInscriptionDate(): \DateTimeImmutable
     {
-        return $this->inscriptionDate;
+        $date = \DateTimeImmutable::createFromMutable($this->inscriptionDate );
+        return $date;
     }
 
     /**
-     * @param \DateTimeImmutable $date
+     * @param \DateTime $date
      */
-    public function setInscriptionDate(\DateTimeImmutable $date)
+    public function setInscriptionDate(\DateTime $date)
     {
-        $this->inscriptionDate = $date;
+        $inscriptionDate = \DateTimeImmutable::createFromMutable($date );
+        $this->inscriptionDate = $inscriptionDate;
     }
 
     /**

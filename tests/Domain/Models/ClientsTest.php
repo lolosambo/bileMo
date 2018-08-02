@@ -15,7 +15,7 @@ namespace Tests\Domain\Models;
 
 use App\Domain\Models\Clients;
 use App\Domain\Models\Users;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\UuidInterface;
 
@@ -71,7 +71,7 @@ class ClientsTest extends TestCase
         static::assertInternalType('string', $this->client->getSalt());
         static::assertInternalType('string', $this->client->getMail());
         static::assertInstanceOf(\DateTimeImmutable::class, $this->client->getInscriptionDate());
-        static::assertInstanceOf(ArrayCollection::class, $this->client->getUsers());
+        static::assertInternalType('array', $this->client->getUsers());
     }
 
     /**
@@ -81,7 +81,7 @@ class ClientsTest extends TestCase
     {
         $user = $this->createMock(Users::class);
         $this->client->addUser($user);
-        static::assertInstanceOf(Users::class, $this->client->getUsers()->first());
+        static::assertInstanceOf(Users::class, $this->client->getUsers()[0]);
     }
 
     /**
