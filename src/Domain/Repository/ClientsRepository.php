@@ -17,7 +17,6 @@ use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Clients;
 use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**

@@ -14,5 +14,7 @@
         <field name="city" type="string" length="100" />
         <field name="region" type="string" length="100" />
         <field name="country" type="string" length="100" />
+        <one-to-many field="users" target-entity="Users" mapped-by="address">
+        </one-to-many>
     </entity>
 </doctrine-mapping>

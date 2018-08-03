@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace App\UI\Actions;
 
-use App\Domain\Repository\Interfaces\ProductsRepositoryInterface;
-use App\UI\Actions\Interfaces\GetProductActionInterface;
-use App\UI\Responders\Interfaces\GetProductResponderInterface;
+use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
+use App\UI\Actions\Interfaces\GetUserActionInterface;
+use App\UI\Responders\Interfaces\GetUserResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,39 +23,39 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  *  * @author Laurent BERTON <lolosambo2@gmail.com>
  *
- * Class GetProductAction
+ * Class GetUserAction
  *
- * @Route(path="/product/{id}", name="showProduct", methods={"GET"})
+ * @Route(path="/user/{id}", name="showUser", methods={"GET"})
  */
-class GetProductAction implements GetProductActionInterface
+class GetUserAction implements GetUserActionInterface
 {
     /**
-     * @var ProductsRepositoryInterface
+     * @var UsersRepositoryInterface
      */
     private $repository;
 
     /**
-     * GetProductAction constructor.
+     * GetUserAction constructor.
      *
-     * @param ProductsRepositoryInterface $repository
+     * @param UsersRepositoryInterface $repository
      * @param SerializerInterface $serializer
      */
-    public function __construct(ProductsRepositoryInterface $repository)
+    public function __construct(UsersRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
     /**
      * @param Request $request
-     * @param GetProductResponderInterface $responder
+     * @param GetUserResponderInterface $responder
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function __invoke(Request $request, GetProductResponderInterface $responder)
+    public function __invoke(Request $request, GetUserResponderInterface $responder)
     {
-        $data = $this->repository->findProduct($request->attributes->get('id'));
+        $data = $this->repository->findUser($request->attributes->get('id'));
         return $responder($data);
     }
 

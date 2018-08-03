@@ -45,6 +45,6 @@ class GetProductPresenter implements GetProductPresenterInterface
      */
     public function __invoke($data)
     {
-        return $this->serializer->serialize($data, 'json');
+        return $this->serializer->serialize($data, 'json', ['groups' => ['product']]);
     }
 }

@@ -41,11 +41,11 @@ Interface UsersRepositoryInterface
     public function findOneByUsername(string $username);
 
     /**
-     * @param $mail
+     * @param string $mail
      *
      * @return mixed
      */
-    public function findOneByMail($mail);
+    public function findOneByMail(string $mail);
 
     /**
      * @return mixed
@@ -55,13 +55,14 @@ Interface UsersRepositoryInterface
     /**
      * @return mixed
      */
-    public function findAllUsersByClient(UuidInterface $clientId);
+    public function findAllUsersByClient(string $clientId);
 
     /**
-     * @param UsersInterface $userId
+     * @param string $userId
+     *
      * @return mixed
      */
-    public function deleteUser(UsersInterface $userId);
+    public function deleteUser(string $userId);
 
     /**
      * @param $user

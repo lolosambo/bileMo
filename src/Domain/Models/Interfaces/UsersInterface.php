@@ -39,6 +39,11 @@ Interface UsersInterface
     public function getSalt();
 
     /**
+     * @return null|string
+     */
+    public function getPassword();
+
+    /**
      * @return string
      */
     public function getFirstName();
@@ -69,7 +74,7 @@ Interface UsersInterface
     public function setPhone(string $phone);
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getAddress();
 

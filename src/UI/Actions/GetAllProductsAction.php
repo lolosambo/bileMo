@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * Class GetAllProductsAction
  *
- * @Route(name="showGetAllProducts", path="/show_all_products", methods={"GET"})
+ * @Route(name="showAllProducts", path="/show_all_products", methods={"GET"})
  */
 class GetAllProductsAction implements GetAllProductsActionInterface
 {

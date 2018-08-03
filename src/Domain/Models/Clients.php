@@ -15,7 +15,6 @@ namespace App\Domain\Models;
 
 use App\Domain\Models\Interfaces\ClientsInterface;
 use DateTimeImmutable;
-use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -29,12 +28,14 @@ class Clients implements ClientsInterface
 {
     /**
      * @var UuidInterface
+     *
      * @Groups({"clients", "client"})
      */
     private $id;
 
     /**
      * @var string
+     *
      * @Groups({"clients", "client"})
      */
     private $username;
@@ -46,24 +47,28 @@ class Clients implements ClientsInterface
 
     /**
      * @var string
+     *
      * @Groups({"client"})
      */
     private $password;
 
     /**
      * @var string
+     *
      * @Groups({"client"})
      */
     private $mail;
 
     /**
      * @var \DateTimeImmutable
+     *
      * @Groups({"client"})
      */
     private $inscriptionDate;
 
     /**
      * @var array
+     *
      * @Groups({"usersPerClients"})
      */
     private $users;

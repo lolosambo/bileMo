@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\Interfaces;
 
+use App\Domain\Models\Users;
 use Ramsey\Uuid\UuidInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
 
@@ -93,6 +94,16 @@ Interface AddressesInterface
 
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized);
+
+    /**
+     * @param Users $user
+     */
+    public function addUser(Users $user);
+
+    /**
+     * @param Users $user
+     */
+    public function removeUser(Users $user);
 
 }
 

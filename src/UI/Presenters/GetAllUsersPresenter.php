@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace App\UI\Presenters;
 
-use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
+use App\UI\Presenters\Interfaces\GetAllUsersPresenterInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Class GetClientPresenter
+ * Class GetAllUsersPresenter
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetClientPresenter implements GetClientPresenterInterface
+class GetAllUsersPresenter implements GetAllUsersPresenterInterface
 {
     /**
      * @var SerializerInterface
@@ -29,7 +29,7 @@ class GetClientPresenter implements GetClientPresenterInterface
     private $serializer;
 
     /**
-     * GetClientPresenter constructor.
+     * GetAllUsersPresenter constructor.
      *
      * @param SerializerInterface $serializer
      */
@@ -41,16 +41,16 @@ class GetClientPresenter implements GetClientPresenterInterface
     /**
      * @param $data
      *
-     * @return mixed|string
+     * @return \Closure|mixed
      */
     public function __invoke($data)
     {
-        return $this->serializer->serialize(
-            $data,
-            'json',
-            [
-                'groups' => ['client']
-            ]
-        );
+        $users = [];
+        foreach($data as $user) {
+            $serializedUser = $this->serializer->serialize($user, 'json', ['groups' => ['users']]);
+            $users[] = $serializedUser;
+        }
+        return $users;
     }
 }
+

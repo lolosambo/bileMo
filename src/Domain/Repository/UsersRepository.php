@@ -17,6 +17,7 @@ use App\Domain\Models\Interfaces\UsersInterface;
 use App\Domain\Models\Users;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,6 +48,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
     public function findUser(string $userId)
     {
         return $this->createQueryBuilder('u')
+            ->leftJoin('u.address', 'ua')
             ->where('u.id = ?1')
             ->setParameter(1, $userId)
             ->setCacheable(true)
@@ -72,11 +74,11 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
     }
 
     /**
-     * @param $mail
+     * @param string $mail
      *
      * @return mixed
      */
-    public function findOneByMail($mail)
+    public function findOneByMail(string $mail)
     {
         return $this->createQueryBuilder('u')
             ->Where('u.mail = :mail')
@@ -98,20 +100,23 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
     /**
      * @return mixed
      */
-    public function findAllUsersByClient(UuidInterface $clientId)
+    public function findAllUsersByClient(string $clientId)
     {
         return $this->createQueryBuilder('u')
-            ->leftJoin('u.client', 'uc', 'WITH', 'uc.id = ?1')
+            ->leftJoin('u.client', 'uc')
+            ->where('uc.id = ?1')
             ->setParameter(1, $clientId)
+            ->orderBy('u.username')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * @param UsersInterface $userId
+     * @param string $userId
+     *
      * @return mixed
      */
-    public function deleteUser(UsersInterface $userId)
+    public function deleteUser(string $userId)
     {
         return $this->createQueryBuilder('u')
             ->delete()

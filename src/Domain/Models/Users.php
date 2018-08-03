@@ -19,6 +19,7 @@ use App\Domain\Models\Interfaces\AddressesInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class Users
@@ -29,46 +30,64 @@ class Users implements UsersInterface
 {
     /**
      * @var UuidInterface $id
+     *
+     * @Groups ({"users", "user"})
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @Groups ({"users", "user"})
      */
     private $username;
 
     /**
      * @var string
+     *
+     * @Groups ({"users", "user"})
      */
     private $firstName;
 
     /**
      * @var string
+     *
+     * @Groups ({"users", "user"})
      */
     private $lastName;
 
     /**
      * @var string $phone
+     *
+     * @Groups ({"user"})
      */
     private $phone;
 
     /**
-     * @var ArrayCollection $address
+     * @var AddressesInterface $address
+     *
+     * @Groups ({"user"})
      */
     private $address;
 
     /**
      * @var string $password
+     *
+     * @Groups ({"user"})
      */
     private $password;
 
     /**
      * @var string $mail
+     *
+     * @Groups ({"user"})
      */
     private $mail;
 
     /**
      * @var \DateTime $inscriptionDate
+     *
+     * @Groups ({"user"})
      */
     private $inscriptionDate;
 
@@ -129,6 +148,14 @@ class Users implements UsersInterface
     }
 
     /**
+     * @return null|string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
      * @return string
      */
     public function getFirstName()
@@ -177,7 +204,7 @@ class Users implements UsersInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return AddressesInterface
      */
     public function getAddress()
     {
@@ -189,7 +216,7 @@ class Users implements UsersInterface
      */
     public function setAddress(AddressesInterface $address)
     {
-        $this->address[] = $address;
+        $this->address = $address;
     }
 
     /**

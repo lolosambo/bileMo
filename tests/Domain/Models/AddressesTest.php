@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Tests\Domain\Models;
 
 use App\Domain\Models\Addresses;
-use App\Domain\Models\Interfaces\UsersInterface;
+use App\Domain\Models\Users;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\UuidInterface;
 
@@ -32,6 +32,7 @@ class AddresesTest extends TestCase
      */
     public function setUp()
     {
+        $user = $this->createMock(Users::class);
         $address = new Addresses(
             5,
             'TestStreet',
@@ -40,6 +41,7 @@ class AddresesTest extends TestCase
             'nord',
             'france'
         );
+        $address->addUser($user);
         $this->address = $address;
     }
 
@@ -63,6 +65,7 @@ class AddresesTest extends TestCase
         static::assertObjectHasAttribute('city', $this->address);
         static::assertObjectHasAttribute('region', $this->address);
         static::assertObjectHasAttribute('country', $this->address);
+        static::assertObjectHasAttribute('users', $this->address);
     }
 
     /**
@@ -78,6 +81,7 @@ class AddresesTest extends TestCase
         static::assertInternalType('string', $this->address->getCity());
         static::assertInternalType('string', $this->address->getRegion());
         static::assertInternalType('string', $this->address->getCountry());
+        static::assertInternalType('array', $this->address->getUsers());
     }
 
     /**
@@ -88,6 +92,27 @@ class AddresesTest extends TestCase
         static::assertContains('lille', $this->address->getCity());
         static::assertContains('nord', $this->address->getRegion());
         static::assertContains('france', $this->address->getCountry());
+    }
+
+    /**
+     * @group unit
+     */
+    public function testAddFunctions()
+    {
+        $user = $this->createMock(Users::class);
+        $this->address->addUser($user);
+        static::assertInstanceOf(Users::class, $this->address->getUsers()[0]);
+    }
+
+    /**
+     * @group unit
+     */
+    public function testRemoveFunctions()
+    {
+        $user = $this->createMock(Users::class);
+        $this->address->addUser($user);
+        $this->address->removeUser($user);
+        static::assertNull(null, $this->address->getUsers());
     }
 }
 

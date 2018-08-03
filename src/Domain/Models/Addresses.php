@@ -18,6 +18,7 @@ use App\Domain\Models\Interfaces\UsersInterface;
 use App\Domain\Models\Users;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class Addresses
@@ -33,33 +34,50 @@ class Addresses implements AddressesInterface
 
     /**
      * @var int $number
+     *
+     * @Groups ({"user"})
      */
     private $number;
 
     /**
      * @var string $way
+     *
+     * @Groups ({"user"})
      */
     private $way;
 
     /**
      * @var int $zipCode
+     *
+     * @Groups ({"user"})
      */
     private $zipCode;
 
     /**
      * @var string $city
+     *
+     * @Groups ({"user"})
      */
     private $city;
 
     /**
      * @var string $region
+     *
+     * @Groups ({"user"})
      */
     private $region;
 
     /**
      * @var string $country
+     *
+     * @Groups ({"user"})
      */
     private $country;
+
+    /**
+     * @var array $users
+     */
+    private $users;
 
     /**
      * Addresses constructor.
@@ -220,6 +238,34 @@ class Addresses implements AddressesInterface
             $this->region,
             $this->country
             ) = unserialize($serialized);
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param Users $user
+     */
+    public function addUser(Users $user)
+    {
+        $this->users[] = $user;
+        $user->setAddress($this);
+    }
+
+    /**
+     * @param Users $user
+     */
+    public function removeUser(Users $user)
+    {
+        $index = array_search($user, $this->getUsers());
+        if($index !== false){
+            unset($this->getUsers()[$index]);
+        }
     }
 }
 

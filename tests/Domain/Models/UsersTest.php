@@ -88,7 +88,7 @@ class UsersTest extends TestCase
         static::assertInternalType('string', $this->user->getMail());
         static::assertInstanceOf(\DateTimeImmutable::class, $this->user->getInscriptionDate());
         static::assertInstanceOf(ClientsInterface::class, $this->user->getClient());
-        static::assertInternalType('array', $this->user->getAddress());
+        static::assertInstanceOf(AddressesInterface::class, $this->user->getAddress());
     }
 
     /**

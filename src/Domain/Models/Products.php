@@ -16,6 +16,7 @@ namespace App\Domain\Models;
 use App\Domain\Models\Interfaces\ProductsInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -27,51 +28,71 @@ class Products implements ProductsInterface
 {
     /**
      * @var UuidInterface
+     *
+     * @Groups ({"products"})
      */
     private $id;
 
     /**
      * @var string $name
+     *
+     * @Groups ({"products", "product"})
      */
     private $name;
 
     /**
      * @var string $brand
+     *
+     * @Groups ({"products", "product"})
      */
     private $brand;
 
     /**
      * @var string $description
+     *
+     * @Groups ({"product"})
      */
     private $description;
 
     /**
      * @var int $height
+     *
+     * @Groups ({"product"})
      */
     private $height;
 
     /**
      * @var int $width
+     *
+     * @Groups ({"product"})
      */
     private $width;
 
     /**
      * @var int $weight
+     *
+     * @Groups ({"product"})
      */
     private $weight;
 
     /**
      * @var string $screen
+     *
+     * @Groups ({"product"})
      */
     private $screen;
 
     /**
      * @var string $os
+     *
+     * @Groups ({"product"})
      */
     private $os;
 
     /**
      * @var float $price
+     *
+     * @Groups ({"products", "product"})
      */
     private $price;
 

@@ -47,7 +47,7 @@ class GetAllProductsPresenter implements GetAllProductsPresenterInterface
     {
         $products = [];
         foreach($data as $product) {
-            $serializedProduct = $this->serializer->serialize($product, 'json');
+            $serializedProduct = $this->serializer->serialize($product, 'json', ['groups' => ['products']]);
             $products[] = $serializedProduct;
         }
         return $products;
