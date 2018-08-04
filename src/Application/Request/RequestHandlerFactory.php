@@ -20,15 +20,19 @@ namespace App\Application\Request;
  */
 final class RequestHandlerFactory
 {
+    /**
+     * @param string $path
+     * @param string $routeName
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
     public static function createFromRequest(
         string $path,
         string $routeName
     ) {
         $requestHandler = 'App\Application\Request\Handlers\\' . ucfirst($routeName).'Handler';
-        $class = new $requestHandler();
-        if(!$class) {
-            throw new \Exception('Le RequestHandler demandé n\'existe pas.');
-        }
-        return $class;
+        return new $requestHandler();
     }
 }
