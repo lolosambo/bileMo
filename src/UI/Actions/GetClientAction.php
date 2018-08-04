@@ -21,11 +21,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- *  * @author Laurent BERTON <lolosambo2@gmail.com>
+ * @author Laurent BERTON <lolosambo2@gmail.com>
  *
  * Class GetClientAction
  *
- * @Route(path="/client/{id}", name="showClient", methods={"GET"})
+ * @Route(path="/client/{id}", name="getClient", methods={"GET"})
  */
 class GetClientAction implements GetClientActionInterface
 {
@@ -53,8 +53,10 @@ class GetClientAction implements GetClientActionInterface
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function __invoke(Request $request, GetClientResponderInterface $responder)
-    {
+    public function __invoke(
+        Request $request,
+        GetClientResponderInterface $responder
+    ) {
         $data = $this->repository->findClient($request->attributes->get('id'));
         return $responder($data);
     }

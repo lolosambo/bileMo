@@ -23,3 +23,7 @@ framework:
             bileMo_cache:
                 adapter: cache.adapter.redis
                 provider: cache.default_redis_provider
+
+sensio_framework_extra:
+    router:
+        annotations: false

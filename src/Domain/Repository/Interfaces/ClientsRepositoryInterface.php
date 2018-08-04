@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository\Interfaces;
 
+use App\Domain\Models\Clients;
 use App\Domain\Models\Interfaces\ClientsInterface;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -68,11 +68,11 @@ Interface ClientsRepositoryInterface
     public function deleteClient(ClientsInterface $clientId);
 
     /**
-     * @param ClientsInterface $client
+     * @param $client
      *
      * @return mixed
      */
-    public function save(ClientsInterface $client);
+    public function save($client);
 
     /**
      * @throws \Doctrine\ORM\ORMException

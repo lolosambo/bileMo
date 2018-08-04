@@ -16,6 +16,7 @@ namespace App\UI\Responders;
 use App\UI\Responders\Interfaces\GetClientResponderInterface;
 use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class GetClientResponder
@@ -42,11 +43,13 @@ class GetClientResponder implements GetClientResponderInterface
     /**
      * @param $data
      *
-     * @return JsonResponse
+     * @return Response
      */
     public function __invoke($data)
     {
         $presenter = $this->presenter;
-        return new JsonResponse($presenter($data));
+        $response =  new Response($presenter($data));
+        $response->headers->set("Content-Type", "application/json");
+        return $response;
     }
 }

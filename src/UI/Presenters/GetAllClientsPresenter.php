@@ -47,11 +47,6 @@ class GetAllClientsPresenter implements GetAllClientsPresenterInterface
      */
     public function __invoke($data)
     {
-        $clients = [];
-        foreach($data as $client) {
-            $serializedClient = $this->serializer->serialize($client, 'json', ['groups' => ['clients']]);
-            $clients[] = $serializedClient;
-        }
-        return $clients;
+       return $this->serializer->serialize($data, 'json', ['groups' => ['clients']]);
     }
 };

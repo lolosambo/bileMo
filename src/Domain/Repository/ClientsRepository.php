@@ -109,12 +109,12 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
     }
 
     /**
-     * @param ClientsInterface $client
+     * @param $client
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(ClientsInterface $client)
+    public function save($client)
     {
         $this->getEntityManager()->persist($client);
         $this->getEntityManager()->flush();

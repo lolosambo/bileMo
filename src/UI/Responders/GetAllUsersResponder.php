@@ -15,7 +15,7 @@ namespace App\UI\Responders;
 
 use App\UI\Responders\Interfaces\GetAllUsersResponderInterface;
 use App\UI\Presenters\Interfaces\GetAllUsersPresenterInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class GetAllUsersResponder
@@ -42,11 +42,13 @@ class GetAllUsersResponder implements GetAllUsersResponderInterface
     /**
      * @param $data
      *
-     * @return JsonResponse
+     * @return Response
      */
     public function __invoke($data)
     {
         $presenter = $this->presenter;
-        return new JsonResponse($presenter($data));
+        $response =  new Response($presenter($data));
+        $response->headers->set("Content-Type", "application/json");
+        return $response;
     }
 }

@@ -45,12 +45,7 @@ class GetAllUsersPresenter implements GetAllUsersPresenterInterface
      */
     public function __invoke($data)
     {
-        $users = [];
-        foreach($data as $user) {
-            $serializedUser = $this->serializer->serialize($user, 'json', ['groups' => ['users']]);
-            $users[] = $serializedUser;
-        }
-        return $users;
+        return $this->serializer->serialize($data, 'json', ['groups' => ['users']]);
     }
 }
 

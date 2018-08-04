@@ -25,7 +25,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * Class GetUserAction
  *
- * @Route(path="/user/{id}", name="showUser", methods={"GET"})
+ * @Route(path="/user/{id}", name="getUser", methods={"GET"})
  */
 class GetUserAction implements GetUserActionInterface
 {
