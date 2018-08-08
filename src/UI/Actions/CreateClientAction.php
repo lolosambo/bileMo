@@ -23,7 +23,14 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * Class CreateClientAction
  *
- * @Route(path="/create_client", name="createClient", methods={"POST"})
+ * @Route(
+ *     path="/create_client",
+ *     name="createClient",
+ *     methods={"POST"},
+ *     defaults={
+ *         "_request_handler": "App\Application\Request\Handlers\CreateClientHandler"
+ *     }
+ * )
  */
 class CreateClientAction implements CreateClientActionInterface
 {

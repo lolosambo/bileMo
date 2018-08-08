@@ -18,7 +18,7 @@ use App\UI\Actions\GetClientAction;
 use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
 use App\UI\Responders\GetClientResponder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -62,7 +62,7 @@ class GetClientActionTest extends TestCase
         $responder = new GetClientResponder($presenter);
         $action = $this->action;
         $result = $action($request, $responder);
-        static::assertInstanceOf(JsonResponse::class, $result);
+        static::assertInstanceOf(Response::class, $result);
     }
 }
 

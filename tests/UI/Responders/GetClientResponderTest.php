@@ -16,7 +16,7 @@ namespace Tests\UI\Responders;
 use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
 use App\UI\Responders\GetClientResponder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class GetClientResponderTest
@@ -50,7 +50,7 @@ class GetClientResponderTest extends TestCase
         $data= 'dataTest';
         $responder = $this->responder;
         $result = $responder($data);
-        static::assertInstanceOf(JsonResponse::class, $result);
+        static::assertInstanceOf(Response::class, $result);
     }
 }
 

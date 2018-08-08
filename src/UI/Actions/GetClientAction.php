@@ -25,7 +25,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * Class GetClientAction
  *
- * @Route(path="/client/{id}", name="getClient", methods={"GET"})
+ * @Route(
+ *     path="/client/{id}",
+ *     name="getClient",
+ *     methods={"GET"},
+ *     defaults={
+ *         "_request_handler": "App\Application\Request\Handlers\GetClientHandler"
+ *     }
+ * )
  */
 class GetClientAction implements GetClientActionInterface
 {

@@ -49,6 +49,6 @@ class GetAllProductsPresenterTest extends KernelTestCase
         $data = ['data1', 'data2', 'data3'];
         $presenter = $this->presenter;
         $result = $presenter($data);
-        static::assertInternalType('array', $result);
+        static::assertInternalType('string', $result);
     }
 }

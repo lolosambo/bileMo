@@ -65,6 +65,6 @@ class GetAllUsersPresenterTest extends KernelTestCase
         $presenter = $this->presenter;
         $result = $presenter($this->client);
         static::assertInstanceOf(UsersInterface::class, $this->client);
-        static::assertInternalType('array', $result);
+        static::assertInternalType('string', $result);
     }
 }

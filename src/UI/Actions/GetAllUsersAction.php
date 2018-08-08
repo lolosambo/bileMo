@@ -25,7 +25,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * Class GetAllUsersAction
  *
- * @Route(name="getAllUsers", path="/show_all_users_by_client/{id}", methods={"GET"})
+ * @Route(
+ *     name="getAllUsers",
+ *     path="/show_all_users_by_client/{id}",
+ *     methods={"GET"},
+ *     defaults={
+ *         "_request_handler": "App\Application\Request\Handlers\GetAllUsersHandler"
+ *     }
+ * )
  */
 class GetAllUsersAction implements GetAllUsersActionInterface
 {

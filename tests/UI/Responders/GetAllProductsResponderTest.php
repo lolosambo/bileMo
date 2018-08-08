@@ -16,7 +16,7 @@ namespace Tests\UI\Responders;
 use App\UI\Presenters\Interfaces\GetAllProductsPresenterInterface;
 use App\UI\Responders\GetAllProductsResponder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class GetAllProductsResponderTest
@@ -50,7 +50,7 @@ class GetAllProductsResponderTest extends TestCase
         $data = ['data1', 'data2', 'data3'];
         $responder = $this->responder;
         $result = $responder($data);
-        static::assertInstanceOf(JsonResponse::class, $result);
+        static::assertInstanceOf(Response::class, $result);
     }
 }
 

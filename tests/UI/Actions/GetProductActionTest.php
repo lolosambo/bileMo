@@ -18,7 +18,7 @@ use App\UI\Actions\GetProductAction;
 use App\UI\Presenters\Interfaces\GetProductPresenterInterface;
 use App\UI\Responders\GetProductResponder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -62,7 +62,7 @@ class GetProductActionTest extends TestCase
         $responder = new GetProductResponder($presenter);
         $action = $this->action;
         $result = $action($request, $responder);
-        static::assertInstanceOf(JsonResponse::class, $result);
+        static::assertInstanceOf(Response::class, $result);
     }
 }
 
