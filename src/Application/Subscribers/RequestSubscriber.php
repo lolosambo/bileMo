@@ -43,15 +43,8 @@ class RequestSubscriber implements EventSubscriberInterface, RequestSubscriberIn
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        $path = $event->getRequest()->getUri();
-        $routeName = $event->getRequest()->attributes->get('_route');
-        if(!$path || !$routeName ) {
-            throw new \Exception('The required RequestHandler doesn\'t exists. Missing path or Route name');
-        }
-        $requestHandler = RequestHandlerFactory::createFromRequest(
-            $event->getRequest()->getUri(),
-            $event->getRequest()->attributes->get('_route')
-        );
+        $requestHandler = RequestHandlerFactory::createFromRequest($event->getRequest());
+        if(!\is_object($requestHandler)) { return; }
         $requestHandler->handle($event->getRequest());
     }
 }

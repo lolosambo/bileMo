@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\Application\Request;
 
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Class RequestHandlerFactory
  *
@@ -28,11 +30,13 @@ final class RequestHandlerFactory
      *
      * @throws \Exception
      */
-    public static function createFromRequest(
-        string $path,
-        string $routeName
-    ) {
-        $requestHandler = 'App\Application\Request\Handlers\\' . ucfirst($routeName).'Handler';
-        return new $requestHandler();
+    public static function createFromRequest(Request $request) {
+        $handler = $request->attributes->get('_request_handler');
+        if (!\is_string($handler)) { return null; }
+        $class = new $handler($request);
+        if($class::ROUTE == $request->attributes->get('_route') && (\in_array($request->getMethod(), $class::METHODS))) {
+            return $class;
+        }
+        throw new \Exception('No matching route found or bad methods used !');
     }
 }

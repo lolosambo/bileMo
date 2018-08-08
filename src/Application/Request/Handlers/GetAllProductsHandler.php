@@ -10,33 +10,59 @@
  */
 
 namespace App\Application\Request\Handlers;
+
+use App\Application\Request\Handlers\Interfaces\GetAllProductsHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class GetAllProductsHandler.
  *
+ * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsHandler
+class GetAllProductsHandler implements GetAllProductsHandlerInterface
 {
+    const ROUTE = "getAllProducts";
+    const METHODS = ['GET'];
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var
+     */
+    private $options;
 
     /**
      * @param Request $request
      *
      * @return Request
      */
-    public function handle(Request $request, array $options = []): Request
+    public function handle(Request $request): Request
     {
+        $this->request = $request;
+        $resolver = new OptionsResolver();
+        $this->configureOptions($resolver);
+        $this->options = $resolver->resolve($request->attributes->all());
         return $request;
     }
 
     /**
      * @param Request $request
      */
-    public function validate(Request $request, OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setAllowedValues($request->getMethod(), 'GET');
-        $resolver->setAllowedValues($request->getUri(), '/show_all_products');
-        $request->attributes->set('valid', true);
+        $resolver->setDefaults([
+            "_request_handler" => "App\Application\Request\Handlers\GetAllProductsHandler",
+            "_controller" => "App\UI\Actions\GetAllProductsAction",
+            "_route" => "getAllProducts",
+            "_firewall_context" =>"security.firewall.map.context.main",
+            "_route_params" => [],
+            "valid" => false
+          ]
+        );
+        $this->request->attributes->set('valid', true);
     }
 }
+
