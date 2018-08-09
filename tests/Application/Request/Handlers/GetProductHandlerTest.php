@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Tests\Application\Request\Handlers;
 
-use App\Application\Request\Handlers\GetAllProductsHandler;
+use App\Application\Request\Handlers\GetProductHandler;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class GetAllProductsActionTest
+ * Class GetProductActionTest
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsHandlerTest extends TestCase
+class GetProductHandlerTest extends TestCase
 {
 
     private $action;
@@ -35,10 +35,10 @@ class GetAllProductsHandlerTest extends TestCase
             [],
             [
                 'GET',
-                '/show_all_products'
+                '/product/6232fab1-05d3-48b0-9825-9c2b5c78b380'
             ]
         );
-        $this->action = new GetAllProductsHandler();
+        $this->action = new GetProductHandler();
     }
 
     /**
@@ -46,7 +46,7 @@ class GetAllProductsHandlerTest extends TestCase
      */
     public function testConstruct()
     {
-        static::assertInstanceOf(GetAllProductsHandler::class, $this->action);
+        static::assertInstanceOf(GetProductHandler::class, $this->action);
     }
 
     /**
@@ -58,10 +58,3 @@ class GetAllProductsHandlerTest extends TestCase
         static::assertInstanceOf(Request::class, $result);
     }
 }
-
-
-
-
-
-
-

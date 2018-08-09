@@ -10,17 +10,20 @@
  */
 
 namespace App\Application\Request\Handlers;
+
+use App\Application\Request\Handlers\Interfaces\GetAllUsersHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class CreateClientHandler.
+ * Class GetAllUsersHandler.
  *
+ * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class CreateClientHandler
+class GetAllUsersHandler implements GetAllUsersHandlerInterface
 {
-    const ROUTE = "createClient";
-    const METHODS = ['POST'];
+    const ROUTE = "getAllUsers";
+    const METHODS = ['GET'];
     /**
      * @var Request
      */
@@ -51,14 +54,16 @@ class CreateClientHandler
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-                "_request_handler" => "App\Application\Request\Handlers\CreateClientHandler",
-                "_controller" => "App\UI\Actions\CreateClientAction",
-                "_route" => "createClient",
+                "_request_handler" => "App\Application\Request\Handlers\GetAllUsersHandler",
+                "_controller" => "App\UI\Actions\GetAllUsersAction",
+                "_route" => "getAllUsers",
                 "_firewall_context" =>"security.firewall.map.context.main",
                 "_route_params" => [],
+                "id" => $this->request->attributes->get('id'),
                 "valid" => false
             ]
         );
         $this->request->attributes->set('valid', true);
     }
 }
+

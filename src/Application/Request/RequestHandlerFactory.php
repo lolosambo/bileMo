@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Application\Request;
 
+use App\Application\Request\Interfaces\RequestHandlerFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -20,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-final class RequestHandlerFactory
+final class RequestHandlerFactory implements RequestHandlerFactoryInterface
 {
     /**
      * @param string $path
@@ -30,7 +31,8 @@ final class RequestHandlerFactory
      *
      * @throws \Exception
      */
-    public static function createFromRequest(Request $request) {
+    public static function createFromRequest(Request $request)
+    {
         $handler = $request->attributes->get('_request_handler');
         if (!\is_string($handler)) { return null; }
         $class = new $handler($request);

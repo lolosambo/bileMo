@@ -10,17 +10,20 @@
  */
 
 namespace App\Application\Request\Handlers;
+
+use App\Application\Request\Handlers\Interfaces\GetProductHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class CreateClientHandler.
+ * Class GetProductHandler.
  *
+ * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class CreateClientHandler
+class GetProductHandler implements GetProductHandlerInterface
 {
-    const ROUTE = "createClient";
-    const METHODS = ['POST'];
+    const ROUTE = "getProduct";
+    const METHODS = ['GET'];
     /**
      * @var Request
      */
@@ -51,14 +54,16 @@ class CreateClientHandler
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-                "_request_handler" => "App\Application\Request\Handlers\CreateClientHandler",
-                "_controller" => "App\UI\Actions\CreateClientAction",
-                "_route" => "createClient",
+                "_request_handler" => "App\Application\Request\Handlers\GetProductHandler",
+                "_controller" => "App\UI\Actions\GetProductAction",
+                "_route" => "getProduct",
                 "_firewall_context" =>"security.firewall.map.context.main",
                 "_route_params" => [],
+                "id" => $this->request->attributes->get('id'),
                 "valid" => false
             ]
         );
         $this->request->attributes->set('valid', true);
     }
 }
+
