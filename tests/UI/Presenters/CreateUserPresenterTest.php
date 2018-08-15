@@ -13,11 +13,15 @@ declare(strict_types=1);
 
 namespace Tests\UI\Presenters;
 
-use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
+use App\Domain\Repository\Interfaces\AddressesRepositoryInterface;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Presenters\CreateUserPresenter;
 use App\UI\Responders\Interfaces\CreateUserResponderInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * Class CreateUserPresenterTest
@@ -26,13 +30,21 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 class CreateUserPresenterTest extends KernelTestCase
 {
-    private $presenter;
+    private $serializer;
 
-    private $client;
+    private $responder;
+
+    private $encoder;
+
+    private $token;
+
+    private $denormalizer;
+
+    private $presenter;
 
     private $usersRepository;
 
-    private $clientsRepository;
+    private $addressRepository;
 
     /**
      * @throws \Exception
@@ -40,16 +52,22 @@ class CreateUserPresenterTest extends KernelTestCase
     public function setUp()
     {
         self::bootKernel();
-        $serializer = self::$kernel->getContainer()->get('serializer');
-        $responder = $this->createMock(CreateUserResponderInterface::class);
+        $this->serializer = self::$kernel->getContainer()->get('serializer');
+        $this->responder = $this->createMock(CreateUserResponderInterface::class);
         $this->usersRepository = $this->createMock(UsersRepositoryInterface::class);
-        $this->clientsRepository = $this->createMock(ClientsRepositoryInterface::class);
+        $this->encoder = $this->createMock(UserPasswordEncoderInterface::class);
+        $this->token = $this->createMock(TokenStorageInterface::class);
+        $this->denormalizer = $this->createMock(DenormalizerInterface::class);
+        $this->addressRepository = $this->createMock(AddressesRepositoryInterface::class);
 
         $this->presenter = new CreateUserPresenter(
-            $serializer,
+            $this->serializer,
             $this->usersRepository,
-            $this->clientsRepository,
-            $responder
+            $this->addressRepository,
+            $this->responder,
+            $this->encoder,
+            $this->token,
+            $this->denormalizer
         );
 
         $user = [];
@@ -58,6 +76,14 @@ class CreateUserPresenterTest extends KernelTestCase
         $user["firstName"] = "Laurent";
         $user["lastName"] = "BERTON";
         $user["mail"] = "test@mail.com";
+        $user["address"] = [
+            "number" => 20,
+            "way" => "allée Baudelaire",
+            "zipCode" => 59139,
+            "city" => "Wattignies",
+            "region" => "Nord",
+            "country" => "FRANCE"
+            ];
         $this->user = json_encode($user);
     }
 

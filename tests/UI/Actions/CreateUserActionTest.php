@@ -15,6 +15,7 @@ namespace Tests\UI\Actions;
 
 use App\UI\Actions\CreateUserAction;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 /**
  * Class CreateUserActionTest
@@ -28,7 +29,8 @@ class CreateUserActionTest extends TestCase
 
     public function setUp()
     {
-        $this->action = new CreateUserAction();
+        $decoder = $this->createMock(DecoderInterface::class);
+        $this->action = new CreateUserAction($decoder);
     }
 
     /**
