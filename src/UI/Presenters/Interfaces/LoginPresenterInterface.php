@@ -13,34 +13,32 @@ declare(strict_types=1);
 
 namespace App\UI\Presenters\Interfaces;
 
-use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
-use App\UI\Responders\Interfaces\CreateClientResponderInterface;
+use App\Domain\Models\Interfaces\ClientsInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Interface CreateClientPresenterInterface
+ * Interface LoginPresenterInterface
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-Interface CreateClientPresenterInterface
+Interface LoginPresenterInterface
 {
     /**
-     * CreateClientPresenterInterface constructor.
+     * LoginPresenterInterface constructor.
      *
      * @param SerializerInterface $serializer
-     * @param ClientsRepositoryInterface $repository
-     * @param CreateClientResponderInterface $responder
+     * @param JWTEncoderInterface $encoder
      */
     public function __construct(
         SerializerInterface $serializer,
-        ClientsRepositoryInterface $repository,
-        CreateClientResponderInterface $responder
+        JWTEncoderInterface $encoder
     );
 
     /**
-     * @param $data
+     * @param ClientsInterface $client
      *
      * @return mixed
      */
-    public function __invoke($data);
+    public function __invoke(ClientsInterface $client);
 }

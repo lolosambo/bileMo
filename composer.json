@@ -8,6 +8,7 @@
         "doctrine/doctrine-fixtures-bundle": "*",
         "friendsofphp/php-cs-fixer": "^2.11",
         "friendsofsymfony/ckeditor-bundle": "^1.1",
+        "lexik/jwt-authentication-bundle": "^2.5",
         "predis/predis": "1.1.1",
         "ramsey/uuid-doctrine": "^1.4",
         "sendgrid/sendgrid": "^6.2",

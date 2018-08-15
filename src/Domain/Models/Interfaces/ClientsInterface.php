@@ -84,6 +84,16 @@ interface ClientsInterface
     public function removeUser(Users $user);
 
     /**
+     * @return string
+     */
+    public function getAccessToken();
+
+    /**
+     * @param string $token
+     */
+    public function setAccessToken(string $token);
+
+    /**
      * @return bool
      */
     public function getSalt();
@@ -92,6 +102,11 @@ interface ClientsInterface
      * @return bool|string
      */
     public function getPassword();
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password);
 
     /**
      * @return bool

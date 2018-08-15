@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * @Route(
  *     name="getAllProducts",
- *     path="/show_all_products",
+ *     path="/products",
  *     methods={"GET"},
  *     defaults={
  *         "_request_handler": "App\Application\Request\Handlers\GetAllProductsHandler"

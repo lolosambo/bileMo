@@ -24,5 +24,14 @@ services:
         resource: '../src/UI/Actions'
         tags: ['controller.service_arguments']
 
+#    lexik_jwt_authentication.handler.authentication_success:
+#        class: App\Security\Handlers\AuthenticationSuccessHandler
+#        arguments: []
+#
+#    lexik_jwt_authentication.handler.authentication_failure:
+#            class: App\Security\Handlers\AuthenticationFailureHandler
+#            arguments: []
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

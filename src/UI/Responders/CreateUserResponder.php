@@ -28,6 +28,6 @@ class CreateUserResponder implements CreateUserResponderInterface
      */
     public function __invoke()
     {
-        return new Response('Le client a bien été ajouté à la base de données', Response::HTTP_CREATED);
+        return new Response('L\'utilisateur a bien été ajouté à la base de données', Response::HTTP_CREATED);
     }
 }

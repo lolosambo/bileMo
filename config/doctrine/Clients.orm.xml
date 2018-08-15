@@ -12,6 +12,7 @@
         <field name="password" type="string" length="100" />
         <field name="mail" type="string" length="255" />
         <field name="inscriptionDate" type="datetime"/>
+        <field name="accessToken" type="string" length="255" nullable="true" />
         <one-to-many field="users" target-entity="Users" mapped-by="client">
         </one-to-many>
     </entity>

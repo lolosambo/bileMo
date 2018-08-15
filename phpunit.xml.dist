@@ -24,6 +24,12 @@
         <env name="REDIS_PORT" value="6379" />
         <env name="DATABASE_URL_TEST" value="sqlite:///%kernel.project_dir%/var/data.db" />
         <!-- define your env variables for the test env here -->
+
+        <!-- ###+ lexik/jwt-authentication-bundle ### -->
+        <env name="JWT_SECRET_KEY" value="%kernel.project_dir%/config/jwt/private.pem"/>
+        <env name="JWT_PUBLIC_KEY" value="%kernel.project_dir%/config/jwt/public.pem"/>
+        <env name="JWT_PASSPHRASE" value="ab6cae96c0543b933ae7dc32de35839c"/>
+        <!-- ###- lexik/jwt-authentication-bundle ### -->
     </php>
 
     <testsuites>

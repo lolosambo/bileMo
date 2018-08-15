@@ -32,13 +32,13 @@ Interface AddressesRepositoryInterface
     public function __construct(RegistryInterface $registry);
 
     /**
-     * @param UuidInterface $addressId
+     * @param string $addressId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findAddress(UuidInterface $addressId);
+    public function findAddress(string $addressId);
 
     /**
      * @param string $city
@@ -55,10 +55,10 @@ Interface AddressesRepositoryInterface
     public function findAllAddresses();
 
     /**
-     * @param AddressesInterface $addressId
+     * @param string $addressId
      * @return mixed
      */
-    public function deleteAddress(AddressesInterface $addressId);
+    public function deleteAddress(string $addressId);
 
     /**
      * @param AddressesInterface $address
@@ -66,7 +66,7 @@ Interface AddressesRepositoryInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(AddressesInterface $address);
+    public function save($address);
 
     /**
      * @throws \Doctrine\ORM\ORMException

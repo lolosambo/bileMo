@@ -15,8 +15,10 @@ namespace App\Domain\Models;
 
 use App\Domain\Models\Interfaces\ClientsInterface;
 use DateTimeImmutable;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -24,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Clients implements ClientsInterface
+class Clients implements ClientsInterface, UserInterface, JWTUserInterface
 {
     /**
      * @var UuidInterface
@@ -65,6 +67,11 @@ class Clients implements ClientsInterface
      * @Groups({"client"})
      */
     private $inscriptionDate;
+
+    /**
+     * @var string $accessToken
+     */
+    private $accessToken;
 
     /**
      * @var array
@@ -193,6 +200,22 @@ class Clients implements ClientsInterface
     }
 
     /**
+     * @return string
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setAccessToken(string $token)
+    {
+        $this->accessToken = $token;
+    }
+
+    /**
      * @return bool|string
      */
     public function getSalt()
@@ -206,6 +229,14 @@ class Clients implements ClientsInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
     }
 
     /**
@@ -242,6 +273,21 @@ class Clients implements ClientsInterface
             ) = unserialize(
             $serialized,
             ['allowed_classes' => false]
+        );
+    }
+
+    /**
+     * @param string $username
+     * @param array $payload
+     * @return Clients|JWTUserInterface
+     * @throws \Exception
+     */
+    public static function createFromPayload($username, array $payload)
+    {
+        return new self(
+            $username,
+            $payload['password'],
+            $payload['email']
         );
     }
 }

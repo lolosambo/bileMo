@@ -63,7 +63,7 @@ class DeleteUserPresenter implements DeleteUserPresenterInterface
     /**
      * @param Request $request
      *
-     * @return DeleteUserResponderInterface
+     * @return DeleteUserResponderInterface|\Symfony\Component\HttpFoundation\Response
      *
      * @throws \Exception
      */
@@ -73,7 +73,7 @@ class DeleteUserPresenter implements DeleteUserPresenterInterface
         if($this->usersRepository->findUser($request->attributes->get("id"))) {
             throw new \Exception('Il y a eu un problème lors de l\'effacement de l\'utilisateur de la base de données');
         } else {
-            return $responder;
+            return $responder();
         }
     }
 }

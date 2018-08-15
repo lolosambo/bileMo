@@ -17,6 +17,7 @@ use App\UI\Actions\Interfaces\CreateUserActionInterface;
 use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 /**
  * @author Laurent BERTON <lolosambo2@gmail.com>
@@ -24,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class CreateUserAction
  *
  * @Route(
- *     path="/create_user/client/{id}",
+ *     path="/user/create",
  *     name="createUser",
  *     methods={"POST"},
  *     defaults={
@@ -35,15 +36,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class CreateUserAction implements CreateUserActionInterface
 {
     /**
+     * @var DecoderInterface
+     */
+    private $decoder;
+
+    /**
+     * CreateUserAction constructor.
+     *
+     * @param DecoderInterface $decoder
+     */
+    public function __construct(DecoderInterface $decoder)
+    {
+        $this->decoder = $decoder;
+    }
+    /**
      * @param Request $request
      * @param CreateUserPresenterInterface $presenter
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\Response
+     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Exception
      */
     public function __invoke(Request $request, CreateUserPresenterInterface $presenter)
     {
         $data = $request->getContent();
-        return $presenter($request, $data);
+        $userData = $this->decoder->decode($data, 'json');
+        $addressData = $userData['address'];
+        unset($userData['address']);
+        return $presenter($userData, $addressData);
     }
 
 }

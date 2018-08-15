@@ -38,13 +38,13 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
     }
 
     /**
-     * @param UuidInterface $addressId
+     * @param string $addressId
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findAddress(UuidInterface $addressId)
+    public function findAddress(string $addressId)
     {
         return $this->createQueryBuilder('a')
             ->where('a.id = ?1')
@@ -82,10 +82,10 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
     }
 
     /**
-     * @param AddressesInterface $addressId
+     * @param string $addressId
      * @return mixed
      */
-    public function deleteAddress(AddressesInterface $addressId)
+    public function deleteAddress(string $addressId)
     {
         return $this->createQueryBuilder('a')
             ->delete()
@@ -101,7 +101,7 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(AddressesInterface $address)
+    public function save($address)
     {
         $this->getEntityManager()->persist($address);
         $this->getEntityManager()->flush();

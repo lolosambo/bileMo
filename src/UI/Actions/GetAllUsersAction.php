@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  *
  * @Route(
  *     name="getAllUsers",
- *     path="/show_all_users_by_client/{id}",
+ *     path="/users",
  *     methods={"GET"},
  *     defaults={
  *         "_request_handler": "App\Application\Request\Handlers\GetAllUsersHandler"

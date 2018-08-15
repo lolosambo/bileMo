@@ -44,6 +44,11 @@ Interface UsersInterface
     public function getPassword();
 
     /**
+     * @param string $firstName
+     */
+    public function setPassword(string $password);
+
+    /**
      * @return string
      */
     public function getFirstName();

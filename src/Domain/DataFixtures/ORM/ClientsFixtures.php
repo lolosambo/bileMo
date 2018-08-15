@@ -13,6 +13,9 @@ namespace App\Domain\DataFixtures\ORM;
 use App\Domain\Models\Clients;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 /**
  * Class ClientsFixtures
  *
@@ -20,6 +23,20 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class ClientsFixtures extends Fixture
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    /**
+     * ClientsFixtures constructor.
+     *
+     * @param UserPasswordEncoderInterface $encoder
+     */
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
     /**
      * @param ObjectManager $manager
      *
@@ -29,9 +46,11 @@ class ClientsFixtures extends Fixture
     {
         for ($i = 1; $i <= 10; $i++) {
             $clientName = 'Client'.$i;
-            $password = sha1('MySuperPassword');
+            $password = 'MySuperPassword';
             $mail = 'emailforclient'.$i.'@provider.com';
             $client = new Clients($clientName, $password, $mail);
+            $encoded_password = $this->encoder->encodePassword($client, $password);
+            $client->setPassword($encoded_password);
             $client->setInscriptionDate(new \DateTime('+'. mt_rand(2, 100) .' days'));
             $this->addReference('client'.$i, $client);
             $manager->persist($client);

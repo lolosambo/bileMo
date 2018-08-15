@@ -10,12 +10,13 @@
         <field name="mail" type="string" length="255" />
         <field name="firstName" type="string" length="100" />
         <field name="lastName" type="string" length="100" />
-        <field name="phone" type="string" length="50" />
+        <field name="phone" type="string" length="50" nullable="true" />
         <field name="inscriptionDate" type="datetime"/>
         <many-to-one field="client" target-entity="Clients" inversed-by="users" >
             <join-column name="client_id" referenced-column-name="id" />
         </many-to-one>
-        <many-to-one field="address" target-entity="Addresses" inversed-by="users" >
+        <many-to-one field="address" target-entity="Addresses" inversed-by="users">
+            <cascade><cascade-persist/></cascade>
             <join-column name="address_id" referenced-column-name="id" />
         </many-to-one>
     </entity>

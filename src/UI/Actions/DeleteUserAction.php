@@ -25,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class DeleteUserAction
  *
  * @Route(
- *     path="/delete_user/{id}",
+ *     path="/user/delete/{id}",
  *     name="deleteUser",
  *     methods={"DELETE"},
  *     defaults={

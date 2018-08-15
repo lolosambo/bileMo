@@ -16,9 +16,9 @@ namespace App\Domain\Models;
 use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Interfaces\UsersInterface;
 use App\Domain\Models\Interfaces\AddressesInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Users implements UsersInterface
+class Users implements UsersInterface, UserInterface
 {
     /**
      * @var UuidInterface $id
@@ -153,6 +153,14 @@ class Users implements UsersInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
     }
 
     /**
@@ -314,6 +322,5 @@ class Users implements UsersInterface
     {
         $this->client = $client;
     }
-
 }
 
