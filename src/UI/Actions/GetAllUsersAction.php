@@ -18,6 +18,7 @@ use App\UI\Actions\Interfaces\GetAllUsersActionInterface;
 use App\UI\Responders\Interfaces\GetAllUsersResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -42,25 +43,33 @@ class GetAllUsersAction implements GetAllUsersActionInterface
     private $repository;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
+    /**
      * GetAllUsersAction constructor.
      *
      * @param UsersRepositoryInterface $repository
      * @param SerializerInterface $serializer
      */
-    public function __construct(UsersRepositoryInterface $repository)
-    {
+    public function __construct(
+        UsersRepositoryInterface $repository,
+        TokenStorageInterface $token
+    ) {
         $this->repository = $repository;
+        $this->token = $token;
     }
 
     /**
-     * @param Request $request
      * @param GetAllUsersResponderInterface $responder
      *
      * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function __invoke(Request $request, GetAllUsersResponderInterface $responder)
+    public function __invoke(GetAllUsersResponderInterface $responder)
     {
-        $data = $this->repository->findAllUsersByClient($request->attributes->get('id'));
+        $client = $this->token->getToken()->getUser();
+        $data = $this->repository->findAllUsersByClient($client->getId()->toString());
         return $responder($data);
     }
 

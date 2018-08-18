@@ -1,0 +1,57 @@
+App\Domain\Models\Addresses:
+    properties:
+        number:
+            - NotBlank:
+                message: 'Le numero de voie doit être rempli.'
+                groups: ['address']
+            - Length:
+                min: 1
+                max: 50
+                minMessage: 'Le numéro de voie doit contenir au moins 1 caractère'
+                maxMessage: 'Le numéro de voie ne doit pas contenir plus de 50 caractères'
+                groups: ['address']
+
+        way:
+            - NotBlank:
+                message: 'Le nom de voie doit être renseigné.'
+                groups: ['address']
+            - Length:
+                min: 5
+                minMessage : 'Le nom de la voie doit contenir au moins 5 caractères'
+                groups: ['address']
+#
+        zipCode:
+            - NotBlank:
+                message: 'Le code postal doit être rempli.'
+                groups: ['address']
+            - Length:
+                min: 4
+                max: 10
+                minMessage: 'Le code postal doit contenir au moins 4 caractères'
+                maxMessage: 'Le code postal ne doit pas contenir plus de 10 caractères'
+                groups: ['address']
+#
+        city:
+            - NotBlank:
+                message: 'La ville doit être renseignée.'
+                groups: ['address']
+            - Length:
+                min: 2
+                minMessage: 'Le Nom de ville doit contenir au moins 2 caractères'
+                groups: ['address']
+        region:
+            - NotBlank:
+                message: 'La région doit être renseignée.'
+                groups: ['address']
+            - Length:
+                min: 2
+                minMessage: 'Le Nom de la région doit contenir au moins 2 caractères'
+                groups: ['address']
+        country:
+            - NotBlank:
+                message: 'Le nom du pays doit être renseignée.'
+                groups: ['address']
+            - Length:
+                min: 2
+                minMessage: 'Le Nom du pays doit contenir au moins 2 caractères'
+                groups: ['address']

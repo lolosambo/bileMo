@@ -15,11 +15,8 @@ namespace Tests\UI\Actions;
 
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Actions\GetAllUsersAction;
-use App\UI\Presenters\Interfaces\GetAllUsersPresenterInterface;
-use App\UI\Responders\GetAllUsersResponder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class GetAllUsersActionTest
@@ -34,7 +31,8 @@ class GetAllUsersActionTest extends TestCase
     public function setUp()
     {
         $repository = $this->createMock(UsersRepositoryInterface::class);
-        $this->action = new GetAllUsersAction($repository);
+        $token = $this->createMock(TokenStorageInterface::class);
+        $this->action = new GetAllUsersAction($repository, $token);
     }
 
     /**
@@ -43,26 +41,6 @@ class GetAllUsersActionTest extends TestCase
     public function testConstruct()
     {
         static::assertInstanceOf(GetAllUsersAction::class, $this->action);
-    }
-
-    /**
-     * @group unit
-     */
-    public function testInvoke()
-    {
-        $request = new Request(
-            [],
-            [
-                'GET',
-                '/show_all_users_by_client/'
-            ],
-            ['id' => '48260ac9-1c23-44c2-a86a-726d5249bd52']
-        );
-        $presenter = $this->createMock(GetAllUsersPresenterInterface::class);
-        $responder = new GetAllUsersResponder($presenter);
-        $action = $this->action;
-        $result = $action($request, $responder);
-        static::assertInstanceOf(Response::class, $result);
     }
 }
 

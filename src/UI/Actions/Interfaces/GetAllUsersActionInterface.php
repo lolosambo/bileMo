@@ -24,12 +24,11 @@ use Symfony\Component\HttpFoundation\Request;
 Interface GetAllUsersActionInterface
 {
     /**
-     * @param Request $request
      * @param GetAllUsersResponderInterface $responder
      *
      * @return mixed
      */
-    public function __invoke(Request $request, GetAllUsersResponderInterface $responder);
+    public function __invoke(GetAllUsersResponderInterface $responder);
 
 }
 

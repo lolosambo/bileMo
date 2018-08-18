@@ -34,7 +34,7 @@ class CreateUserHandlerTest extends TestCase
             [],
             [
                 'POST',
-                '/create_user/client/875df3c7-8d6b-4496-8aef-e1ab59c8f118'
+                '/user/create'
             ]
         );
         $this->action = new CreateUserHandler();
@@ -55,5 +55,6 @@ class CreateUserHandlerTest extends TestCase
     {
         $result = $this->action->handle($this->request);
         static::assertInstanceOf(Request::class, $result);
+        static::assertContains('true', $result->attributes);
     }
 }
