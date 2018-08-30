@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Class GetProductAction
  *
  * @Route(
- *     path="/product/{id}",
+ *     path="/products/{id}",
  *     name="getProduct",
  *     methods={"GET"},
  *     defaults={
@@ -63,7 +63,7 @@ class GetProductAction implements GetProductActionInterface
     public function __invoke(Request $request, GetProductResponderInterface $responder)
     {
         $data = $this->repository->findProduct($request->attributes->get('id'));
-        return $responder($data);
+        return $responder($request, $data);
     }
 
 }

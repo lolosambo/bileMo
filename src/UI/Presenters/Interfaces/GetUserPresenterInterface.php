@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\UI\Presenters\Interfaces;
 
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Interface GetUserPresenterInterface
  *
@@ -21,9 +23,13 @@ namespace App\UI\Presenters\Interfaces;
 Interface GetUserPresenterInterface
 {
     /**
+     * @param Request $request
      * @param $data
      *
      * @return mixed
      */
-    public function __invoke($data);
+    public function __invoke(
+        Request $request,
+        $data
+    );
 }

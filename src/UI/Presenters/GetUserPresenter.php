@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\UI\Presenters;
 
 use App\UI\Presenters\Interfaces\GetUserPresenterInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -39,12 +40,15 @@ class GetUserPresenter implements GetUserPresenterInterface
     }
 
     /**
+     * @param Request $request
      * @param $data
      *
      * @return mixed|string
      */
-    public function __invoke($data)
-    {
+    public function __invoke(
+        Request $request,
+        $data
+    ) {
         return $this->serializer->serialize($data, 'json', ['groups' => ['user']]);
     }
 }

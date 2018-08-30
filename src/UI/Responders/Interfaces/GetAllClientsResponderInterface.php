@@ -15,6 +15,7 @@ namespace App\UI\Responders\Interfaces;
 
 use App\UI\Presenters\Interfaces\GetAllClientsPresenterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Interface GetAllClientsResponderInterface
@@ -32,10 +33,14 @@ Interface GetAllClientsResponderInterface
     public function __construct(GetAllClientsPresenterInterface $presenter);
 
     /**
+     * @param Request $request
      * @param $data
      *
-     * @return JsonResponse
+     * @return mixed
      */
-    public function __invoke($data);
+    public function __invoke(
+        Request $request,
+        $data
+    );
 
 }

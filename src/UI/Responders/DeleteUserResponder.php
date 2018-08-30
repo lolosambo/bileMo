@@ -28,6 +28,9 @@ class DeleteUserResponder implements DeleteUserResponderInterface
      */
     public function __invoke()
     {
-        return new Response('Le client a bien été supprimé de la base de données', Response::HTTP_CREATED);
+        return new Response(
+            'Le client a bien été supprimé de la base de données',
+            Response::HTTP_NO_CONTENT
+        );
     }
 }

@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Class GetUserAction
  *
  * @Route(
- *     path="/user/{id}",
+ *     path="/users/{id}",
  *     name="getUser",
  *     methods={"GET"},
  *     defaults={
@@ -63,7 +63,7 @@ class GetUserAction implements GetUserActionInterface
     public function __invoke(Request $request, GetUserResponderInterface $responder)
     {
         $data = $this->repository->findUser($request->attributes->get('id'));
-        return $responder($data);
+        return $responder($request, $data);
     }
 
 }

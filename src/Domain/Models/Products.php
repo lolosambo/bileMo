@@ -18,13 +18,12 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
 /**
  * Class Products
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Products implements ProductsInterface
+class Products implements ProductsInterface, \JsonSerializable
 {
     /**
      * @var UuidInterface
@@ -301,6 +300,29 @@ class Products implements ProductsInterface
             $this->os,
             $this->price
             ) = unserialize($serialized);
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'brand' => $this->brand,
+            'height' => $this->height,
+            'width' => $this->width,
+            'weight' => $this->weight,
+            'screen' => $this->screen,
+            'os' => $this->os,
+            'price' => $this->price,
+            'links' => [
+                'self' => [
+                    'href' => '/products/'.$this->id->toString()
+
+                ]
+            ]
+        ];
     }
 }
 

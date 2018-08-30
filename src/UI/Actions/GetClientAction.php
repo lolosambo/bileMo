@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Class GetClientAction
  *
  * @Route(
- *     path="/client/{id}",
+ *     path="/clients/{id}",
  *     name="getClient",
  *     methods={"GET"},
  *     defaults={
@@ -65,7 +65,7 @@ class GetClientAction implements GetClientActionInterface
         GetClientResponderInterface $responder
     ) {
         $data = $this->repository->findClient($request->attributes->get('id'));
-        return $responder($data);
+        return $responder($request, $data);
     }
 
 }

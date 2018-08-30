@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Users implements UsersInterface, UserInterface
+class Users implements UsersInterface, UserInterface, \JsonSerializable
 {
     /**
      * @var UuidInterface $id
@@ -321,6 +321,29 @@ class Users implements UsersInterface, UserInterface
     public function setClient(ClientsInterface $client)
     {
         $this->client = $client;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'username' => $this->username,
+            'password' => $this->password,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'mail' => $this->mail,
+            'phone' => $this->phone,
+            'inscriptionDate' => $this->inscriptionDate,
+            'address' => $this->address,
+            'links' => [
+                'self' => [
+                    'href' => '/users/'.$this->id->toString()
+
+                ],
+                'delete' => [
+                    'href' => '/users/delete/'.$this->id->toString()
+                ]
+            ]
+        ];
     }
 }
 

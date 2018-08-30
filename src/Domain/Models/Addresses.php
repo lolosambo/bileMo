@@ -25,7 +25,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Addresses implements AddressesInterface
+class Addresses implements AddressesInterface, \JsonSerializable
 {
     /**
      * @var UuidInterface
@@ -266,6 +266,17 @@ class Addresses implements AddressesInterface
         if($index !== false){
             unset($this->getUsers()[$index]);
         }
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'number' => $this->number,
+            'way' => $this->way,
+            'zipCode' => $this->zipCode,
+            'region' => $this->region,
+            'country' => $this->country
+        ];
     }
 }
 

@@ -64,3 +64,4 @@
 2018/07/31 07:23:07 [error] 5#5: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /show_all_products HTTP/1.1", upstream: "fastcgi://172.22.0.3:9500", host: "localhost:8085"
 2018/07/31 07:30:18 [error] 5#5: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /show_all_products HTTP/1.1", upstream: "fastcgi://172.22.0.3:9500", host: "localhost:8085"
 2018/07/31 07:30:19 [error] 5#5: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /show_all_products HTTP/1.1", upstream: "fastcgi://172.22.0.3:9500", host: "localhost:8085"
+2018/08/30 17:16:42 [error] 5#5: *100 upstream sent too big header while reading response header from upstream, client: 172.22.0.1, server: , request: "GET /products HTTP/1.1", upstream: "fastcgi://172.22.0.6:9000", host: "localhost:8085"

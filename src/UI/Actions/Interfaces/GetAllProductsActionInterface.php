@@ -28,7 +28,10 @@ Interface GetAllProductsActionInterface
      *
      * @return mixed
      */
-    public function __invoke(GetAllProductsResponderInterface $responder);
+    public function __invoke(
+        Request $request,
+        GetAllProductsResponderInterface $responder
+    );
 
 }
 

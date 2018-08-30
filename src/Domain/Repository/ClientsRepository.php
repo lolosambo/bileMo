@@ -80,6 +80,7 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
         return $this->createQueryBuilder('c')
             ->Where('c.mail = :mail')
             ->setParameter('mail', $mail)
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -90,6 +91,7 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
     public function findAllClients()
     {
         return $this->createQueryBuilder('c')
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -104,6 +106,7 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
             ->delete()
             ->where('c.id = ?1')
             ->setParameter(1, $clientId)
+            ->setCacheable(true)
             ->getQuery()
             ->execute();
     }

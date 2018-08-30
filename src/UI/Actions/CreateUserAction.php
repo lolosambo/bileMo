@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Class CreateUserAction
  *
  * @Route(
- *     path="/user/create",
+ *     path="/users/create",
  *     name="createUser",
  *     methods={"POST"},
  *     defaults={

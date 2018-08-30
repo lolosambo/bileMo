@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class Clients implements ClientsInterface, UserInterface, JWTUserInterface
+class Clients implements ClientsInterface, UserInterface, JWTUserInterface, \JsonSerializable
 {
     /**
      * @var UuidInterface
@@ -289,6 +289,21 @@ class Clients implements ClientsInterface, UserInterface, JWTUserInterface
             $payload['password'],
             $payload['email']
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'username' => $this->username,
+            'password' => $this->password,
+            'mail' => $this->mail,
+            'inscription_date' => $this->inscriptionDate,
+            'links' => [
+                'self' => [
+                    'href' => '/clients/'.$this->id->toString()
+                ]
+            ]
+        ];
     }
 }
 

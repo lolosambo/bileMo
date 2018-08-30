@@ -83,6 +83,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
         return $this->createQueryBuilder('u')
             ->Where('u.mail = :mail')
             ->setParameter('mail', $mail)
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -93,6 +94,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
     public function findAllUsers()
     {
         return $this->createQueryBuilder('u')
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -107,6 +109,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->where('uc.id = ?1')
             ->setParameter(1, $clientId)
             ->orderBy('u.username')
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -122,6 +125,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->delete()
             ->where('u.id = ?1')
             ->setParameter(1, $userId)
+            ->setCacheable(true)
             ->getQuery()
             ->execute();
     }

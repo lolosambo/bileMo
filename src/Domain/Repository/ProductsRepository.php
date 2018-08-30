@@ -81,6 +81,7 @@ class ProductsRepository extends ServiceEntityRepository implements ProductsRepo
         return $this->createQueryBuilder('p')
             ->Where('p.brand = :brand')
             ->setParameter('brand', $brand)
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }
@@ -91,6 +92,7 @@ class ProductsRepository extends ServiceEntityRepository implements ProductsRepo
     public function findAllProducts()
     {
         return $this->createQueryBuilder('p')
+            ->setCacheable(true)
             ->getQuery()
             ->getResult();
     }

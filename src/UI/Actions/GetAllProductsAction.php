@@ -16,6 +16,7 @@ namespace App\UI\Actions;
 use App\Domain\Repository\Interfaces\ProductsRepositoryInterface;
 use App\UI\Actions\Interfaces\GetAllProductsActionInterface;
 use App\UI\Responders\Interfaces\GetAllProductsResponderInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -52,14 +53,17 @@ class GetAllProductsAction implements GetAllProductsActionInterface
     }
 
     /**
+     * @param Request $request
      * @param GetAllProductsResponderInterface $responder
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     * @return mixed
      */
-    public function __invoke(GetAllProductsResponderInterface $responder)
-    {
+    public function __invoke(
+        Request $request,
+        GetAllProductsResponderInterface $responder
+    ) {
         $data = $this->repository->findAllProducts();
-        return $responder($data);
+        return $responder($request, $data);
     }
 
 }

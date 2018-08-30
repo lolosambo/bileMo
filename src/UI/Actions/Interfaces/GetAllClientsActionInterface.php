@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\UI\Actions\Interfaces;
 
 use App\UI\Responders\Interfaces\GetAllClientsResponderInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Interface GetAllClientsActionInterface
@@ -23,11 +24,15 @@ use App\UI\Responders\Interfaces\GetAllClientsResponderInterface;
 Interface GetAllClientsActionInterface
 {
     /**
+     * @param Request $request
      * @param GetAllClientsResponderInterface $responder
      *
      * @return mixed
      */
-    public function __invoke(GetAllClientsResponderInterface $responder);
+    public function __invoke(
+        Request $request,
+        GetAllClientsResponderInterface $responder
+    );
 
 }
 

@@ -34,3 +34,9 @@ App\Domain\Models\Users:
                 mode: loose
                 message: 'Addresse mail non valide'
                 groups: ['user']
+        phone:
+            - Regex:
+                pattern: '/^[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}/'
+                match: true
+                message: 'Le numero de téléphone doit être de la forme XX.XX.XX.XX.XX'
+                groups: ['user']
