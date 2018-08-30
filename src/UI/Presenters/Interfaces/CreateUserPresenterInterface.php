@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace App\UI\Presenters\Interfaces;
 
-use App\UI\Responders\Interfaces\CreateUserResponderInterface;
-
 /**
 * Interface CreateUserPresenterInterface
 *
@@ -23,15 +21,9 @@ use App\UI\Responders\Interfaces\CreateUserResponderInterface;
 Interface CreateUserPresenterInterface
 {
     /**
-     * CreateUserPresenterInterface constructor.
-     *
-     * @param CreateUserResponderInterface $responder
-     */
-    public function __construct(CreateUserResponderInterface $responder);
-
-    /**
      * @return mixed
      */
     public function __invoke();
 }
+
 

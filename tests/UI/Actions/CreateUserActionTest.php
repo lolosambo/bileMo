@@ -16,6 +16,7 @@ namespace Tests\UI\Actions;
 use App\Domain\Repository\Interfaces\AddressesRepositoryInterface;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Actions\CreateUserAction;
+use App\UI\Responders\Interfaces\CreateUserResponderInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -58,6 +59,7 @@ class CreateUserActionTest extends KernelTestCase
         $addressRepository = $this->createMock(AddressesRepositoryInterface::class);
         $validator = $this->createMock(ValidatorInterface::class);
         $passEncoder = $this->createMock(UserPasswordEncoderInterface::class);
+        $responder = $this->createMock(CreateUserResponderInterface::class);
 
         $this->action = new CreateUserAction(
             $decoder,
@@ -67,7 +69,8 @@ class CreateUserActionTest extends KernelTestCase
             $passEncoder,
             $token,
             $denormalizer,
-            $validator
+            $validator,
+            $responder
         );
     }
 

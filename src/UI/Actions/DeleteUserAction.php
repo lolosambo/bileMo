@@ -54,7 +54,9 @@ class DeleteUserAction implements DeleteUserActionInterface
      * @param Request $request
      * @param DeleteUserPresenterInterface $presenter
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\Response
+     * @return \App\UI\Responders\Interfaces\DeleteUserResponderInterface|mixed|\Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Exception
      */
     public function __invoke(Request $request, DeleteUserPresenterInterface $presenter)
     {

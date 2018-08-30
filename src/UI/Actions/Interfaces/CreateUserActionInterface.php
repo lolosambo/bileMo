@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\UI\Actions\Interfaces;
 
-use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,11 +27,10 @@ Interface CreateUserActionInterface
 {
     /**
      * @param Request $request
-     * @param CreateUserPresenterInterface $presenter
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function __invoke(Request $request, CreateUserPresenterInterface $presenter);
+    public function __invoke(Request $request);
 }
 
 

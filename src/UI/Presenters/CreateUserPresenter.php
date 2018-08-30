@@ -14,8 +14,7 @@ declare(strict_types=1);
 namespace App\UI\Presenters;
 
 use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
-use App\UI\Responders\Interfaces\CreateUserResponderInterface;
-use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Class CreateUserPresenter
@@ -25,28 +24,10 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateUserPresenter implements CreateUserPresenterInterface
 {
     /**
-     * @var CreateUserResponderInterface
-     */
-    private $responder;
-
-    /**
-     * CreateUserPresenter constructor.
-     *
-     * @param CreateUserResponderInterface $responder
-     */
-    public function __construct(CreateUserResponderInterface $responder)
-    {
-        $this->responder = $responder;
-    }
-
-    /**
-     * @return mixed|Response
-     *
-     * @throws \Exception
+     * @return mixed|string
      */
     public function __invoke()
     {
-        $responder = $this->responder;
-        return $responder();
+        return 'L\'utilisateur a bien été ajouté à la base de données';
     }
 }

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\UI\Responders\Interfaces;
 
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Interface CreateUserResponderInterface
@@ -23,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 Interface CreateUserResponderInterface
 {
     /**
-     * @return Response
+     * @return mixed
      */
     public function __invoke();
 }

@@ -1,0 +1,52 @@
+tests:
+    "Get product test":
+        path: "/products/.*"
+        assertions:
+            - "metrics.sql.queries.count <10"
+            - "main.peak_memory < 4mb"
+            - "metrics.output.network_out < 15kb"
+    "Get All product test":
+            path: "/products"
+            assertions:
+                - "metrics.sql.queries.count <10"
+                - "main.peak_memory < 4mb"
+                - "metrics.output.network_out < 15kb"
+    "Get client test":
+            path: "/clients/.*"
+            assertions:
+                - "metrics.sql.queries.count <10"
+                - "main.peak_memory < 4mb"
+                - "metrics.output.network_out < 15kb"
+    "Get All products test":
+            path: "/clients"
+            assertions:
+                - "metrics.sql.queries.count <10"
+                - "main.peak_memory < 4mb"
+                - "metrics.output.network_out < 15kb"
+    "Get user test":
+            path: "/users/.*"
+            assertions:
+                - "metrics.sql.queries.count <10"
+                - "main.peak_memory < 4mb"
+                - "metrics.output.network_out < 15kb"
+    "Get All users test":
+            path: "/users"
+            assertions:
+                - "metrics.sql.queries.count <10"
+                - "main.peak_memory < 4mb"
+                - "metrics.output.network_out < 15kb"
+    "Delete user test":
+        path: "/users/.*"
+        method: "DELETE"
+        assertions:
+            - "metrics.sql.queries.count == 1"
+            - "main.peak_memory < 3mb"
+            - "metrics.output.network_out < 1kb"
+
+    "Create user test":
+        path: "/users"
+        method: "POST"
+        assertions:
+            - "metrics.sql.queries.count == 1"
+            - "main.peak_memory < 5mb"
+            - "metrics.output.network_out < 5kb"

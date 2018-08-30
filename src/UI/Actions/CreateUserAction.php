@@ -18,7 +18,7 @@ use App\Domain\Models\Users;
 use App\Domain\Repository\Interfaces\AddressesRepositoryInterface;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Actions\Interfaces\CreateUserActionInterface;
-use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
+use App\UI\Responders\Interfaces\CreateUserResponderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Class CreateUserAction
  *
  * @Route(
- *     path="/users/create",
+ *     path="/users",
  *     name="createUser",
  *     methods={"POST"},
  *     defaults={
@@ -86,6 +86,11 @@ class CreateUserAction implements CreateUserActionInterface
     private $addressRepository;
 
     /**
+     * @var CreateUserResponderInterface
+     */
+    private $responder;
+
+    /**
      * CreateUserAction constructor.
      * @param DecoderInterface $decoder
      * @param SerializerInterface $serializer
@@ -95,6 +100,7 @@ class CreateUserAction implements CreateUserActionInterface
      * @param TokenStorageInterface $token
      * @param DenormalizerInterface $denormalizer
      * @param ValidatorInterface $validator
+     * @param CreateUserResponderInterface $responder
      */
     public function __construct(
         DecoderInterface $decoder,
@@ -104,7 +110,8 @@ class CreateUserAction implements CreateUserActionInterface
         UserPasswordEncoderInterface $passEncoder,
         TokenStorageInterface $token,
         DenormalizerInterface $denormalizer,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
+        CreateUserResponderInterface $responder
     ) {
         $this->decoder = $decoder;
         $this->serializer = $serializer;
@@ -114,18 +121,19 @@ class CreateUserAction implements CreateUserActionInterface
         $this->token = $token;
         $this->denormalizer = $denormalizer;
         $this->validator = $validator;
+        $this->responder = $responder;
     }
 
     /**
      * @param Request $request
-     * @param CreateUserPresenterInterface $presenter
+     * @param CreateUserResponderInterface $responder
      *
      * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Exception
      */
-    public function __invoke(Request $request, CreateUserPresenterInterface $presenter)
+    public function __invoke(Request $request)
     {
         $data = $request->getContent();
         $userData = $this->decoder->decode($data, 'json');
@@ -162,7 +170,8 @@ class CreateUserAction implements CreateUserActionInterface
         $this->usersRepository->save($user);
         $this->addressRepository->save($address);
 
-        return $presenter();
+        $responder = $this->responder;
+        return $responder();
     }
 }
 
