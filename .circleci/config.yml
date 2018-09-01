@@ -1,21 +1,11 @@
 version: 2
 jobs:
-    deptrac:
-        docker:
-            - image: circleci/php:7.2.5-apache-node-browsers
-        steps:
-            - checkout
-            - run: curl -LS http://get.sensiolabs.de/deptrac.phar -o deptrac.phar
-            - run: chmod +x deptrac.phar
-            - run: mv deptrac.phar ${HOME}/project/deptrac
-            - run: ${HOME}/project/deptrac
     phpunit:
         docker:
-            - image: circleci/php:7.2.3-apache-node-browsers
-            - image: redis
+            - image: circleci/php:7.2.9-apache-browsers
         steps:
             - checkout
-            - run: mkdir -p /tmp/phpunit-coverage
+            - run: echo 'Hello World'
             - run: sudo apt install -y libsqlite3-dev zlib1g-dev
             - run: sudo docker-php-ext-install zip
             - run: sudo composer self-update
@@ -23,101 +13,19 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
-            - run: rm -rf var/cache/*
-            - run: cp .env.behat .env.behat
-            - run: cp .env.behat.behat.dist .env.behat.behat
-            - run: cp phpunit.xml.dist phpunit.xml
             - run: composer install -n --optimize-autoloader --classmap-authoritative
             - run: composer dump-autoload --optimize --classmap-authoritative
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: rm -rf var/cache/*
-            - run: ./bin/console cache:warmup
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: ./bin/console d:f:l -n --env=test
-            - run: ./bin/console doctrine:cache:clear-query
-            - run: ./bin/console doctrine:cache:clear-metadata
-            - run: ./bin/phpunit -v --exclude-group Blackfire --coverage-html /tmp/phpunit-coverage
-            - run: rm -rf var/data.db
-            - store_artifacts:
-                path: /tmp/phpunit-coverage
-    behat_core_fr:
-        docker:
-            - image: circleci/php:7.2.3-apache-node-browsers
-            - image: redis
-        steps:
-            - checkout
-            - setup_remote_docker
-            - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-            - run: sudo docker-php-ext-install zip
-            - run: sudo composer self-update
-            - restore_cache:
-                keys:
-                    - composer-v1-{{ checksum "composer.json" }}
-                    - composer-v1-
-            - run: cp .env.behat .env.behat
-            - run: cp .env.behat.behat .env.behat.behat
-            - run: composer install -n --optimize-autoloader --classmap-authoritative
-            - run: composer dump-autoload --optimize --classmap-authoritative
-            - save_cache:
-                key: composer-v1-{{ checksum "composer.json" }}
-                paths:
-                    - vendor
-            - run: rm -rf var/cache/*
-            - run: ./bin/console cache:warmup
-            - run: ./bin/console d:d:c --env=test
-            - run: ./bin/console d:s:c --env=test
-            - run: ./bin/console d:f:l -n --env=test
-            - run: ./bin/console doctrine:cache:clear-query
-            - run: ./bin/console doctrine:cache:clear-metadata
-            - run: ./bin/console app:translation-warm messages fr
-            - run: ./bin/console app:translation-warm messages en
-            - run: ./bin/console app:translation-warm validators fr
-            - run: ./bin/console app:translation-warm validators en
-            - run: vendor/bin/behat --profile fr
-            - run: rm -rf var/data.db
-    behat_core_en:
-        docker:
-            - image: circleci/php:7.2.3-apache-node-browsers
-            - image: redis
-        steps:
-            - checkout
-            - setup_remote_docker
-            - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-            - run: sudo docker-php-ext-install zip
-            - run: sudo composer self-update
-            - restore_cache:
-                keys:
-                    - composer-v1-{{ checksum "composer.json" }}
-                    - composer-v1-
-            - run: cp .env.behat.dist .env.behat
-            - run: cp .env.behat.behat.dist .env.behat.behat
-            - run: composer install -n --optimize-autoloader --classmap-authoritative
-            - run: composer dump-autoload --optimize --classmap-authoritative
-            - save_cache:
-                key: composer-v1-{{ checksum "composer.json" }}
-                paths:
-                    - vendor
-            - run: rm -rf var/cache/*
-            - run: ./bin/console cache:warmup
-            - run: ./bin/console d:d:c --env=test
-            - run: ./bin/console d:s:c --env=test
-            - run: ./bin/console d:f:l -n --env=test
-            - run: ./bin/console doctrine:cache:clear-query
-            - run: ./bin/console doctrine:cache:clear-metadata
-            - run: vendor/bin/behat --profile en
-            - run: rm -rf var/data.db
+            - run: ./bin/console d:f:l --env=test -n
+            - run: ./bin/phpunit -v --exclude-group Blackfire
 
 workflows:
     version: 2
-    unit_and_spec:
+    unit_test:
         jobs:
-            - deptrac
             - phpunit
-    functional:
-        jobs:
-            - behat_core_fr
-            - behat_core_en

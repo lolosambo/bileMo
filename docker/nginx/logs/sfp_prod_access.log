@@ -1069,3 +1069,4 @@
 172.22.0.1 - - [30/Aug/2018:18:57:17 +0000] "GET /clients HTTP/1.1" 200 968 "-" "PostmanRuntime/7.2.0"
 172.22.0.1 - - [30/Aug/2018:18:57:26 +0000] "GET /users HTTP/1.1" 200 673 "-" "PostmanRuntime/7.2.0"
 172.22.0.1 - - [30/Aug/2018:18:57:32 +0000] "GET /clients HTTP/1.1" 200 968 "-" "PostmanRuntime/7.2.0"
+172.22.0.1 - - [01/Sep/2018:07:55:45 +0000] "POST /api/login_check HTTP/1.1" 200 687 "-" "PostmanRuntime/7.2.0"
