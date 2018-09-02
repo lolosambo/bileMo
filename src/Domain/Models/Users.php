@@ -25,6 +25,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Class Users
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
+ * @ORM\Entity(repositoryClass="App\Domain\Repository\UsersRepository")
  */
 class Users implements UsersInterface, UserInterface, \JsonSerializable
 {

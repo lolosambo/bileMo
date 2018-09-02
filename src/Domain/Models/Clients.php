@@ -25,6 +25,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Class Clients
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
+ * @ORM\Entity(repositoryClass="App\Domain\Repository\ClientsRepository")
  */
 class Clients implements ClientsInterface, UserInterface, JWTUserInterface, \JsonSerializable
 {
