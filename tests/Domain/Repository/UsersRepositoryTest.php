@@ -51,23 +51,6 @@ class UsersRepositoryTest extends KernelTestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testFindUser()
-    {
-        $user = $this->repository->findUser('352e0c3f-cf98-4564-9e14-013724fde2a9');
-        static::assertInstanceOf(Users::class, $user);
-        static::assertContains("User1", $user->getUsername());
-        static::assertContains("d67069e5c12507fbd2c11210a1d49d03e4a5d825", $user->getPassword());
-        static::assertContains("emailforuser1@provider.com", $user->getMail());
-        static::assertContains("FirstName1", $user->getFirstName());
-        static::assertContains("LASTNAME1", $user->getLastName());
-        static::assertContains("06 78 33 92 77", $user->getPhone());
-    }
-
-    /**
-     * @group functional
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
     public function testFindOneByUsername()
     {
         $user = $this->repository->findByUsername('user1');
