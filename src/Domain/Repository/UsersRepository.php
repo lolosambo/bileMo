@@ -53,6 +53,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setParameter(1, $userId)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getOneOrNullResult();
     }
 
@@ -70,6 +72,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setParameter('username', $username)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getOneOrNullResult();
     }
 
@@ -85,6 +89,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setParameter('mail', $mail)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
@@ -96,6 +102,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
         return $this->createQueryBuilder('u')
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
@@ -111,6 +119,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->orderBy('u.username')
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
@@ -127,6 +137,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setParameter(1, $userId)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->execute();
     }
 

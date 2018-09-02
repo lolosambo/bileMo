@@ -52,9 +52,11 @@ class GetAllProductsResponder implements GetAllProductsResponderInterface
         $presenter = $this->presenter;
         $response =  new Response($presenter($request, $data));
         $response->headers->set("Content-Type", "application/json");
-        $response->setEtag(md5('Once_Upon_A_Time_Validation_Cache'.rand(10000000, 99999999)));
+        $response->setEtag(md5($response->getContent()));
         $response->setPublic();
-        $response->isNotModified($request);
+        if($response->isNotModified($request)) {
+            return $response;
+        }
         return $response;
     }
 }

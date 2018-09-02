@@ -51,11 +51,16 @@ class GetUserResponder implements GetUserResponderInterface
         $data
     ) {
         $presenter = $this->presenter;
-        $response =  new Response($presenter($request, $data));
-        $response->headers->set("Content-Type", "application/json");
-        $response->setEtag(md5('Once_Upon_A_Time_Validation_Cache'.rand(10000000, 99999999)));
+        $response =  new Response();
+        $response->headers->set(
+            "Content-Type",
+            "application/json"
+        );
+        $response->setEtag(md5($response->getContent()));
         $response->setPublic();
-        $response->isNotModified($request);
-        return $response;
+        if($response->isNotModified($request)) {
+            return $response;
+        }
+        return $response->setContent($presenter($request, $data));
     }
 }

@@ -18,7 +18,6 @@ use App\UI\Actions\Interfaces\GetClientActionInterface;
 use App\UI\Responders\Interfaces\GetClientResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @author Laurent BERTON <lolosambo2@gmail.com>
@@ -45,7 +44,6 @@ class GetClientAction implements GetClientActionInterface
      * GetClientAction constructor.
      *
      * @param ClientsRepositoryInterface $repository
-     * @param SerializerInterface $serializer
      */
     public function __construct(ClientsRepositoryInterface $repository)
     {
@@ -56,7 +54,7 @@ class GetClientAction implements GetClientActionInterface
      * @param Request $request
      * @param GetClientResponderInterface $responder
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

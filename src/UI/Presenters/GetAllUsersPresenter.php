@@ -49,7 +49,15 @@ class GetAllUsersPresenter implements GetAllUsersPresenterInterface
         Request $request,
         $data
     ) {
-        return $this->serializer->serialize($data, 'json', ['groups' => ['users']]);
+        return $this->serializer->serialize(
+            $data,
+            'json',
+            ['groups' => [
+                'users'
+                ]
+            ]
+        );
     }
 }
+
 

@@ -4,6 +4,7 @@ jobs:
         docker:
             - image: circleci/php:7.2.9-apache-browsers
         steps:
+            - source .env
             - checkout
             - run: echo 'Hello World'
             - run: sudo apt install -y libsqlite3-dev zlib1g-dev

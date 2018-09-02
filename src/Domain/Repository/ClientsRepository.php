@@ -50,6 +50,8 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
             ->setParameter(1, $clientId)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getOneOrNullResult();
     }
 
@@ -67,6 +69,8 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
             ->setParameter('username', $username)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getOneOrNullResult();
     }
 
@@ -82,6 +86,8 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
             ->setParameter('mail', $mail)
             ->setCacheable(true)
             ->getQuery()
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
@@ -93,6 +99,9 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
         return $this->createQueryBuilder('c')
             ->setCacheable(true)
             ->getQuery()
+            ->setCacheable(true)
+            ->useResultCache(true)
+            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
