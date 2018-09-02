@@ -2,6 +2,13 @@ version: 2
 jobs:
     phpunit:
         docker:
+            - environment:
+                BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
+                DB_HOST: '${DB_HOST}'
+                DB_DRIVER_DEV: '${DB_DRIVER_DEV}'
+                DB_CHARSET_DEV: '${DB_CHARSET_DEV}'
+                DB_VERSION_DEV: '${DB_VERSION_DEV}'
+                DATABASE_URL_DEV: '${DATABASE_URL_DEV}'
             - image: circleci/php:7.2.9-apache-browsers
         steps:
             - checkout
@@ -23,13 +30,6 @@ jobs:
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
             - run: ./bin/phpunit -v --exclude-group Blackfire
-        - environment:
-            BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
-            DB_HOST: '${DB_HOST}'
-            DB_DRIVER_DEV: '${DB_DRIVER_DEV}'
-            DB_CHARSET_DEV: '${DB_CHARSET_DEV}'
-            DB_VERSION_DEV: '${DB_VERSION_DEV}'
-            DATABASE_URL_DEV: '${DATABASE_URL_DEV}'
 workflows:
     version: 2
     unit_test:
