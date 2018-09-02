@@ -3,16 +3,15 @@ jobs:
     phpunit:
         docker:
             - image: circleci/php:7.2.9-apache-browsers
+        environment:
+            BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
+            DB_HOST: '${DB_HOST}'
+            DB_DRIVER_DEV: '${DB_DRIVER_DEV}'
+            DB_CHARSET_DEV: '${DB_CHARSET_DEV}'
+            DB_VERSION_DEV: '${DB_VERSION_DEV}'
+            DATABASE_URL_DEV: '${DATABASE_URL_DEV}'
         steps:
             - checkout
-            - run:
-                environment:
-                    BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
-                    DB_HOST: '${DB_HOST}'
-                    DB_DRIVER_DEV: '${DB_DRIVER_DEV}'
-                    DB_CHARSET_DEV: '${DB_CHARSET_DEV}'
-                    DB_VERSION_DEV: '${DB_VERSION_DEV}'
-                    DATABASE_URL_DEV: '${DATABASE_URL_DEV}'
             - run: echo 'Hello World'
             - run: sudo apt install -y libsqlite3-dev zlib1g-dev
             - run: sudo docker-php-ext-install zip
