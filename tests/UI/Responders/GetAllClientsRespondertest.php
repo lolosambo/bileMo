@@ -17,6 +17,7 @@ use App\UI\Presenters\Interfaces\GetAllClientsPresenterInterface;
 use App\UI\Responders\GetAllClientsResponder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GetAllClientsResponderTest
@@ -47,9 +48,10 @@ class GetAllClientsResponderTest extends TestCase
      */
     public function testInvoke()
     {
+        $request = $this->createMock(Request::class);
         $data = ['data1', 'data2', 'data3'];
         $responder = $this->responder;
-        $result = $responder($data);
+        $result = $responder($request, $data);
         static::assertInstanceOf(JsonResponse::class, $result);
     }
 }

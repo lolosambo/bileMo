@@ -18,6 +18,7 @@ use App\Domain\Models\Products;
 use App\UI\Presenters\GetProductPresenter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -69,8 +70,9 @@ class GetProductPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
+        $request = $this->createMock(Request::class);
         $presenter = $this->presenter;
-        $result = $presenter($this->product);
+        $result = $presenter($request, $this->product);
         static::assertInstanceOf(ProductsInterface::class, $this->product);
         static::assertInternalType('string', $result);
     }

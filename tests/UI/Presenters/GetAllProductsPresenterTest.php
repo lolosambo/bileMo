@@ -15,6 +15,7 @@ namespace Tests\UI\Presenters;
 
 use App\UI\Presenters\GetAllProductsPresenter;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GetAllProductsPresenterTest
@@ -46,9 +47,10 @@ class GetAllProductsPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
+        $request = $this->createMock(Request::class);
         $data = ['data1', 'data2', 'data3'];
         $presenter = $this->presenter;
-        $result = $presenter($data);
+        $result = $presenter($request, $data);
         static::assertInternalType('string', $result);
     }
 }

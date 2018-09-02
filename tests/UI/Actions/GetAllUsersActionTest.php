@@ -15,7 +15,7 @@ namespace Tests\UI\Actions;
 
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Actions\GetAllUsersAction;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -23,13 +23,17 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllUsersActionTest extends TestCase
+class GetAllUsersActionTest extends WebTestCase
 {
 
     private $action;
+    private $request;
 
     public function setUp()
     {
+        $client = static::createClient();
+        $client->request('GET', '/users');
+        $this->request = $client;
         $repository = $this->createMock(UsersRepositoryInterface::class);
         $token = $this->createMock(TokenStorageInterface::class);
         $this->action = new GetAllUsersAction($repository, $token);

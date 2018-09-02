@@ -17,7 +17,7 @@ use App\Domain\Repository\Interfaces\ProductsRepositoryInterface;
 use App\UI\Actions\GetAllProductsAction;
 use App\UI\Presenters\Interfaces\GetAllProductsPresenterInterface;
 use App\UI\Responders\GetAllProductsResponder;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -25,13 +25,17 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllProductsActionTest extends TestCase
+class GetAllProductsActionTest extends WebTestCase
 {
 
     private $action;
+    private $request;
 
     public function setUp()
     {
+        $client = static::createClient();
+        $client->request('GET', '/products');
+        $this->request = $client;
         $repository = $this->createMock(ProductsRepositoryInterface::class);
         $this->action = new GetAllProductsAction($repository);
     }
@@ -52,7 +56,7 @@ class GetAllProductsActionTest extends TestCase
         $presenter = $this->createMock(GetAllproductsPresenterInterface::class);
         $responder = new GetAllProductsResponder($presenter);
         $action = $this->action;
-        $result = $action($responder);
+        $result = $action($this->request->getRequest(),$responder);
         static::assertInstanceOf(Response::class, $result);
     }
 }

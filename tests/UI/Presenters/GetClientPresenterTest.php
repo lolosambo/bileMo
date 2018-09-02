@@ -17,6 +17,7 @@ use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Clients;
 use App\UI\Presenters\GetClientPresenter;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GetClientPresenterTest
@@ -60,8 +61,9 @@ class GetClientPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
+        $request = $this->createMock(Request::class);
         $presenter = $this->presenter;
-        $result = $presenter($this->client);
+        $result = $presenter($request, $this->client);
         static::assertInstanceOf(ClientsInterface::class, $this->client);
         static::assertInternalType('string', $result);
     }

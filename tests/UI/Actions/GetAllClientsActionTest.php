@@ -17,7 +17,7 @@ use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
 use App\UI\Actions\GetAllClientsAction;
 use App\UI\Presenters\Interfaces\GetAllClientsPresenterInterface;
 use App\UI\Responders\GetAllClientsResponder;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -25,13 +25,17 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class GetAllClientsActionTest extends TestCase
+class GetAllClientsActionTest extends WebTestCase
 {
 
     private $action;
+    private $request;
 
     public function setUp()
     {
+        $client = static::createClient();
+        $client->request('GET', '/clients');
+        $this->request = $client;
         $repository = $this->createMock(ClientsRepositoryInterface::class);
         $this->action = new GetAllClientsAction($repository);
     }
@@ -52,7 +56,7 @@ class GetAllClientsActionTest extends TestCase
         $presenter = $this->createMock(GetAllclientsPresenterInterface::class);
         $responder = new GetAllClientsResponder($presenter);
         $action = $this->action;
-        $result = $action($responder);
+        $result = $action($this->request->getRequest(), $responder);
         static::assertInstanceOf(Response::class, $result);
     }
 }

@@ -16,6 +16,7 @@ namespace Tests\UI\Responders;
 use App\UI\Presenters\Interfaces\GetUserPresenterInterface;
 use App\UI\Responders\GetUserResponder;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -47,9 +48,10 @@ class GetUserResponderTest extends TestCase
      */
     public function testInvoke()
     {
+        $request = $this->createMock(Request::class);
         $data= 'dataTest';
         $responder = $this->responder;
-        $result = $responder($data);
+        $result = $responder($request, $data);
         static::assertInstanceOf(Response::class, $result);
     }
 }

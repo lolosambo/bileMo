@@ -7,7 +7,6 @@ jobs:
             DB_DRIVER_DEV: pdo_pgsql
             DB_CHARSET_DEV: utf8
             DB_VERSION_DEV: 9.6
-#            DATABASE_URL_DEV: pgsql://lolo:test@172.22.0.1:5432/bileMo
         steps:
             - checkout
             - run: echo 'Hello World'

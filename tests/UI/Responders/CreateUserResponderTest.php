@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\UI\Responders;
 
+use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
 use App\UI\Responders\CreateUserResponder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,10 +27,12 @@ class CreateUserResponderTest extends TestCase
 {
 
     private $responder;
+    private $presenter;
 
     public function setUp()
     {
-        $this->responder = new CreateUserResponder();
+        $this->presenter = $this->createMock(CreateUserPresenterInterface::class);
+        $this->responder = new CreateUserResponder($this->presenter);
     }
 
     /**
