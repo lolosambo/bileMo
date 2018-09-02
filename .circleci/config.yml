@@ -6,7 +6,7 @@ jobs:
         steps:
             - checkout
             - run:
-                - environment:
+                environment:
                     BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
                     DB_HOST: '${DB_HOST}'
                     DB_DRIVER_DEV: '${DB_DRIVER_DEV}'
