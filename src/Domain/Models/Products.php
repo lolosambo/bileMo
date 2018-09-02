@@ -22,7 +22,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Class Products
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
- * @ORM\Entity(repositoryClass="App\Domain\Repository\ProductsRepository")
  */
 class Products implements ProductsInterface, \JsonSerializable
 {

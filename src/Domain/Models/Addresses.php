@@ -24,7 +24,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Class Addresses
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
- * @ORM\Entity(repositoryClass="App\Domain\Repository\AddressesRepository")
  */
 class Addresses implements AddressesInterface, \JsonSerializable
 {

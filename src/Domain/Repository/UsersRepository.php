@@ -81,6 +81,8 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
      * @param string $mail
      *
      * @return mixed
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneByMail(string $mail)
     {
@@ -91,7 +93,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->getQuery()
             ->useResultCache(true)
             ->setResultCacheLifetime(86400)
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
     /**
