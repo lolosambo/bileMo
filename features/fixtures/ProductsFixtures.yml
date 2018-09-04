@@ -1,0 +1,16 @@
+App\Domain\Models\Products:
+    products.Galaxy_S9+:
+        __construct: ["Galaxy S9+", "Samsung", "The best phone in the world !", 949.99]
+        width: 9
+        height: 175
+        weight: 575
+        os: 'Android'
+        screen: '10 pouces'
+
+    products{1..20}:
+        __construct: ["Galaxy S<numberBetween(1, 20)>", "Samsung", "<text(400)>", "<numberBetween(500, 1000)>"]
+        width: '<numberBetween( 5, 10)>'
+        height: '<numberBetween(150, 200)>'
+        weight: '<numberBetween(500, 700)>'
+        os: 'Android'
+        screen: '<numberBetween(5, 10)> pouces'

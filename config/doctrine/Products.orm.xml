@@ -11,11 +11,11 @@
         <field name="name" type="string" length="150" />
         <field name="brand" type="string" length="100" />
         <field name="description" type="text" />
-        <field name="height" type="integer" />
-        <field name="width" type="integer" />
-        <field name="weight" type="integer"/>
-        <field name="screen" type="string" length="50" />
-        <field name="os" type="string" length="100" />
+        <field name="height" type="integer" nullable="true" />
+        <field name="width" type="integer" nullable="true" />
+        <field name="weight" type="integer" nullable="true"/>
+        <field name="screen" type="string" length="50" nullable="true" />
+        <field name="os" type="string" length="100" nullable="true" />
         <field name="price" type="float" />
     </entity>
 </doctrine-mapping>
