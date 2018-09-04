@@ -1,0 +1,25 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FeatureContext:
+                    kernel: '@kernel'
+                    em: '@doctrine.orm.entity_manager'
+                - behatch:context:json
+                - ApiRestContext:
+                    em: '@doctrine.orm.entity_manager'
+                    encoder: '@security.password_encoder'
+                    request: Behatch\HttpCall\Request
+                - DoctrineContext:
+                    em: '@doctrine.orm.entity_manager'
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+        Behatch\Extension: ~

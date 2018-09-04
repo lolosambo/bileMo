@@ -52,14 +52,6 @@ class ApiRestContext extends RestContext
     }
 
     /**
-     * @Then the response should be received
-     */
-    public function theResponseShouldBeReceived()
-    {
-
-    }
-
-    /**
      * @When I was authenticated on url :loginUri with method :method as user :username with password :password, I send a :sentRequestMethod request to :requestUri
      */
     public function iWasAuthenticatedOnUrlWithMethodAsUserWithPasswordISendARequestTo(
