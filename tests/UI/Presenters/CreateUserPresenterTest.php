@@ -33,23 +33,7 @@ class CreateUserPresenterTest extends KernelTestCase
      */
     public function setUp()
     {
-        $this->responder = $this->createMock(CreateUserResponderInterface::class);
-        $this->presenter = new CreateUserPresenter($this->responder);
-//        $user = [];
-//        $user["username"] = "User125";
-//        $user["password"] = "somePassword";
-//        $user["firstName"] = "Laurent";
-//        $user["lastName"] = "BERTON";
-//        $user["mail"] = "test@mail.com";
-//        $user["address"] = [
-//            "number" => 20,
-//            "way" => "allée Baudelaire",
-//            "zipCode" => 59139,
-//            "city" => "Wattignies",
-//            "region" => "Nord",
-//            "country" => "FRANCE"
-//            ];
-//        $this->user = json_encode($user);
+        $this->presenter = new CreateUserPresenter();
     }
 
     /**

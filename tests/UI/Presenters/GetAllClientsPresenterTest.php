@@ -47,10 +47,8 @@ class GetAllClientsPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
-        $request = $this->createMock(Request::class);
         $data = ['data1', 'data2', 'data3'];
-        $presenter = $this->presenter;
-        $result = $presenter($request, $data);
+        $result = $this->presenter->prepare($data);
         static::assertInternalType('string', $result);
     }
 }

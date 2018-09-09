@@ -70,9 +70,7 @@ class GetProductPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
-        $request = $this->createMock(Request::class);
-        $presenter = $this->presenter;
-        $result = $presenter($request, $this->product);
+        $result = $this->presenter->prepare($this->product);
         static::assertInstanceOf(ProductsInterface::class, $this->product);
         static::assertInternalType('string', $result);
     }

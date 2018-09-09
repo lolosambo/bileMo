@@ -63,9 +63,7 @@ class GetUserPresenterTest extends KernelTestCase
      */
     public function testInvoke()
     {
-        $request = $this->createMock(Request::class);
-        $presenter = $this->presenter;
-        $result = $presenter($request, $this->user);
+        $result = $this->presenter->prepare($this->user);
         static::assertInstanceOf(UsersInterface::class, $this->user);
         static::assertInternalType('string', $result);
     }

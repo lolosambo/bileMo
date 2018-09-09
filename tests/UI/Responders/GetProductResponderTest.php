@@ -50,8 +50,7 @@ class GetProductResponderTest extends TestCase
     {
         $request = $this->createMock(Request::class);
         $data= 'dataTest';
-        $responder = $this->responder;
-        $result = $responder($request, $data);
+        $result = $this->responder->returnResponse($request, $data);
         static::assertInstanceOf(Response::class, $result);
     }
 }

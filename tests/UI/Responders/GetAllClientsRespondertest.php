@@ -48,10 +48,8 @@ class GetAllClientsResponderTest extends TestCase
      */
     public function testInvoke()
     {
-        $request = $this->createMock(Request::class);
         $data = ['data1', 'data2', 'data3'];
-        $responder = $this->responder;
-        $result = $responder($request, $data);
+        $result = $this->responder->returnResponse($data);
         static::assertInstanceOf(JsonResponse::class, $result);
     }
 }

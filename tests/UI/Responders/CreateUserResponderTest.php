@@ -48,8 +48,7 @@ class CreateUserResponderTest extends TestCase
      */
     public function testInvoke()
     {
-        $responder = $this->responder;
-        $result = $responder();
+        $result = $this->responder->returnResponse();
         static::assertInstanceOf(Response::class, $result);
     }
 }
