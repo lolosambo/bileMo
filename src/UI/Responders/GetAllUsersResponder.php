@@ -44,13 +44,12 @@ class GetAllUsersResponder implements GetAllUsersResponderInterface
      * @param Request $request
      * @param $data
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
+     * @return Response
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     ) {
-        $presenter = $this->presenter;
         $response =  new Response();
         $response->headers->set(
             "Content-Type",
@@ -61,6 +60,6 @@ class GetAllUsersResponder implements GetAllUsersResponderInterface
         if($response->isNotModified($request)) {
             return $response;
         }
-        return $response->setContent($presenter($request, $data));
+        return $response->setContent($this->presenter->prepare($data));
     }
 }

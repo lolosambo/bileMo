@@ -56,15 +56,16 @@ class GetProductAction implements GetProductActionInterface
      * @param Request $request
      * @param GetProductResponderInterface $responder
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return string
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function __invoke(Request $request, GetProductResponderInterface $responder)
     {
         $data = $this->repository->findProduct($request->attributes->get('id'));
-        return $responder($request, $data);
+        return $responder->returnResponse(
+            $request,
+            $data
+        );
     }
-
 }
-

@@ -41,9 +41,9 @@ class CreateUserResponder implements CreateUserResponderInterface
     /**
      * @return Response
      */
-    public function __invoke()
+    public function returnResponse(): Response
     {
-        $presenter = $this->presenter;
-        return new Response($presenter(), Response::HTTP_CREATED);
+        return new Response($this->presenter->prepare(), Response::HTTP_CREATED);
     }
 }
+

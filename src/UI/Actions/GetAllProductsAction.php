@@ -56,15 +56,16 @@ class GetAllProductsAction implements GetAllProductsActionInterface
      * @param Request $request
      * @param GetAllProductsResponderInterface $responder
      *
-     * @return mixed
+     * @return string
      */
     public function __invoke(
         Request $request,
         GetAllProductsResponderInterface $responder
     ) {
         $data = $this->repository->findAllProducts();
-        return $responder($request, $data);
+        return $responder->returnResponse(
+            $request,
+            $data
+        );
     }
-
 }
-

@@ -15,7 +15,6 @@ namespace App\UI\Presenters;
 
 use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
 
-
 /**
  * Class CreateUserPresenter
  *
@@ -24,9 +23,9 @@ use App\UI\Presenters\Interfaces\CreateUserPresenterInterface;
 class CreateUserPresenter implements CreateUserPresenterInterface
 {
     /**
-     * @return mixed|string
+     * @return string
      */
-    public function __invoke()
+    public function prepare(): string
     {
         return 'L\'utilisateur a bien été ajouté à la base de données';
     }

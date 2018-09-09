@@ -65,7 +65,7 @@ class GetAllUsersAction implements GetAllUsersActionInterface
      * @param Request $request
      * @param GetAllUsersResponderInterface $responder
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     * @return string
      */
     public function __invoke(
         Request $request,
@@ -73,8 +73,9 @@ class GetAllUsersAction implements GetAllUsersActionInterface
     ) {
         $client = $this->token->getToken()->getUser();
         $data = $this->repository->findAllUsersByClient($client->getId()->toString());
-        return $responder($request, $data);
+        return $responder->returnResponse(
+            $request,
+            $data
+        );
     }
-
 }
-

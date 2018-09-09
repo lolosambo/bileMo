@@ -17,6 +17,7 @@ use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Actions\Interfaces\DeleteUserActionInterface;
 use App\UI\Presenters\Interfaces\DeleteUserPresenterInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -54,14 +55,13 @@ class DeleteUserAction implements DeleteUserActionInterface
      * @param Request $request
      * @param DeleteUserPresenterInterface $presenter
      *
-     * @return \App\UI\Responders\Interfaces\DeleteUserResponderInterface|mixed|\Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @throws \Exception
      */
-    public function __invoke(Request $request, DeleteUserPresenterInterface $presenter)
+    public function __invoke(Request $request, DeleteUserPresenterInterface $presenter): Response
     {
         $this->usersRepository->deleteUser($request->attributes->get("id"));
-        return $presenter($request);
+        return $presenter->prepare($request);
     }
-
 }

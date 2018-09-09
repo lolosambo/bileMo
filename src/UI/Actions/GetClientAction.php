@@ -54,7 +54,7 @@ class GetClientAction implements GetClientActionInterface
      * @param Request $request
      * @param GetClientResponderInterface $responder
      *
-     * @return mixed
+     * @return string
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
@@ -63,8 +63,10 @@ class GetClientAction implements GetClientActionInterface
         GetClientResponderInterface $responder
     ) {
         $data = $this->repository->findClient($request->attributes->get('id'));
-        return $responder($request, $data);
+        return $responder->returnResponse(
+            $request,
+            $data
+        );
     }
-
 }
 

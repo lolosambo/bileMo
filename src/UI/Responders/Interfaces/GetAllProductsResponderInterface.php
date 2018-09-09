@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace App\UI\Responders\Interfaces;
 
 use App\UI\Presenters\Interfaces\GetAllProductsPresenterInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Interface GetAllProductsResponderInterface
@@ -24,7 +24,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 Interface GetAllProductsResponderInterface
 {
-
     /**
      * GetAllProductsResponderInterface constructor.
      *
@@ -35,11 +34,11 @@ Interface GetAllProductsResponderInterface
     /**
      * @param Request $request
      * @param $data
-     * @return mixed
+     * @return Response
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     );
-
 }
+

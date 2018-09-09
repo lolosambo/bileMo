@@ -36,9 +36,9 @@ Interface GetUserResponderInterface
      * @param Request $request
      * @param $data
      *
-     * @return mixed
+     * @return string
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     );

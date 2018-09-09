@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace App\UI\Responders\Interfaces;
 
 use App\UI\Presenters\Interfaces\GetClientPresenterInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -38,9 +37,8 @@ Interface GetClientResponderInterface
      *
      * @return mixed
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     );
-
 }

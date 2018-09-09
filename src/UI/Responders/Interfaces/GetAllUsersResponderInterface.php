@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace App\UI\Responders\Interfaces;
 
 use App\UI\Presenters\Interfaces\GetAllUsersPresenterInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Interface GetAllUsersResponderInterface
@@ -35,9 +35,9 @@ Interface GetAllUsersResponderInterface
     /**
      * @param $data
      *
-     * @return JsonResponse
+     * @return Response
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     );

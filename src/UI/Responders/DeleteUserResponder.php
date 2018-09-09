@@ -26,7 +26,7 @@ class DeleteUserResponder implements DeleteUserResponderInterface
     /**
      * @return Response
      */
-    public function __invoke()
+    public function returnResponse(): Response
     {
         return new Response(
             'Le client a bien été supprimé de la base de données',

@@ -12,7 +12,6 @@ declare(strict_types=1);
  */
 
 namespace App\UI\Presenters\Interfaces;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Interface GetAllUsersPresenterInterface
@@ -22,13 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 Interface GetAllUsersPresenterInterface
 {
     /**
-     * @param Request $request
      * @param $data
      *
-     * @return mixed
+     * @return string
      */
-    public function __invoke(
-        Request $request,
-        $data
-    );
+    public function prepare($data);
 }

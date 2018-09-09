@@ -56,14 +56,14 @@ class GetUserAction implements GetUserActionInterface
      * @param Request $request
      * @param GetUserResponderInterface $responder
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return string
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function __invoke(Request $request, GetUserResponderInterface $responder)
     {
         $data = $this->repository->findUser($request->attributes->get('id'));
-        return $responder($request, $data);
+        return $responder->returnResponse($request, $data);
     }
 
 }

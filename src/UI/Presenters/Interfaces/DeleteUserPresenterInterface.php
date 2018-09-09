@@ -16,6 +16,7 @@ namespace App\UI\Presenters\Interfaces;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Responders\Interfaces\DeleteUserResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -41,10 +42,7 @@ Interface DeleteUserPresenterInterface
     /**
      * @param Request $request
      *
-     * @return DeleteUserResponderInterface
-     *
-     * @throws \Exception
+     * @return Response
      */
-    public function __invoke(Request $request);
+    public function prepare(Request $request): Response;
 }
-

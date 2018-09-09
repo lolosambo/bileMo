@@ -20,10 +20,10 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-Interface DeleteUserResponderInterface
+interface DeleteUserResponderInterface
 {
     /**
      * @return Response
      */
-    public function __invoke();
+    public function returnResponse(): Response;
 }

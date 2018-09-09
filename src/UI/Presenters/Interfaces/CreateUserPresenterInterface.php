@@ -21,9 +21,7 @@ namespace App\UI\Presenters\Interfaces;
 Interface CreateUserPresenterInterface
 {
     /**
-     * @return mixed
+     * @return string
      */
-    public function __invoke();
+    public function prepare(): string;
 }
-
-

@@ -17,6 +17,7 @@ use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
 use App\UI\Actions\Interfaces\GetAllClientsActionInterface;
 use App\UI\Responders\Interfaces\GetAllClientsResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -56,14 +57,17 @@ class GetAllClientsAction implements GetAllClientsActionInterface
      * @param Request $request
      * @param GetAllClientsResponderInterface $responder
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     * @return string
      */
     public function __invoke(
         Request $request,
         GetAllClientsResponderInterface $responder
     ) {
         $data = $this->repository->findAllClients();
-        return $responder($request, $data);
+        return $responder->returnResponse(
+            $request,
+            $data
+        );
     }
 
 }

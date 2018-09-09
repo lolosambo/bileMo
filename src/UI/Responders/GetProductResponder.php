@@ -44,15 +44,17 @@ class GetProductResponder implements GetProductResponderInterface
      * @param Request $request
      * @param $data
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
+     * @return Response
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     ) {
-        $presenter = $this->presenter;
-        $response =  new Response($presenter($request, $data));
-        $response->headers->set("Content-Type", "application/json");
+        $response =  new Response($this->presenter->prepare($data));
+        $response->headers->set(
+            "Content-Type",
+            "application/json"
+        );
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
         if($response->isNotModified($request)) {

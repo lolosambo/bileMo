@@ -21,6 +21,7 @@ use App\UI\Actions\Interfaces\CreateUserActionInterface;
 use App\UI\Responders\Interfaces\CreateUserResponderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -128,7 +129,7 @@ class CreateUserAction implements CreateUserActionInterface
      * @param Request $request
      * @param CreateUserResponderInterface $responder
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @return JsonResponse|Response
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Exception
@@ -170,8 +171,7 @@ class CreateUserAction implements CreateUserActionInterface
         $this->usersRepository->save($user);
         $this->addressRepository->save($address);
 
-        $responder = $this->responder;
-        return $responder();
+        return $this->responder->returnResponse();
     }
 }
 

@@ -19,6 +19,7 @@ use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Presenters\Interfaces\DeleteUserPresenterInterface;
 use App\UI\Responders\Interfaces\DeleteUserResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -63,18 +64,16 @@ class DeleteUserPresenter implements DeleteUserPresenterInterface
     /**
      * @param Request $request
      *
-     * @return DeleteUserResponderInterface|\Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @throws \Exception
      */
-    public function __invoke(Request $request)
+    public function prepare(Request $request): Response
     {
-        $responder = $this->responder;
         if($this->usersRepository->findUser($request->attributes->get("id"))) {
             throw new \Exception('Il y a eu un problème lors de l\'effacement de l\'utilisateur de la base de données');
         } else {
-            return $responder();
+            return $this->responder->returnResponse();
         }
     }
 }
-

@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace App\UI\Responders\Interfaces;
 
 use App\UI\Presenters\Interfaces\GetProductPresenterInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -36,11 +35,10 @@ Interface GetProductResponderInterface
      * @param Request $request
      * @param $data
      *
-     * @return mixed
+     * @return string
      */
-    public function __invoke(
+    public function returnResponse(
         Request $request,
         $data
     );
-
 }
