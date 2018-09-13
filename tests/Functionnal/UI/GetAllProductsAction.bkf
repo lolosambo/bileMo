@@ -1,0 +1,10 @@
+name "This should show all products"
+
+scenario
+    visit url("api/login_check")
+        method 'POST'
+        param username "Client1"
+        param password "MySuperPassword"
+        json true
+        expect header('Content-Type') == "application/json"
+        expect status_code() == 200

@@ -1,5 +1,0 @@
-App\Domain\Models\Clients:
-    clients.Client1:
-        __construct: ["Client1", "MySuperPassword", "lolosambo2@gmail.com"]
-    clients{1..10}:
-        __construct: ["<username()>", "<word()>", "<email()>"]

@@ -274,6 +274,7 @@ class Addresses implements AddressesInterface, \JsonSerializable
             'number' => $this->number,
             'way' => $this->way,
             'zipCode' => $this->zipCode,
+            'city' =>$this->city,
             'region' => $this->region,
             'country' => $this->country
         ];
