@@ -41,6 +41,7 @@ class GetClientResponder implements GetClientResponderInterface
     }
 
     /**
+     * @param Request $request
      * @param $data
      *
      * @return Response
