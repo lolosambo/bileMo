@@ -42,7 +42,6 @@ class CreateUserActionFunctionalTest extends WebTestCase
         $executor->execute($loader->getFixtures());
     }
 
-
     /**
      * @group functional
      */
