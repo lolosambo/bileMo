@@ -27,8 +27,8 @@ jobs:
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
 #            - run: ./bin/phpunit -v --exclude-group Blackfire
-            - run: make unit-tests
-            - run: make functional-tests
+            - run: ./bin/phpunit -v --group unit
+            - run: ./bin/phpunit -v --group functional
 workflows:
     version: 2
     unit_test:
