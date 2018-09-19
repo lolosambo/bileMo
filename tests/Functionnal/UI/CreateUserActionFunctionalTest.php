@@ -34,12 +34,11 @@ class CreateUserActionFunctionalTest extends WebTestCase
     {
         self::bootKernel();
         $em = static::$kernel->getContainer()->get('doctrine')->getManager();
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $usersFixtures = new UsersFixtures($encoder);
         $loader = new Loader();
-        $loader->addFixture($usersFixtures);
         $purger = new ORMPurger($em);
         $executor = new ORMExecutor($em, $purger);
+        $usersFixtures = new UsersFixtures();
+        $loader->addFixture($usersFixtures);
         $executor->execute($loader->getFixtures());
     }
 
