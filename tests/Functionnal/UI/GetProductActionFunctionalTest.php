@@ -10,11 +10,17 @@ declare(strict_types=1);
  */
 namespace Tests\UI\Actions;
 
+use App\Domain\DataFixtures\ORM\ProductsFixtures;
+use App\Domain\Models\Products;
 use Blackfire\Bridge\PhpUnit\TestCaseTrait;
-use Tests\Traits\AuthenticateTrait;
 use Blackfire\Profile\Configuration;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Tests\Traits\AuthenticationTestTrait;
+
 /**
  * Class GetProductActionFunctionalTest
  *
@@ -22,8 +28,25 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class GetProductActionFunctionalTest extends WebTestCase
 {
-//    use TestCaseTrait;
-    use AuthenticateTrait;
+    //    use TestCaseTrait;
+    use AuthenticationTestTrait;
+
+    private $repository;
+    private $product;
+
+    public function setup()
+    {
+        self::bootKernel();
+        $this->repository = static::$kernel->getContainer()->get('doctrine')->getRepository(Products::class);
+        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $productsFixtures = new ProductsFixtures();
+        $loader = new Loader();
+        $loader->addFixture($productsFixtures);
+        $purger = new ORMPurger($em);
+        $executor = new ORMExecutor($em, $purger);
+        $executor->execute($loader->getFixtures());
+        $this->product = $this->repository->findOneByProductName('Product1');
+    }
 
     /**
      * @group functional
@@ -33,7 +56,7 @@ class GetProductActionFunctionalTest extends WebTestCase
         $client = $this->authenticate("BadUsername", "Badpassword");
         $client->request(
             'GET',
-            '/products/b9b6d7f2-27e9-46e1-a635-39f180474124'
+            '/products/'.$this->product->getId()->toString()
         );
         static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
     }
@@ -46,7 +69,7 @@ class GetProductActionFunctionalTest extends WebTestCase
         $client = $this->authenticate("Client1", "MySuperPassword");
         $client->request(
             'GET',
-            '/products/b9b6d7f2-27e9-46e1-a635-39f180474124'
+            '/products/'.$this->product->getId()->toString()
         );
         static::assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
         static::assertContains('name', $client->getResponse()->getContent());

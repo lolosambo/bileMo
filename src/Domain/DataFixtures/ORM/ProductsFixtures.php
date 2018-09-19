@@ -12,13 +12,15 @@ namespace App\Domain\DataFixtures\ORM;
 
 use App\Domain\Models\Products;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+
 /**
  * Class ProductsFixtures
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class ProductsFixtures extends Fixture
+class ProductsFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -53,5 +55,15 @@ class ProductsFixtures extends Fixture
             $manager->persist($product);
         }
         $manager->flush();
+    }
+
+    /**
+     * @return array
+     */
+    public function getDependencies()
+    {
+        return [
+            ClientsFixtures::class
+        ];
     }
 }

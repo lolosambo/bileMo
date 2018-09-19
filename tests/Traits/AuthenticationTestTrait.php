@@ -1,32 +1,22 @@
 <?php
 declare(strict_types=1);
-
 /*
- * This file is part of the  project.
+ * This file is part of the bileMo project.
  *
  * (c) Laurent BERTON <lolosambo2@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Tests\Traits;
 
-/**
- * Trait AuthenticateTrait
- */
-trait AuthenticateTrait
+Trait AuthenticationTestTrait
 {
-    /**
-     * @param string $username
-     * @param string $password
-     *
-     * @return mixed
-     */
     public function authenticate(
         string $username,
         string $password
     ) {
+
         $client = static::createClient();
         $client->request(
             "POST",

@@ -14,6 +14,7 @@ use App\Domain\Models\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+
 /**
  * Class UsersFixtures
  *
@@ -28,6 +29,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+
         for ($i = 1; $i <= 50; $i++) {
             $username = 'User' . $i;
             $password = sha1('MySuperPassword');
@@ -35,6 +37,8 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
             $lastName = "LASTNAME" . $i;
             $mail = 'emailforuser' . $i . '@provider.com';
             $user = new Users($username, $password, $firstName, $lastName, $mail);
+            $encoded_password = password_hash($password, PASSWORD_BCRYPT);
+            $user->setPassword($encoded_password);
             $user->setPhone('06 ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99) . ' ' . mt_rand(00, 99));
             $user->setInscriptionDate(new \DateTime('+' . mt_rand(2, 100) . ' days'));
             $user->setClient($this->getReference('client' . mt_rand(1, 10)));

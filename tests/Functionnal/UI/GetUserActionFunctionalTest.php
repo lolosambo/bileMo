@@ -10,11 +10,16 @@ declare(strict_types=1);
  */
 namespace Tests\UI\Actions;
 
+use App\Domain\DataFixtures\ORM\UsersFixtures;
+use App\Domain\Models\Users;
 use Blackfire\Bridge\PhpUnit\TestCaseTrait;
-use Tests\Traits\AuthenticateTrait;
 use Blackfire\Profile\Configuration;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Tests\Traits\AuthenticationTestTrait;
 
 /**
  * Class GetUserActionFunctionalTest
@@ -24,7 +29,24 @@ use Symfony\Component\HttpFoundation\Response;
 class GetUserActionFunctionalTest extends WebTestCase
 {
 //    use TestCaseTrait;
-    use AuthenticateTrait;
+    use AuthenticationTestTrait;
+
+    private $repository;
+    private $user;
+
+    public function setup()
+    {
+        self::bootKernel();
+        $this->repository = static::$kernel->getContainer()->get('doctrine')->getRepository(Users::class);
+        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $usersFixtures = new UsersFixtures();
+        $loader = new Loader();
+        $loader->addFixture($usersFixtures);
+        $purger = new ORMPurger($em);
+        $executor = new ORMExecutor($em, $purger);
+        $executor->execute($loader->getFixtures());
+        $this->user = $this->repository->findOneByUsername('User1');
+    }
 
     /**
      * @group functional
@@ -34,7 +56,7 @@ class GetUserActionFunctionalTest extends WebTestCase
         $client = $this->authenticate("BadUsername", "Badpassword");
         $client->request(
             'GET',
-            '/users/25c20571-2cf8-4b2f-85cc-1a31375ada39'
+            '/users/'.$this->user->getId()->toString()
         );
         static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
     }
@@ -47,7 +69,7 @@ class GetUserActionFunctionalTest extends WebTestCase
         $client = $this->authenticate("Client1", "MySuperPassword");
         $client->request(
             'GET',
-            '/users/25c20571-2cf8-4b2f-85cc-1a31375ada39'
+            '/users/'.$this->user->getId()->toString()
         );
         static::assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
         static::assertContains('username', $client->getResponse()->getContent());

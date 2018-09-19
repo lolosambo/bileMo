@@ -10,11 +10,16 @@ declare(strict_types=1);
  */
 namespace Tests\UI\Actions;
 
+use App\Domain\DataFixtures\ORM\ProductsFixtures;
 use Blackfire\Bridge\PhpUnit\TestCaseTrait;
-use Tests\Traits\AuthenticateTrait;
 use Blackfire\Profile\Configuration;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Tests\Traits\AuthenticationTestTrait;
+
 /**
  * Class GetAllProductsActionFunctionalTest
  *
@@ -23,8 +28,19 @@ use Symfony\Component\HttpFoundation\Response;
 class GetAllProductsActionFunctionalTest extends WebTestCase
 {
 //    use TestCaseTrait;
-    use AuthenticateTrait;
+    use AuthenticationTestTrait;
 
+    public function setup()
+    {
+        self::bootKernel();
+        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $productsFixtures = new ProductsFixtures();
+        $loader = new Loader();
+        $loader->addFixture($productsFixtures);
+        $purger = new ORMPurger($em);
+        $executor = new ORMExecutor($em, $purger);
+        $executor->execute($loader->getFixtures());
+    }
     /**
      * @group functional
      */

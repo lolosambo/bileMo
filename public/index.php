@@ -2,11 +2,26 @@
 
 use App\Kernel;
 use App\CacheKernel;
+use Blackfire\Client;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__.'/../vendor/autoload.php';
+
+// If the header is set
+if (isset($_SERVER['HTTP_BLACKFIRETRIGGER'])) {
+    // let's create a client
+    $blackfire = new Client();
+    // then start the probe
+    $probe = $blackfire->createProbe();
+
+    // When runtime shuts down, let's finish the profiling session
+    register_shutdown_function(function () use ($blackfire, $probe) {
+        // See the PHP SDK documentation for using the $profile object
+        $profile = $blackfire->endProbe($probe);
+    });
+}
 
 // The check is to ensure we don't use .env in production
 if (!isset($_SERVER['APP_ENV'])) {
@@ -43,3 +58,5 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+
