@@ -2,7 +2,8 @@
 /.env
 /.idea/
 /public/bundles/
-/var/
+/var/cache/
+/var/log/
 /vendor/
 ###< symfony/framework-bundle ###
 
