@@ -25,9 +25,9 @@ jobs:
                     - vendor
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: ./bin/phpunit -v --group functional
+            - run: ./bin/console d:f:l --env=test
             - run: ./bin/phpunit -v --group unit
-
+            - run: ./bin/phpunit -v --group functional
 workflows:
     version: 2
     unit_test:
