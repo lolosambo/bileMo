@@ -47,12 +47,18 @@ class CreateUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate("BadUsername", "Badpassword");
+        $client = $this->authenticate(
+            "BadUsername",
+            "Badpassword"
+        );
         $client->request(
             'POST',
             '/users'
         );
-        static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
+        static::assertEquals(
+            Response::HTTP_UNAUTHORIZED,
+            $client->getResponse()->getStatusCode()
+        );
     }
 
     /**
@@ -60,7 +66,10 @@ class CreateUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate("Client1", "MySuperPassword");
+        $client = $this->authenticate(
+            "Client1",
+            "MySuperPassword"
+        );
         $client->request(
             'POST',
             '/users',
@@ -86,6 +95,13 @@ class CreateUserActionFunctionalTest extends WebTestCase
                 "phone" => "02.02.22.33.44"
             ])
         );
-        static::assertEquals(Response::HTTP_CREATED, $client->getResponse()->getStatusCode());
+        static::assertEquals(
+            Response::HTTP_CREATED,
+            $client->getResponse()->getStatusCode()
+        );
+        static::assertContains(
+            'L\'utilisateur a bien été ajouté à la base de données',
+            $client->getResponse()->getContent()
+        );
     }
 }

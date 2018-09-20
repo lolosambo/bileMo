@@ -43,7 +43,10 @@ class GetUserActionFunctionalTest extends WebTestCase
         $loader = new Loader();
         $loader->addFixture($usersFixtures);
         $purger = new ORMPurger($em);
-        $executor = new ORMExecutor($em, $purger);
+        $executor = new ORMExecutor(
+            $em,
+            $purger
+        );
         $executor->execute($loader->getFixtures());
         $this->user = $this->repository->findOneByUsername('User1');
     }
@@ -53,12 +56,18 @@ class GetUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate("BadUsername", "Badpassword");
+        $client = $this->authenticate(
+            "BadUsername",
+            "Badpassword"
+        );
         $client->request(
             'GET',
             '/users/'.$this->user->getId()->toString()
         );
-        static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
+        static::assertEquals(
+            Response::HTTP_UNAUTHORIZED,
+            $client->getResponse()->getStatusCode()
+        );
     }
 
     /**
@@ -66,28 +75,84 @@ class GetUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate("Client1", "MySuperPassword");
+        $client = $this->authenticate(
+            "Client1",
+            "MySuperPassword"
+        );
         $client->request(
             'GET',
             '/users/'.$this->user->getId()->toString()
         );
-        static::assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        static::assertContains('username', $client->getResponse()->getContent());
-        static::assertContains('password', $client->getResponse()->getContent());
-        static::assertContains('firstName', $client->getResponse()->getContent());
-        static::assertContains('lastName', $client->getResponse()->getContent());
-        static::assertContains('mail', $client->getResponse()->getContent());
-        static::assertContains('phone', $client->getResponse()->getContent());
-        static::assertContains('inscriptionDate', $client->getResponse()->getContent());
-        static::assertContains('address', $client->getResponse()->getContent());
-        static::assertContains('way', $client->getResponse()->getContent());
-        static::assertContains('zipCode', $client->getResponse()->getContent());
-        static::assertContains('city', $client->getResponse()->getContent());
-        static::assertContains('region', $client->getResponse()->getContent());
-        static::assertContains('country', $client->getResponse()->getContent());
-        static::assertContains('links', $client->getResponse()->getContent());
-        static::assertContains('self', $client->getResponse()->getContent());
-        static::assertContains('href', $client->getResponse()->getContent());
-        static::assertContains('delete', $client->getResponse()->getContent());
+        static::assertEquals(
+            Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        static::assertContains(
+            'username',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'password',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'firstName',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'lastName',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'mail',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'phone',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'inscriptionDate',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'address',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'way',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'zipCode',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'city',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'region',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'country',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'links',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'self',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'href',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'delete',
+            $client->getResponse()->getContent()
+        );
     }
 }

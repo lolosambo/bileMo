@@ -38,7 +38,10 @@ class GetAllProductsActionFunctionalTest extends WebTestCase
         $loader = new Loader();
         $loader->addFixture($productsFixtures);
         $purger = new ORMPurger($em);
-        $executor = new ORMExecutor($em, $purger);
+        $executor = new ORMExecutor(
+            $em,
+            $purger
+        );
         $executor->execute($loader->getFixtures());
     }
     /**
@@ -46,12 +49,18 @@ class GetAllProductsActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate("BadUsername", "Badpassword");
+        $client = $this->authenticate(
+            "BadUsername",
+            "Badpassword"
+        );
         $client->request(
             'GET',
             '/products'
         );
-        static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
+        static::assertEquals(
+            Response::HTTP_UNAUTHORIZED,
+            $client->getResponse()->getStatusCode()
+        );
     }
 
     /**
@@ -59,22 +68,61 @@ class GetAllProductsActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate("Client1", "MySuperPassword");
+        $client = $this->authenticate(
+            "Client1",
+            "MySuperPassword"
+        );
         $client->request(
             'GET',
             '/products'
         );
-        static::assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        static::assertContains('name', $client->getResponse()->getContent());
-        static::assertContains('brand', $client->getResponse()->getContent());
-        static::assertContains('height', $client->getResponse()->getContent());
-        static::assertContains('width', $client->getResponse()->getContent());
-        static::assertContains('weight', $client->getResponse()->getContent());
-        static::assertContains('screen', $client->getResponse()->getContent());
-        static::assertContains('os', $client->getResponse()->getContent());
-        static::assertContains('price', $client->getResponse()->getContent());
-        static::assertContains('links', $client->getResponse()->getContent());
-        static::assertContains('self', $client->getResponse()->getContent());
-        static::assertContains('href', $client->getResponse()->getContent());
+        static::assertEquals(
+            Response::HTTP_OK,
+            $client->getResponse()->getStatusCode()
+        );
+        static::assertContains(
+            'name',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'brand',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'height',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'width',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'weight',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'screen',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'os',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'price',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'links',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'self',
+            $client->getResponse()->getContent()
+        );
+        static::assertContains(
+            'href',
+            $client->getResponse()->getContent()
+        );
     }
 }

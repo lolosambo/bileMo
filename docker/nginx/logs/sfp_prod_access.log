@@ -2092,3 +2092,6 @@
 172.22.0.1 - - [15/Sep/2018:20:18:26 +0000] "POST /api/login_check HTTP/1.1" 200 687 "-" "PostmanRuntime/7.3.0"
 172.22.0.1 - - [15/Sep/2018:20:18:42 +0000] "GET /clients HTTP/1.1" 200 476 "-" "PostmanRuntime/7.3.0"
 172.22.0.1 - - [18/Sep/2018:20:09:49 +0000] "POST /api/login_check HTTP/1.1" 200 688 "-" "PostmanRuntime/7.3.0"
+172.22.0.1 - - [20/Sep/2018:20:26:16 +0000] "POST /api/login_check HTTP/1.1" 200 688 "-" "PostmanRuntime/7.3.0"
+172.22.0.1 - - [20/Sep/2018:20:26:34 +0000] "POST /users HTTP/1.1" 200 477 "-" "PostmanRuntime/7.3.0"
+172.22.0.1 - - [20/Sep/2018:20:26:50 +0000] "POST /users HTTP/1.1" 201 68 "-" "PostmanRuntime/7.3.0"

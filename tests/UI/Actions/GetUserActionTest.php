@@ -42,7 +42,10 @@ class GetUserActionTest extends TestCase
      */
     public function testConstruct()
     {
-        static::assertInstanceOf(GetUserAction::class, $this->action);
+        static::assertInstanceOf(
+            GetUserAction::class,
+            $this->action
+        );
     }
 
     /**
@@ -61,8 +64,14 @@ class GetUserActionTest extends TestCase
         $presenter = $this->createMock(GetUserPresenterInterface::class);
         $responder = new GetUserResponder($presenter);
         $action = $this->action;
-        $result = $action($request, $responder);
-        static::assertInstanceOf(Response::class, $result);
+        $result = $action(
+            $request,
+            $responder
+        );
+        static::assertInstanceOf(
+            Response::class,
+            $result
+        );
     }
 }
 
