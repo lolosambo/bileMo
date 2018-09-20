@@ -55,9 +55,9 @@ class CreateUserActionFunctionalTest extends WebTestCase
         static::assertEquals(Response::HTTP_UNAUTHORIZED, $client->getResponse()->getStatusCode());
     }
 
-//    /**
-//     * @group functional
-//     */
+    /**
+     * @group functional
+     */
     public function testGetStatusCodeWithAuthentication()
     {
         $client = $this->authenticate("Client1", "MySuperPassword");
@@ -79,6 +79,7 @@ class CreateUserActionFunctionalTest extends WebTestCase
                     "number" => 20,
                     "way" => "allée Baudelaire",
                     "zipCode" => 59139,
+                    "city" => "Wattignies",
                     "region" => "Nord",
                     "country" => "France"
                 ],
@@ -86,7 +87,5 @@ class CreateUserActionFunctionalTest extends WebTestCase
             ])
         );
         static::assertEquals(Response::HTTP_CREATED, $client->getResponse()->getStatusCode());
-
     }
-
 }
