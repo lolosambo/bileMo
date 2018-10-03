@@ -82,6 +82,14 @@ First you'll need to authenticate as a client. To test this, go to `/api/login_c
 }
 ```
 
+You shall receive a token
+
+```
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1Mzg0MTMwMjgsImV4cCI6MTUzODQxNjYyOCwicm9sZXMiOltdLCJ1c2VybmFtZSI6IkNsaWVudDEifQ.bIv3HFpM0xDibbF6qb3BZKE1MgmRsFtkX8AhnMMPbTXgBskJtDWFBKUD2TadUwE52IwtSktcVjdO8RF-VvO5lnb2q5hPZ0RIFxUUapQ-7oHgjpbDrv7Kqh22-7rHspvY-1XuzkDfN0zAdEHsDK198tb3KP_lmKvTYpJzFLKxf69iey-HpapZr88lon-D0bEs-GpmgrtfA_WrNhu_Zm-sK_tmxQ_FOwTpfRTsuroAvL7X-aUekMGBuJLEpK_iMTRBhD1y_eR-b9HctSYNdAI-lS4Gm5sw4TgQk1DBW79zuFP83hK799J-BDhlpQJHn-NMdRORMA_US50x0_sy6RG1zI8K4kkanuJ9RhccN_b_OmOcWLUvZA-yeMvlIO6z9yHjW7YYdfi9aKPLg_4nOQ-4_d2-9QTzHGh0URGbF6guRn3RbqCp3J-UbKH539QJ7nI6uMvEqE4RMgo3NQsD-WXEYG5SAViDQLJW7HCVkoOCrtibqsnWnAYf-DeqTw_WaSISta7G3YM3dQkvH1gVTHyPgxiChBsbfyZojUl-tpQ1sm2Q0jkDcAJ4BP82rft3xigHWtKDUtUgLknCGU8hzDYYP9D_-NV43hfTLWbLiqIpIBFnZIsROylEXiSXB5sqXPOtfOn9cSjQGNgwF-nAyh2EhmkJk8z6AFFSaCpjNm8QM4w"
+}
+```
+
 Requests on BileMo API are simple : uri you must call depends on the resource you want to see.
 
 You can use Postman or Insomnia (on Mac) to make request.
