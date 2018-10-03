@@ -84,13 +84,16 @@ First you'll need to authenticate as a client. To test this, go to `/api/login_c
 
 Requests on BileMo API are simple : uri you must call depends on the resource you want to see.
 
+You can use Postman or Insomnia (on Mac) to make request.
+
+Before sending your request, you'll have to say to Postman that you use a Authentication token (that you received after authentication). In the `Authorization` tab, select `Bearer Token` and past the token in the `token` field. 
+
 If you want Clients, just write `/clients`. For Users : `/users` and for Products : `/products`.
 
 With these 3 routes you'll be able to GET, POST and DELETE some resource.
 
 Note that you can only make POST and DELETE request on Users.
 
-You can use Postman or Insomnia (on Mac) to make request.
 
 ## POST requests
 
