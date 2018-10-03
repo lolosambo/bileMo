@@ -17,6 +17,7 @@ use App\Domain\Models\Interfaces\AddressesInterface;
 use App\Domain\Models\Addresses;
 use App\Domain\Repository\Interfaces\AddressesRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Cache\ApcuCache;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -32,19 +33,20 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
      *
      * @param RegistryInterface $registry
      */
-    public function __construct(RegistryInterface $registry)
-    {
+    public function __construct(
+        RegistryInterface $registry
+    ) {
         parent::__construct($registry, Addresses::class);
     }
 
     /**
      * @param string $addressId
      *
-     * @return mixed
+     * @return Addresses
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findAddress(string $addressId)
+    public function findAddress(string $addressId): Addresses
     {
         return $this->createQueryBuilder('a')
             ->where('a.id = ?1')
@@ -55,26 +57,9 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
     }
 
     /**
-     * @param string $city
-     *
-     * @return mixed
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return array
      */
-    public function findOneByCity(string $city)
-    {
-        return $this->createQueryBuilder('a')
-            ->where('a.city = :city')
-            ->setParameter('city', $city)
-            ->setCacheable(true)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function findAllAddresses()
+    public function findAllAddresses(): array
     {
         return $this->createQueryBuilder('a')
             ->getQuery()
@@ -83,6 +68,7 @@ class AddressesRepository extends ServiceEntityRepository implements AddressesRe
 
     /**
      * @param string $addressId
+     *
      * @return mixed
      */
     public function deleteAddress(string $addressId)

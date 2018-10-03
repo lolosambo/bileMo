@@ -142,14 +142,8 @@ class CreateUserAction implements CreateUserActionInterface
         unset($userData['address']);
 
         $client = $this->token->getToken()->getUser();
-        $address = $this->denormalizer->denormalize(
-            $addressData,
-            Addresses::class
-        );
-        $user = $this->denormalizer->denormalize(
-            $userData,
-            Users::class
-        );
+        $address = $this->denormalizer->denormalize($addressData, Addresses::class);
+        $user = $this->denormalizer->denormalize($userData, Users::class);
         $user->setClient($client);
         $user->setAddress($address);
         $user->setPhone($userData['phone']);

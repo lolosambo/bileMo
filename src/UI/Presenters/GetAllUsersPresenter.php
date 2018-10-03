@@ -45,11 +45,7 @@ class GetAllUsersPresenter implements GetAllUsersPresenterInterface
      */
     public function prepare($data)
     {
-        return $this->serializer->serialize(
-            $data,
-            'json',
-            ['groups' => ['users']]
-        );
+        return $this->serializer->serialize($data, 'json', ['groups' => ['users']]);
     }
 }
 

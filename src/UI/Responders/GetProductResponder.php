@@ -51,10 +51,7 @@ class GetProductResponder implements GetProductResponderInterface
         $data
     ) {
         $response =  new Response($this->presenter->prepare($data));
-        $response->headers->set(
-            "Content-Type",
-            "application/json"
-        );
+        $response->headers->set("Content-Type", "application/json");
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
         if($response->isNotModified($request)) {

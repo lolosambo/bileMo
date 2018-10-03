@@ -59,8 +59,10 @@ class DeleteUserAction implements DeleteUserActionInterface
      *
      * @throws \Exception
      */
-    public function __invoke(Request $request, DeleteUserPresenterInterface $presenter): Response
-    {
+    public function __invoke(
+        Request $request,
+        DeleteUserPresenterInterface $presenter
+    ): Response {
         $this->usersRepository->deleteUser($request->attributes->get("id"));
         return $presenter->prepare($request);
     }

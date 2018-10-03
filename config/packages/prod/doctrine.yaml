@@ -1,13 +1,14 @@
 doctrine:
     orm:
-        metadata_cache_driver: apcu
-        query_cache_driver: apcu
-        result_cache_driver: apcu
-
-framework:
-    cache:
-        pools:
-            doctrine.result_cache_pool:
-                adapter: cache.app
-            doctrine.system_cache_pool:
-                adapter: cache.system
+        metadata_cache_driver:
+            type: redis
+            host: '%env(DB_HOST)%'
+            port: '%env(REDIS_PORT)%'
+        query_cache_driver:
+            type: redis
+            host: '%env(DB_HOST)%'
+            port: '%env(REDIS_PORT)%'
+        result_cache_driver:
+            type: redis
+            host: '%env(DB_HOST)%'
+            port: '%env(REDIS_PORT)%'

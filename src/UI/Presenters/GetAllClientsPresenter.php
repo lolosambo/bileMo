@@ -45,10 +45,6 @@ class GetAllClientsPresenter implements GetAllClientsPresenterInterface
      */
     public function prepare($data)
     {
-       return $this->serializer->serialize(
-           $data,
-           'json',
-           ['groups' => ['clients']]
-       );
+       return $this->serializer->serialize($data, 'json', ['groups' => ['clients']]);
     }
 }

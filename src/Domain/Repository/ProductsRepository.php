@@ -17,6 +17,7 @@ use App\Domain\Models\Interfaces\ProductsInterface;
 use App\Domain\Models\Products;
 use App\Domain\Repository\Interfaces\ProductsRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Cache\ApcuCache;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -32,8 +33,9 @@ class ProductsRepository extends ServiceEntityRepository implements ProductsRepo
      *
      * @param RegistryInterface $registry
      */
-    public function __construct(RegistryInterface $registry)
-    {
+    public function __construct(
+        RegistryInterface $registry
+    ) {
         parent::__construct($registry, Products::class);
     }
 
@@ -69,21 +71,6 @@ class ProductsRepository extends ServiceEntityRepository implements ProductsRepo
             ->setCacheable(true)
             ->getQuery()
             ->getOneOrNullResult();
-    }
-
-    /**
-     * @param string $brand
-     *
-     * @return mixed
-     */
-    public function findOneByBrand(string $brand)
-    {
-        return $this->createQueryBuilder('p')
-            ->Where('p.brand = :brand')
-            ->setParameter('brand', $brand)
-            ->setCacheable(true)
-            ->getQuery()
-            ->getResult();
     }
 
     /**

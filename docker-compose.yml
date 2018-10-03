@@ -1,4 +1,4 @@
-version: "3.6"
+version: "2"
 
 services:
     # Core configuration
@@ -6,7 +6,6 @@ services:
         container_name: ${CONTAINER_NAME}_php-fpm
         build:
             context: .
-            target: base
         environment:
             BLACKFIRE_LOG_LEVEL: 4
             BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
@@ -16,7 +15,7 @@ services:
         volumes:
             - './:${WORKPATH}:rw,delegated'
             - './docker/php/conf/php.ini:/usr/local/etc/php/php.ini'
-            # - './docker/php/conf/production/php.ini:/usr/local/etc/php/php.ini' -> Used for production.
+            - './docker/php/conf/production/php.ini:/usr/local/etc/php/php.ini'
         restart: always
 
     nginx:
@@ -30,9 +29,18 @@ services:
             - './:${WORKPATH}:rw'
             - './docker/nginx/conf/core/nginx.conf:/etc/nginx/nginx.conf'
             - './docker/nginx/conf/development/bileMo.conf:/etc/nginx/conf.d/default.conf'
-             - './docker/nginx/conf/production/bileMo.conf:/etc/nginx/conf.d/default.conf'
+            - './docker/nginx/conf/production/bileMo.conf:/etc/nginx/conf.d/default.conf'
             - './docker/nginx/logs/:/var/log/nginx'
         restart: always
+
+    # VARNISH
+    varnish:
+        container_name: ${CONTAINER_NAME}_varnish
+        image: emgag/varnish:6.0
+        volumes:
+            - './docker/varnish:/etc/varnish:rw'
+        ports:
+            - "8081:80"
 
     # Server optimization
     redis:

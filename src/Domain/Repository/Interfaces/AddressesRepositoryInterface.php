@@ -13,9 +13,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository\Interfaces;
 
+use App\Domain\Models\Addresses;
 use App\Domain\Models\Interfaces\AddressesInterface;
-use Ramsey\Uuid\UuidInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class AddressesRepositoryInterface.
@@ -25,34 +24,18 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 Interface AddressesRepositoryInterface
 {
     /**
-     * AddressesRepository constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry);
-
-    /**
      * @param string $addressId
      *
-     * @return mixed
+     * @return Addresses
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findAddress(string $addressId);
+    public function findAddress(string $addressId): Addresses;
 
     /**
-     * @param string $city
-     *
-     * @return mixed
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return array
      */
-    public function findOneByCity(string $city);
-
-    /**
-     * @return mixed
-     */
-    public function findAllAddresses();
+    public function findAllAddresses(): array;
 
     /**
      * @param string $addressId

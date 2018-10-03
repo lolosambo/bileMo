@@ -13,9 +13,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository\Interfaces;
 
-use App\Domain\Models\Interfaces\UsersInterface;
-use Ramsey\Uuid\UuidInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Domain\Models\Users;
 
 /**
  * Class UsersRepositoryInterface.
@@ -27,35 +25,28 @@ Interface UsersRepositoryInterface
     /**
      * @param string $userId
      *
-     * @return mixed
+     * @return Users
      */
     public function findUser(string $userId);
 
     /**
      * @param string $username
      *
-     * @return mixed
+     * @return Users
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByUsername(string $username);
+    public function findOneByUsername(string $username): Users;
 
     /**
-     * @param string $mail
-     *
-     * @return mixed
+     * @return array
      */
-    public function findOneByMail(string $mail);
+    public function findAllUsers(): array;
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function findAllUsers();
-
-    /**
-     * @return mixed
-     */
-    public function findAllUsersByClient(string $clientId);
+    public function findAllUsersByClient(string $clientId): array;
 
     /**
      * @param string $userId

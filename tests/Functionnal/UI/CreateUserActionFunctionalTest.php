@@ -30,9 +30,12 @@ class CreateUserActionFunctionalTest extends WebTestCase
 //    use TestCaseTrait;
     use AuthenticationTestTrait;
 
+    private $client;
+
     public function setup()
     {
         self::bootKernel();
+        $this->client = self::createClient();
         $em = static::$kernel->getContainer()->get('doctrine')->getManager();
         $loader = new Loader();
         $purger = new ORMPurger($em);
@@ -47,17 +50,23 @@ class CreateUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "BadUsername",
             "Badpassword"
         );
-        $client->request(
+        $this->client->request(
             'POST',
-            '/users'
+            '/users',
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_UNAUTHORIZED,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
     }
 
@@ -66,17 +75,18 @@ class CreateUserActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "Client1",
             "MySuperPassword"
         );
-        $client->request(
+        $this->client->request(
             'POST',
             '/users',
             [],
             [],
             [
-                "CONTENT_TYPE" => "application/json"
+                "CONTENT_TYPE" => "application/json",
+                'HTTP_Authorization' => "Bearer ".$token
             ],
             json_encode([
                 "username" => "LolosamboTest",
@@ -97,11 +107,11 @@ class CreateUserActionFunctionalTest extends WebTestCase
         );
         static::assertEquals(
             Response::HTTP_CREATED,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
         static::assertContains(
             'L\'utilisateur a bien été ajouté à la base de données',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
     }
 }

@@ -10,40 +10,24 @@ declare(strict_types=1);
  */
 namespace Tests\Traits;
 
-Trait AuthenticationTestTrait
+use App\Domain\Models\Clients;
+
+trait AuthenticationTestTrait
 {
+    /**
+     * @param string $username
+     * @param string $password
+     *
+     * @return string
+     *
+     * @throws \Exception
+     */
     public function authenticate(
         string $username,
         string $password
-    ) {
-
-        $client = static::createClient();
-        $client->request(
-            "POST",
-            "/api/login_check",
-            [],
-            [],
-            [
-                'CONTENT_TYPE' => 'application/json'
-            ],
-            json_encode([
-                "username" => $username,
-                "password" => $password
-            ])
-        );
-        $token = json_decode($client->getResponse()->getContent(), true);
-
-        if(!isset($token['token'])){
-            return $client;
-        } else {
-            $client->setServerParameter(
-                'HTTP_Authorization',
-                sprintf(
-                    'Bearer %s',
-                    $token['token']
-                )
-            );
-            return $client;
-        }
+    ): string {
+        $client = new Clients($username, $password, '');
+        static::bootKernel();
+        return static::$kernel->getContainer()->get('lexik_jwt_authentication.jwt_manager')->create($client);
     }
 }

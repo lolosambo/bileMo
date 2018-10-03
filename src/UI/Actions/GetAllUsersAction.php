@@ -73,9 +73,6 @@ class GetAllUsersAction implements GetAllUsersActionInterface
     ) {
         $client = $this->token->getToken()->getUser();
         $data = $this->repository->findAllUsersByClient($client->getId()->toString());
-        return $responder->returnResponse(
-            $request,
-            $data
-        );
+        return $responder->returnResponse($request, $data);
     }
 }

@@ -64,9 +64,6 @@ class GetAllClientsAction implements GetAllClientsActionInterface
         GetAllClientsResponderInterface $responder
     ) {
         $data = $this->repository->findAllClients();
-        return $responder->returnResponse(
-            $request,
-            $data
-        );
+        return $responder->returnResponse($request, $data);
     }
 }

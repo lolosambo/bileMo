@@ -50,6 +50,17 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
+            "App\\Application\\": "src/Application",
+            "App\\Application\\Request\\": "src/Application/Request",
+            "App\\Application\\Subscribers\\": "src/Application/Subscribers",
+            "App\\Domain\\": "src/Domain",
+            "App\\Domain\\Models\\": "src/Domain/Models",
+            "App\\Domain\\Repository\\": "src/Domain/Repository",
+            "App\\Domain\\DataFixtures\\ORM\\": "src/Domain/DataFixtures/ORM",
+            "App\\UI\\": "src/UI",
+            "App\\UI\\Actions\\": "src/UI/Actions",
+            "App\\UI\\Presenters\\": "src/UI/Presenters",
+            "App\\UI\\Responders\\": "src/UI/Responders",
             "Tests\\": "tests/"
         }
     },

@@ -51,10 +51,7 @@ class GetUserResponder implements GetUserResponderInterface
         $data
     ) {
         $response =  new Response();
-        $response->headers->set(
-            "Content-Type",
-            "application/json"
-        );
+        $response->headers->set("Content-Type", "application/json");
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
         if($response->isNotModified($request)) {

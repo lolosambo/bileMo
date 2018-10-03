@@ -24,6 +24,7 @@ services:
         resource: '../src/UI/Actions'
         tags: ['controller.service_arguments']
 
+
 #    lexik_jwt_authentication.handler.authentication_success:
 #        class: App\Security\Handlers\AuthenticationSuccessHandler
 #        arguments: []

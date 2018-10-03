@@ -15,8 +15,10 @@ namespace App\Domain\Repository;
 
 use App\Domain\Models\Interfaces\ClientsInterface;
 use App\Domain\Models\Clients;
+use App\Domain\Models\Users;
 use App\Domain\Repository\Interfaces\ClientsRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Cache\ApcuCache;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -31,28 +33,27 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
      *
      * @param RegistryInterface $registry
      */
-    public function __construct(RegistryInterface $registry)
-    {
+    public function __construct(
+        RegistryInterface $registry
+    ) {
         parent::__construct($registry, Clients::class);
     }
 
     /**
      * @param string $clientId
      *
-     * @return mixed
+     * @return Users
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findClient(string $clientId)
     {
         return $this->createQueryBuilder('c')
-            ->where('c.id = ?1')
-            ->setParameter(1, $clientId)
-            ->setCacheable(true)
-            ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
-            ->getOneOrNullResult();
+                ->where('c.id = ?1')
+                ->setParameter(1, $clientId)
+                ->setCacheable(true)
+                ->getQuery()
+                ->getOneOrNullResult();
     }
 
     /**
@@ -65,30 +66,11 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
     public function findOneByClientName(string $username)
     {
         return $this->createQueryBuilder('c')
-            ->where('c.username = :username')
-            ->setParameter('username', $username)
-            ->setCacheable(true)
-            ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
-            ->getOneOrNullResult();
-    }
-
-    /**
-     * @param $mail
-     *
-     * @return mixed
-     */
-    public function findOneByMail($mail)
-    {
-        return $this->createQueryBuilder('c')
-            ->Where('c.mail = :mail')
-            ->setParameter('mail', $mail)
-            ->setCacheable(true)
-            ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
-            ->getResult();
+                ->where('c.username = :username')
+                ->setParameter('username', $username)
+                ->setCacheable(true)
+                ->getQuery()
+                ->getOneOrNullResult();
     }
 
     /**
@@ -96,20 +78,18 @@ class ClientsRepository extends ServiceEntityRepository implements ClientsReposi
      */
     public function findAllClients()
     {
-        return $this->createQueryBuilder('c')
+       return  $this->createQueryBuilder('c')
             ->setCacheable(true)
             ->getQuery()
             ->setCacheable(true)
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
     /**
-     * @param ClientsInterface $clientId
+     * @param string $clientId
      * @return mixed
      */
-    public function deleteClient(ClientsInterface $clientId)
+    public function deleteClient(string $clientId)
     {
         return $this->createQueryBuilder('c')
             ->delete()

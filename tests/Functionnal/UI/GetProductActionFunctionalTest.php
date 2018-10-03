@@ -31,12 +31,14 @@ class GetProductActionFunctionalTest extends WebTestCase
     //    use TestCaseTrait;
     use AuthenticationTestTrait;
 
+    private $client;
     private $repository;
     private $product;
 
     public function setup()
     {
         self::bootKernel();
+        $this->client = self::createClient();
         $this->repository = static::$kernel->getContainer()->get('doctrine')->getRepository(Products::class);
         $em = static::$kernel->getContainer()->get('doctrine')->getManager();
         $productsFixtures = new ProductsFixtures();
@@ -56,17 +58,23 @@ class GetProductActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "BadUsername",
             "Badpassword"
         );
-        $client->request(
+        $this->client->request(
             'GET',
-            '/products/'.$this->product->getId()->toString()
+            '/products/'.$this->product->getId()->toString(),
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_UNAUTHORIZED,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
     }
 
@@ -75,61 +83,67 @@ class GetProductActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "Client1",
             "MySuperPassword"
         );
-        $client->request(
+        $this->client->request(
             'GET',
-            '/products/'.$this->product->getId()->toString()
+            '/products/'.$this->product->getId()->toString(),
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_OK,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
         static::assertContains(
             'name',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'brand',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'height',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'width',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'weight',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'screen',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'os',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'price',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'links',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'self',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'href',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
     }
 }

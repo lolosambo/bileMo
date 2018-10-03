@@ -45,10 +45,6 @@ class GetUserPresenter implements GetUserPresenterInterface
      */
     public function prepare($data)
     {
-        return $this->serializer->serialize(
-            $data,
-            'json',
-            ['groups' => ['user']]
-        );
+        return $this->serializer->serialize($data, 'json', ['groups' => ['user']]);
     }
 }

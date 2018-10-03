@@ -30,11 +30,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 class DeleteUserPresenter implements DeleteUserPresenterInterface
 {
     /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
      * @var UsersRepositoryInterface
      */
     private $usersRepository;
@@ -47,16 +42,13 @@ class DeleteUserPresenter implements DeleteUserPresenterInterface
     /**
      * DeleteUserPresenter constructor.
      *
-     * @param SerializerInterface $serializer
      * @param UsersRepositoryInterface $usersRepository
      * @param DeleteUserResponderInterface $responder
      */
     public function __construct(
-        SerializerInterface $serializer,
         UsersRepositoryInterface $usersRepository,
         DeleteUserResponderInterface $responder
     ) {
-        $this->serializer = $serializer;
         $this->usersRepository = $usersRepository;
         $this->responder = $responder;
     }

@@ -42,7 +42,6 @@ class DeleteUserPresenterTest extends KernelTestCase
         $this->usersRepository = $this->createMock(UsersRepositoryInterface::class);
 
         $this->presenter = new DeleteUserPresenter(
-            $serializer,
             $this->usersRepository,
             $responder
         );

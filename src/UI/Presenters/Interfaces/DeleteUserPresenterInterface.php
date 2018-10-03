@@ -17,7 +17,6 @@ use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use App\UI\Responders\Interfaces\DeleteUserResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Interface DeleteUserPresenterInterface
@@ -29,12 +28,10 @@ Interface DeleteUserPresenterInterface
     /**
      * DeleteUserPresenter constructor.
      *
-     * @param SerializerInterface $serializer
      * @param UsersRepositoryInterface $usersRepository
      * @param DeleteUserResponderInterface $responder
      */
     public function __construct(
-        SerializerInterface $serializer,
         UsersRepositoryInterface $usersRepository,
         DeleteUserResponderInterface $responder
     );

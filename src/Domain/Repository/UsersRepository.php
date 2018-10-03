@@ -13,12 +13,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository;
 
-use App\Domain\Models\Interfaces\UsersInterface;
 use App\Domain\Models\Users;
 use App\Domain\Repository\Interfaces\UsersRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -33,86 +30,64 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
      *
      * @param RegistryInterface $registry
      */
-    public function __construct(RegistryInterface $registry)
-    {
+    public function __construct(
+        RegistryInterface $registry
+    ) {
         parent::__construct($registry, Users::class);
     }
 
     /**
      * @param string $userId
      *
-     * @return mixed
+     * @return Users
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findUser(string $userId)
     {
-        return $this->createQueryBuilder('u')
+       return  $this->createQueryBuilder('u')
             ->leftJoin('u.address', 'ua')
             ->where('u.id = ?1')
             ->setParameter(1, $userId)
             ->setCacheable(true)
             ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
+           ->useResultCache(true)
+           ->setResultCacheLifetime(300)
             ->getOneOrNullResult();
     }
 
     /**
      * @param string $username
      *
-     * @return mixed
+     * @return Users
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByUsername(string $username)
+    public function findOneByUsername(string $username): Users
     {
         return $this->createQueryBuilder('u')
             ->where('u.username = :username')
             ->setParameter('username', $username)
             ->setCacheable(true)
             ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
             ->getOneOrNullResult();
     }
 
     /**
-     * @param string $mail
-     *
-     * @return mixed
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return array
      */
-    public function findOneByMail(string $mail)
-    {
-        return $this->createQueryBuilder('u')
-            ->Where('u.mail = :mail')
-            ->setParameter('mail', $mail)
-            ->setCacheable(true)
-            ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
-            ->getOneOrNullResult();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function findAllUsers()
+    public function findAllUsers(): array
     {
         return $this->createQueryBuilder('u')
             ->setCacheable(true)
             ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
             ->getResult();
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function findAllUsersByClient(string $clientId)
+    public function findAllUsersByClient(string $clientId): array
     {
         return $this->createQueryBuilder('u')
             ->leftJoin('u.client', 'uc')
@@ -122,7 +97,7 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setCacheable(true)
             ->getQuery()
             ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
+            ->setResultCacheLifetime(300)
             ->getResult();
     }
 
@@ -139,8 +114,6 @@ class UsersRepository extends ServiceEntityRepository implements UsersRepository
             ->setParameter(1, $userId)
             ->setCacheable(true)
             ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(86400)
             ->execute();
     }
 

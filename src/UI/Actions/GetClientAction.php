@@ -63,10 +63,7 @@ class GetClientAction implements GetClientActionInterface
         GetClientResponderInterface $responder
     ) {
         $data = $this->repository->findClient($request->attributes->get('id'));
-        return $responder->returnResponse(
-            $request,
-            $data
-        );
+        return $responder->returnResponse($request, $data);
     }
 }
 

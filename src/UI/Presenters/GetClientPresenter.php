@@ -45,12 +45,6 @@ class GetClientPresenter implements GetClientPresenterInterface
      */
     public function prepare($data)
     {
-        return $this->serializer->serialize(
-            $data,
-            'json',
-            [
-                'groups' => ['client']
-            ]
-        );
+        return $this->serializer->serialize($data, 'json', ['groups' => ['client']]);
     }
 }

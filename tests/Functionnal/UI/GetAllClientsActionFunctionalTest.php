@@ -31,9 +31,12 @@ class GetAllClientsActionFunctionalTest extends WebTestCase
 //    use TestCaseTrait;
     use AuthenticationTestTrait;
 
+    private $client;
+
     public function setup()
     {
         self::bootKernel();
+        $this->client = self::createClient();
         $em = static::$kernel->getContainer()->get('doctrine')->getManager();
         $clientsFixtures = new ClientsFixtures();
         $loader = new Loader();
@@ -51,81 +54,78 @@ class GetAllClientsActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate(
-            "BadUsername",
-            "Badpassword"
+        $token =  $this->authenticate(
+            "Client12351555",
+            "MySuperBadPassword"
         );
-        $client->request(
+        $this->client->request(
             'GET',
-            '/clients'
+            '/clients',
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_UNAUTHORIZED,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
     }
 
     /**
      * @group functional
+     *
+     * @throws \Exception
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "Client1",
             "MySuperPassword"
         );
-        $client->request(
+        $this->client->request(
             'GET',
-            '/clients'
+            '/clients',
+            [],
+            [],
+            [
+                "CONTENT_TYPE" => "application/json",
+                "HTTP_Authorization" => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_OK,
-            $client->getResponse()->getStatusCode()
+            $this->client->getResponse()->getStatusCode()
         );
         static::assertContains(
             'username',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'password',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'mail',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'inscription_date',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'links',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'self',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
         static::assertContains(
             'href',
-            $client->getResponse()->getContent()
+            $this->client->getResponse()->getContent()
         );
     }
-
-
-
-//    /**
-//     * @group Blackfire
-//     */
-//    public function testOneTrickInvoke()
-//    {
-//        $config = new Configuration();
-//        $config->assert('main.peak_memory < 100kB', 'AddImages memory usage');
-//        $config->assert('main.wall_time < 45ms', 'AddImages walltime');
-//        $config->assert('metrics.sql.queries.count = 0', 'AddImages walltime');
-//        $this->assertBlackfire($config, function(){
-//            $client = static::createClient();
-//            $client->request('GET', '/trick/Figure_0');
-//        });
-//    }
 }

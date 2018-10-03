@@ -32,11 +32,15 @@ class GetClientActionFunctionalTest extends WebTestCase
     use AuthenticationTestTrait;
 
     private $repository;
+
+    private $request;
+
     private $client;
 
     public function setup()
     {
         self::bootKernel();
+        $this->request = static::createClient();
         $this->repository = static::$kernel->getContainer()->get('doctrine')->getRepository(Clients::class);
         $em = static::$kernel->getContainer()->get('doctrine')->getManager();
         $clientsFixtures = new ClientsFixtures();
@@ -56,64 +60,79 @@ class GetClientActionFunctionalTest extends WebTestCase
      */
     public function testGetStatusCodeWithoutAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "BadUsername",
             "Badpassword"
         );
-        $client->request(
+        $this->request->request(
             'GET',
-            '/clients/'.$this->client->getId()->toString()
+            '/clients/'.$this->client->getId()->toString(),
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
+
         static::assertEquals(
             Response::HTTP_UNAUTHORIZED,
-            $client->getResponse()->getStatusCode()
+            $this->request->getResponse()->getStatusCode()
         );
     }
 
     /**
      * @group functional
+     *
+     * @throws \Exception
      */
     public function testGetStatusCodeWithAuthentication()
     {
-        $client = $this->authenticate(
+        $token =  $this->authenticate(
             "Client1",
             "MySuperPassword"
         );
-        $client->request(
+        $this->request->request(
             'GET',
-            '/clients/'.$this->client->getId()->toString()
+            '/clients/'.$this->client->getId()->toString(),
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_Authorization' => "Bearer ".$token
+            ]
         );
         static::assertEquals(
             Response::HTTP_OK,
-            $client->getResponse()->getStatusCode()
+            $this->request->getResponse()->getStatusCode()
         );
         static::assertContains(
             'username',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'password',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'mail',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'inscription_date',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'links',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'self',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
         static::assertContains(
             'href',
-            $client->getResponse()->getContent()
+            $this->request->getResponse()->getContent()
         );
     }
 }

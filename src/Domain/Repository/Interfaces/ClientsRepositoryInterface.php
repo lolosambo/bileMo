@@ -13,10 +13,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Repository\Interfaces;
 
-use App\Domain\Models\Clients;
-use App\Domain\Models\Interfaces\ClientsInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-
 /**
  * Class ClientsRepositoryInterface.
  *
@@ -24,13 +20,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 Interface ClientsRepositoryInterface
 {
-    /**
-     * ClientsRepositoryInterface constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry);
-
     /**
      * @param string $clientId
      *
@@ -50,22 +39,15 @@ Interface ClientsRepositoryInterface
     public function findOneByClientName(string $clientname);
 
     /**
-     * @param $mail
-     *
-     * @return mixed
-     */
-    public function findOneByMail($mail);
-
-    /**
      * @return mixed
      */
     public function findAllClients();
 
     /**
-     * @param ClientsInterface $clientId
+     * @param string $clientId
      * @return mixed
      */
-    public function deleteClient(ClientsInterface $clientId);
+    public function deleteClient(string $clientId);
 
     /**
      * @param $client

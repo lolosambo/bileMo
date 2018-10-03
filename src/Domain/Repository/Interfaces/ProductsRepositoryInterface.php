@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace App\Domain\Repository\Interfaces;
 
 use App\Domain\Models\Interfaces\ProductsInterface;
-use Ramsey\Uuid\UuidInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Interface ProductsRepositoryInterface.
@@ -24,13 +22,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 Interface ProductsRepositoryInterface
 {
-    /**
-     * ProductsRepositoryInterface constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry);
-
     /**
      * @param string $productId
      *
@@ -48,13 +39,6 @@ Interface ProductsRepositoryInterface
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneByProductName(string $productName);
-
-    /**
-     * @param string $brand
-     *
-     * @return mixed
-     */
-    public function findOneByBrand(string $brand);
 
     /**
      * @return mixed

@@ -63,9 +63,6 @@ class GetProductAction implements GetProductActionInterface
     public function __invoke(Request $request, GetProductResponderInterface $responder)
     {
         $data = $this->repository->findProduct($request->attributes->get('id'));
-        return $responder->returnResponse(
-            $request,
-            $data
-        );
+        return $responder->returnResponse($request, $data);
     }
 }

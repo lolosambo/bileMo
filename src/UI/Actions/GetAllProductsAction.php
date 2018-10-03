@@ -63,9 +63,6 @@ class GetAllProductsAction implements GetAllProductsActionInterface
         GetAllProductsResponderInterface $responder
     ) {
         $data = $this->repository->findAllProducts();
-        return $responder->returnResponse(
-            $request,
-            $data
-        );
+        return $responder->returnResponse($request, $data);
     }
 }

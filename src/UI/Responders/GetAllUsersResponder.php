@@ -49,12 +49,9 @@ class GetAllUsersResponder implements GetAllUsersResponderInterface
     public function returnResponse(
         Request $request,
         $data
-    ) {
+    ): Response {
         $response =  new Response();
-        $response->headers->set(
-            "Content-Type",
-            "application/json"
-        );
+        $response->headers->set("Content-Type", "application/json");
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
         if($response->isNotModified($request)) {
