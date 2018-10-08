@@ -294,6 +294,7 @@ class Clients implements ClientsInterface, UserInterface, JWTUserInterface, \Jso
     public function jsonSerialize()
     {
         return [
+            'id' => $this->id,
             'username' => $this->username,
             'password' => $this->password,
             'mail' => $this->mail,

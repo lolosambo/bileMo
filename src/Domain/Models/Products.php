@@ -308,6 +308,7 @@ class Products implements ProductsInterface, \JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'brand' => $this->brand,
             'height' => $this->height,

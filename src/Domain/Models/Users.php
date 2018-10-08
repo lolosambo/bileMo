@@ -326,6 +326,7 @@ class Users implements UsersInterface, UserInterface, \JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'id' => $this->id,
             'username' => $this->username,
             'password' => $this->password,
             'firstName' => $this->firstName,
