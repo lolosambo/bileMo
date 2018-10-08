@@ -341,7 +341,7 @@ class Users implements UsersInterface, UserInterface, \JsonSerializable
 
                 ],
                 'delete' => [
-                    'href' => '/users/delete/'.$this->id->toString()
+                    'href' => '/users/'.$this->id->toString()
                 ]
             ]
         ];
